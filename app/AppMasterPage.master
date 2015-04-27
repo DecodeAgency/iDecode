@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="AppMasterPage.master.cs" Inherits="app_AppMasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+        
+    </asp:ContentPlaceHolder>
+    <link href="styling/css/idecode.css" type="text/css" rel="stylesheet" />
+    <link href="styling/css/reset.css" rel="stylesheet"/>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="../styling/js/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styling/css/sweetalert.css"/>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <%--<asp:ScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ScriptManager>--%>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">       
+        </asp:ContentPlaceHolder>
+        <div style="background-color: #222;border-color: #090909;height:70px">
+            <div style="width:960px; margin:0 auto"><img runat="server" src="/Website/app/styling/images/logo.png" id="imgLogo" style="width: 230px;margin-top: 10px;" /><div style="float:right; width: 730px;margin-top: 9px;"><asp:TextBox Width="300" runat="server" ID="txtGeneralSearch" Text="Search for Journalists, Keywords and Topics" /><div class="NavigationMenuAndSearch"><a href="/">Home</a><a runat="server" id="aPricePlans">Plans and Pricing</a><a runat="server" id="aLogin">Login</a></div></div></div>
+        </div>
+    </div>
+    <div >
+        <asp:ContentPlaceHolder id="ContentPlaceHolder2" runat="server"> 
+        </asp:ContentPlaceHolder>
+    </div>
+    <div class="Width960">
+        <asp:ContentPlaceHolder id="ContentPlaceHolder3" runat="server"> 
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

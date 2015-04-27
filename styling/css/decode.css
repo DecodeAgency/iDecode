@@ -1,0 +1,611 @@
+﻿@font-face {
+font-family: 'Myriad Pro Regular';
+font-style: normal;
+font-weight: normal;
+src: local('Myriad Pro Regular'), url('../fonts/MYRIADPRO-REGULAR.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Myriad Pro Condensed';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/MYRIADPRO-COND.woff');
+}
+
+
+@font-face {
+font-family: 'Myriad Pro Semibold Italic';
+font-style: normal;
+font-weight: normal;
+src: local('Myriad Pro Semibold Italic'), url('../fonts/MYRIADPRO-SEMIBOLDIT.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Myriad Pro Semibold';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/MYRIADPRO-SEMIBOLD.woff');
+}
+
+
+@font-face {
+font-family: 'Myriad Pro Condensed Italic';
+font-style: normal;
+font-weight: normal;
+src: local('Myriad Pro Condensed Italic'), url('../fonts/MYRIADPRO-CONDIT.woff') format('woff');
+}
+@font-face {
+font-family: 'Myriad Pro Bold Italic';
+font-style: normal;
+font-weight: normal;
+src: local('Myriad Pro Bold Italic'), url('../fonts/MYRIADPRO-BOLDIT.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Myriad Pro Bold Condensed Italic';
+font-style: normal;
+font-weight: normal;
+src: local('Myriad Pro Bold Condensed Italic'), url('../fonts/MYRIADPRO-BOLDCONDIT.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Myriad Pro Bold Condensed';
+font-style: normal;
+font-weight: normal;
+src: local('Myriad Pro Bold Condensed'), url('../fonts/MYRIADPRO-BOLDCOND.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Myriad Pro Bold';
+font-style: normal;
+font-weight: normal;
+src: local('Myriad Pro Bold'), url('../fonts/MYRIADPRO-BOLD.woff') format('woff');
+}
+
+
+* {
+    font-family:'Myriad Pro Condensed' !Important
+}
+
+.Clear {
+    clear:both;
+}
+
+.Width960 {
+    width:960px;
+    margin:0 auto;
+}
+
+    .Width960 h2 {
+        font-size:80px;
+        font-weight:normal;
+        text-align:center;
+        text-transform:uppercase;
+    }
+
+.HeaderDescription {
+    font-size:20px;
+    text-align:center;
+}
+
+.divTopBlackBar {
+    width:100%;
+    height:34px;
+    background-color:#343434;
+}
+    .divTopBlackBar .Width960 .divContent {
+        font-size: 17px;
+        color: #fff;
+        float: right;
+        margin-top: 9px;
+    }
+
+.divMainMenu {
+    width:100%;
+    height:67px;
+    background-color:#fff;
+    border-bottom:3px solid #343434;
+}
+    .divMainMenu .Width960 .NavigationMenu {
+        float:right;
+        margin-top:20px;
+    }
+    .divMainMenu .Width960 .NavigationMenu ul li {
+        list-style-type:none;
+        display: inline-block;
+        margin: 10px;
+        text-transform: uppercase;
+        font-size: 18px;
+        text-align:right
+    }
+
+.divBannerImage {
+    width:100%;
+    height:512px;
+    background-color:#3498DB;
+    margin-top: -1px;
+}
+
+.BannerContainer {
+    
+}
+.divConnect {
+    width:100%;
+    height:485px;
+    background-color:#343434;
+    padding-top:38px; 
+}
+    .divConnect h2 {
+        color:#fff;
+    }
+    .divConnect .HeaderDescription {
+        color:#989898;
+    }
+    .divConnect .squareConnect {
+        width:279px;
+        height:314px;
+        background-color:#3D3D3D;
+        float:left;
+        margin-right:17px;
+        margin-top:30px;
+        padding-bottom: 10px;
+    }
+    .divConnect .squareConnect .bigLetterC {
+        font-size: 150px;
+        color: #FBCF61;
+        margin-top: 54px;
+        float: left;
+        margin-left: 40px;
+        line-height: 100px;
+    }
+    .divConnect .squareConnect .bigLetterE {
+        font-size: 150px;
+        color: #FF6F6F;
+        margin-top: 54px;
+        float: left;
+        margin-left: 40px;
+        line-height: 100px;
+    }
+    .divConnect .squareConnect .bigLetterM {
+        font-size: 150px;
+        color: #A8D164;
+        margin-top: 54px;
+        float: left;
+        margin-left: 10px;
+        line-height: 100px;
+    }
+
+        .divConnect .squareConnect .theRest {
+            font-size: 70px;color: #989898;float:left;margin-top:65px
+        }
+
+    .divConnect .squareConnect .squareDescription { 
+        font-size:17px;
+        color:#989898;
+        width:272px;
+        margin:0 auto;
+        margin-top:25px;
+    }
+
+
+    .divConnect .squareConnect .LearnMoreButton {
+        padding: 10px;
+        border: 1px solid transparent;
+        display: block;
+        text-align: center;
+        background-color: red;
+        margin-top: 16px;
+    }
+
+        .divConnect .squareConnect .LearnMoreButtonC {
+            background-color:#fbcf61;
+            color:#3D3D3D;
+        }
+        
+        .divConnect .squareConnect .LearnMoreButtonE {
+            background-color:#FF6F6F;
+            color:#fff;
+        }
+
+        .divConnect .squareConnect .LearnMoreButtonM {
+            background-color:#A8D164;
+            color:#3D3D3D;
+        }
+
+.divServices {
+    width:100%;
+    min-height:750px;
+    background-color:#fff;
+    padding-top:38px;
+    color:#33485E;
+    overflow:hidden
+}
+    .divServices h2 {
+        color:#33485E;
+    }
+
+    .divServices .HeaderDescription {
+        color:#33475E;
+        text-align:left;
+    }
+
+    .divServices .divServiceItem {
+        width:480px;
+        margin-top:50px;
+        float:left;
+        min-height: 164px;
+    }
+        .divServices .divServiceItem .divServiceItemIcon {
+            float:left;
+            margin-right:10px;
+            min-height:108px;
+            width: 150px;
+            text-align: center;
+        }
+        .divServices .divServiceItem .divServiceItemName {
+            width:275px;
+            font-size:23px;
+            float:left;
+            min-height: 40px;
+        }
+        .divServices .divServiceItem .divServiceItemDescription{
+            float: left;
+            width: 310px;
+            margin-top: 5px;
+            font-size: 17px;
+        }
+
+.divDecode {
+    width:100%;
+    min-height:810px;
+    background-color:#F8F8F8;
+    border-top:1px solid #E7E7E7;
+    border-bottom:1px solid #E7E7E7;
+    padding-top:38px;
+    color:#33485E;
+    overflow:hidden;
+}
+    .divDecode .HeaderDescription {
+        text-align:left;
+    }
+
+.divDecodeItems {
+    margin-top:30px;
+}
+.divDecodeItem {
+  width: 900px;
+  margin: 0 auto;
+  min-height: 190px;
+  border-bottom: 1px solid #e7e7e7;
+  margin-bottom: 10px;
+  overflow: hidden;
+  padding: 30px 0;
+}
+.divDecodeItemImage {
+    float:left;
+    margin-right:20px
+}
+
+.divDecodeItemImage img {
+    margin-right: 30px;
+}
+
+.divDecodeItemName {
+  float: left;
+  font-size: 40px;
+  width: 600px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.divDecodeItemDescription {
+    font-size:17px;
+}
+
+.divWhoWeAre {
+    width:100%;
+    height:541px;
+    background-color:#242424;
+    padding-top:38px;
+    color:#989898
+}
+    .divWhoWeAre h2 {
+        color:#F8F8F8;
+    }
+
+        .WhoWeAreItems {
+            width: 887px;
+            margin: 0 auto;
+        }
+
+        .divWhoWeAre .WhoWeAreItem {
+            width:279px;
+            height:314px;
+            float:left;
+            background-color:#3D3D3D;
+            margin-right:25px;
+            margin-top:25px;
+        }
+
+            .divWhoWeAre .WhoWeAreItem .WhoWeAreItemImage {
+                text-align: center;
+                margin-top: 30px;
+                margin-bottom: 5px;
+                min-height: 160px;
+            }
+
+            .divWhoWeAre .WhoWeAreItem .WhoWeAreItemDescription {
+                padding: 0 4px;
+                font-size: 17px;
+            }
+
+    .divFooter {
+        width:100%;
+        min-height:192px;
+        background-color:#343434;
+        padding-top:38px;
+        padding-bottom:20px;
+        color:#989898; 
+    }
+
+    .divMap {
+        height:200px;
+        margin:10px 0
+    }
+    #map-canvas {
+        width: 100%;
+        height: 200px;
+      }
+
+    .divFooter a {
+        color:#989898; 
+    }
+    .divFooter h2 {
+        color:#F8F8F8
+    }
+
+    .divSubscriptionForm {
+        float:left;
+        width: 452px;
+    }
+
+    .divFooterMenu {
+        float:left;
+        width:250px;
+    }
+
+    .divSocialLinks {
+        float:left;
+        width:250px;
+    }
+
+    .divFooterMenu ul li {
+        list-style-type:none;
+        margin: 10px;
+        font-size: 18px;
+        font-size:17px
+    }
+
+    .divSocialLinks ul li {
+        list-style-type:none;
+        margin: 10px;
+        font-size: 18px;
+        font-size:17px
+    }
+
+input, textarea, select {
+    border: 1px solid #fff;
+    margin: 2px;
+    padding: 10px 10px;
+    width: 310px;
+}
+
+select {
+    width:331px;
+}
+
+textarea {
+    height: 57px;
+    margin-bottom: 0 !Important;
+}
+
+.ContactUsButton {
+    margin-top:0 !Important;
+    width:332px;
+    background-color:#a8d164;
+    border:1px solid #a8d164 !Important;
+    color:#3d3d3d;
+}
+
+
+a {
+    text-decoration:none;
+    color:#000
+}
+    a:active, a:visited {
+        color:#000
+    }
+
+h3 {
+    text-transform: uppercase;
+    border-bottom: 1px solid !Important;
+    margin-right: 30px !Important;
+    margin-top: 20px !Important;
+    padding-bottom: 10px !Important;
+}
+
+input#btnSubscribe {
+    width: 200px;
+    margin-left: 134px;
+    background-color: #fbcf61;
+    color: #3D3D3D;
+    border: 1px solid #fbcf61;
+}
+
+/*Profile Page Tabs*/
+body {
+margin: 0;
+font-family: Arial, Helvetica, sans-serif;
+line-height: 1.5;
+font-size: 14px;        
+}
+
+.tabs-menu {
+    height: 30px;
+    float: left;
+    clear: both;
+    margin-bottom: 0px;
+    margin-left: -40px;
+}
+
+.tabs-menu li {
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    background-color: #f6f6f6;
+    list-style-type: none;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 10px;
+    width: 102px;
+    text-align: center;
+}
+
+.tabs-menu li.current {
+    position: relative;
+    background-color: #fff;
+    z-index: 5;
+}
+
+.tabs-menu li a {
+    padding: 10px;
+    text-transform: uppercase;
+    color: #888;
+    text-decoration: none; 
+}
+
+.tabs-menu .current a {
+    color: #2e7da3;
+}
+
+.tab {
+    background-color: #fff;
+    float: left;
+    margin-bottom: 20px;
+    width: auto;
+    margin-top: 20px;
+}
+
+.tab-content {
+    width: 570px;
+    padding: 20px;
+    display: none;
+}
+
+#tab-1 {
+ display: block;   
+}
+
+/*Profile Page*/
+.HeaderWrapper {
+    width:960px;
+    margin:0 auto;
+}
+.ProfileHeader {
+    width:610px;
+    margin-right:20px;
+    height:135px;
+    float:left;
+    background-color:#fff;
+}
+.ProfileImage {
+    height:135px;
+    width:180px;
+    background-position:center;
+    background-size:cover;
+    float:left;
+    margin-right:20px
+}
+
+.ProfileSocialButton {
+    float: left;
+    width: 125px;
+    background-color: #000;
+    padding: 12px 20px;
+    color:#fff;
+}
+
+.ProfileContactButton {
+    width: 290px !Important;
+}
+
+.ProfileShareContainer {
+    float: left;
+    margin-left: 20px;
+    background-color: #fff;
+    padding: 12px 20px;
+    width: 290px;
+    margin-top: -30px;
+}
+
+.JobHistoryContainer {
+    background: #f6f6f6;
+    margin-top: 10px;
+    border: 1px solid #eee;
+    padding: 8px;
+    font-size: 14px!important;
+    clear: both;
+    overflow: hidden;
+}
+
+.PublicationImage {
+    height:80px;
+    width:120px;
+    background-position:center center;
+    background-size:contain;
+    float:left;
+    margin-right:20px;
+    background-repeat:no-repeat
+}
+
+.PublicationName {
+}
+
+.divRecentTweetItem {
+    background: #f6f6f6;
+    margin-top: 10px;
+    border: 1px solid #eee;
+    padding: 8px;
+    line-height: 1em;
+    font-size: 14px!important;
+    clear: both;
+    overflow: hidden;
+}
+
+.RecentTweetImage {
+    float:left;
+    margin-right: 10px;
+}
+
+.divRecentTweetDate {
+  float: right;
+  margin-top: 5px;
+  display: inline-block;
+
+}
+
+.divRecentTweetTweet {
+  width: 478px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.divRecentTweetName {
+  margin-top: 5px;
+  display: inline-block;
+  width: 50%;
+}

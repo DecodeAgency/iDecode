@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://test.idecode.co.za" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://test.idecode.co.za" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://test.idecode.co.za">
+      <s:element name="NewUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GenderID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Age" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrentCity" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CountryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContactMobile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContactOffice" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FaxNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WebsiteAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserTypeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FacebookUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TwitterUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LinkedInUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ImageFormat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TwitterOauthToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TwitterOauthTokenSecret" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TwitterScreenName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TwitterUserID" type="s:unsignedLong" />
+            <s:element minOccurs="0" maxOccurs="1" name="TwitterProfileImageURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ShortBiography" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Biography" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrentJobTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrentJobPublication" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="BeatID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PackageID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NewUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="NewUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoadUserResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iUserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GenderID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Age" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrentCity" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CountryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContactMobile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContactOffice" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FaxNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WebsiteAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserTypeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FacebookUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TwitterUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LinkedInUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ImageFormat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TwitterOauthToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TwitterOauthTokenSecret" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TwitterScreenName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TwitterUserID" type="s:unsignedLong" />
+            <s:element minOccurs="0" maxOccurs="1" name="TwitterProfileImageURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ShortBiography" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Biography" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrentJobTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrentJobPublication" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="BeatID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PackageID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NewUserJob">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Publication" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Position" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Department" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CurrentJob" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NewUserJobResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="NewUserJobResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserJob">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iUserJobID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Publication" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Position" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Department" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CurrentJob" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserJobResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUserJobResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadUserJob">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserJobID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadUserJobResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoadUserJobResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadUserJobs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadUserJobsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoadUserJobsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NewUserArticle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MediaOutlet" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DatePublished" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="ImageFormat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentFormat" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ImageURL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NewUserArticleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="NewUserArticleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserArticle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserArticleID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MediaOutlet" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DatePublished" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="ImageFormat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentFormat" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ImageURL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserArticleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUserArticleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadUserArticles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadUserArticlesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoadUserArticlesResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="NewUserSoapIn">
+    <wsdl:part name="parameters" element="tns:NewUser" />
+  </wsdl:message>
+  <wsdl:message name="NewUserSoapOut">
+    <wsdl:part name="parameters" element="tns:NewUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadUserSoapIn">
+    <wsdl:part name="parameters" element="tns:LoadUser" />
+  </wsdl:message>
+  <wsdl:message name="LoadUserSoapOut">
+    <wsdl:part name="parameters" element="tns:LoadUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="NewUserJobSoapIn">
+    <wsdl:part name="parameters" element="tns:NewUserJob" />
+  </wsdl:message>
+  <wsdl:message name="NewUserJobSoapOut">
+    <wsdl:part name="parameters" element="tns:NewUserJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserJobSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUserJob" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserJobSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadUserJobSoapIn">
+    <wsdl:part name="parameters" element="tns:LoadUserJob" />
+  </wsdl:message>
+  <wsdl:message name="LoadUserJobSoapOut">
+    <wsdl:part name="parameters" element="tns:LoadUserJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadUserJobsSoapIn">
+    <wsdl:part name="parameters" element="tns:LoadUserJobs" />
+  </wsdl:message>
+  <wsdl:message name="LoadUserJobsSoapOut">
+    <wsdl:part name="parameters" element="tns:LoadUserJobsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NewUserArticleSoapIn">
+    <wsdl:part name="parameters" element="tns:NewUserArticle" />
+  </wsdl:message>
+  <wsdl:message name="NewUserArticleSoapOut">
+    <wsdl:part name="parameters" element="tns:NewUserArticleResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserArticleSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUserArticle" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserArticleSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserArticleResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadUserArticlesSoapIn">
+    <wsdl:part name="parameters" element="tns:LoadUserArticles" />
+  </wsdl:message>
+  <wsdl:message name="LoadUserArticlesSoapOut">
+    <wsdl:part name="parameters" element="tns:LoadUserArticlesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="idecodeSoap">
+    <wsdl:operation name="NewUser">
+      <wsdl:input message="tns:NewUserSoapIn" />
+      <wsdl:output message="tns:NewUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadUser">
+      <wsdl:input message="tns:LoadUserSoapIn" />
+      <wsdl:output message="tns:LoadUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input message="tns:UpdateUserSoapIn" />
+      <wsdl:output message="tns:UpdateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NewUserJob">
+      <wsdl:input message="tns:NewUserJobSoapIn" />
+      <wsdl:output message="tns:NewUserJobSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserJob">
+      <wsdl:input message="tns:UpdateUserJobSoapIn" />
+      <wsdl:output message="tns:UpdateUserJobSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadUserJob">
+      <wsdl:input message="tns:LoadUserJobSoapIn" />
+      <wsdl:output message="tns:LoadUserJobSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadUserJobs">
+      <wsdl:input message="tns:LoadUserJobsSoapIn" />
+      <wsdl:output message="tns:LoadUserJobsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NewUserArticle">
+      <wsdl:input message="tns:NewUserArticleSoapIn" />
+      <wsdl:output message="tns:NewUserArticleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserArticle">
+      <wsdl:input message="tns:UpdateUserArticleSoapIn" />
+      <wsdl:output message="tns:UpdateUserArticleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadUserArticles">
+      <wsdl:input message="tns:LoadUserArticlesSoapIn" />
+      <wsdl:output message="tns:LoadUserArticlesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="idecodeSoap" type="tns:idecodeSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="NewUser">
+      <soap:operation soapAction="http://test.idecode.co.za/NewUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadUser">
+      <soap:operation soapAction="http://test.idecode.co.za/LoadUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://test.idecode.co.za/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewUserJob">
+      <soap:operation soapAction="http://test.idecode.co.za/NewUserJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserJob">
+      <soap:operation soapAction="http://test.idecode.co.za/UpdateUserJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadUserJob">
+      <soap:operation soapAction="http://test.idecode.co.za/LoadUserJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadUserJobs">
+      <soap:operation soapAction="http://test.idecode.co.za/LoadUserJobs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewUserArticle">
+      <soap:operation soapAction="http://test.idecode.co.za/NewUserArticle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserArticle">
+      <soap:operation soapAction="http://test.idecode.co.za/UpdateUserArticle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadUserArticles">
+      <soap:operation soapAction="http://test.idecode.co.za/LoadUserArticles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="idecodeSoap12" type="tns:idecodeSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="NewUser">
+      <soap12:operation soapAction="http://test.idecode.co.za/NewUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadUser">
+      <soap12:operation soapAction="http://test.idecode.co.za/LoadUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap12:operation soapAction="http://test.idecode.co.za/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewUserJob">
+      <soap12:operation soapAction="http://test.idecode.co.za/NewUserJob" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserJob">
+      <soap12:operation soapAction="http://test.idecode.co.za/UpdateUserJob" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadUserJob">
+      <soap12:operation soapAction="http://test.idecode.co.za/LoadUserJob" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadUserJobs">
+      <soap12:operation soapAction="http://test.idecode.co.za/LoadUserJobs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewUserArticle">
+      <soap12:operation soapAction="http://test.idecode.co.za/NewUserArticle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserArticle">
+      <soap12:operation soapAction="http://test.idecode.co.za/UpdateUserArticle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadUserArticles">
+      <soap12:operation soapAction="http://test.idecode.co.za/LoadUserArticles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="idecode">
+    <wsdl:port name="idecodeSoap" binding="tns:idecodeSoap">
+      <soap:address location="http://test.idecode.co.za/webservices/idecode.asmx" />
+    </wsdl:port>
+    <wsdl:port name="idecodeSoap12" binding="tns:idecodeSoap12">
+      <soap12:address location="http://test.idecode.co.za/webservices/idecode.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

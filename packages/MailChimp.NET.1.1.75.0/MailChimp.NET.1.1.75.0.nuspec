@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>MailChimp.NET</id>
+    <version>1.1.75.0</version>
+    <title>MailChimp.NET</title>
+    <authors>Dan Esparza</authors>
+    <owners>Dan Esparza</owners>
+    <licenseUrl>https://github.com/danesparza/MailChimp.NET/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/danesparza/MailChimp.NET</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/danesparza/MailChimp.NET/master/freddie.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET MailChimp API wrapper</description>
+    <releaseNotes>Please see the project site for updated release notes</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <language>en-US</language>
+    <tags>mailchimp email</tags>
+    <dependencies>
+      <dependency id="ServiceStack.Text" version="[3.9.71]" />
+    </dependencies>
+  </metadata>
+</package>
