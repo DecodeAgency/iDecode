@@ -27,6 +27,7 @@ h2 {
 .NavigationMenuAndSearch {
   float: right;
   margin-top:15px;
+  display:none;
 }
     .NavigationMenuAndSearch a {
         margin-left:20px;
@@ -876,3 +877,54 @@ h4 {
 .e-icon, .e-rte-toolbar-icon, .e-bgcolor-icon, .e-fontcolor-icon, .e-rte-footericon, .e-rte-resize {
   font-family: 'ej-webfont' !Important;
 }
+
+.AppNavigationMenuContainer {
+  margin: 20px auto;
+  padding: 20px 13px;
+  border-radius: 5px;
+  background-color: #394263;
+}
+
+    .AppNavigationMenuContainer ul li {
+        display:inline;
+    }
+
+    .AppNavigationMenuContainer ul li a {
+      color: #fff !Important;
+      padding: 10px;
+      font-size: 12px !Important;
+      margin:5px 20px
+    }
+
+.FooterContainer {
+    z-index: 5;
+    font-weight: 600;
+    background: #161616;
+    color: #999;
+    padding-top: 10px;
+    min-height: 230px;
+    padding-bottom: 20px;
+}
+
+.ContentContainer {
+    margin-bottom:50px
+}
+
+.divFooterC {
+    width: 229px;
+    float: left;
+    margin: 5px;
+}
+
+    .divFooterC h3 {
+          margin-bottom: 20px;
+    }
+
+    .divFooterC ul{
+            margin-left: 10px;
+        }
+
+        .divFooterC ul li {
+            list-style-type:none;
+            margin: 10px 0;
+        }

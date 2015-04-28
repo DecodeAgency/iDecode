@@ -18,10 +18,19 @@ public partial class app_AppMasterPage : System.Web.UI.MasterPage
         if (Request.RawUrl.Contains("admin"))
         {
             aLogin.HRef = "~/app/admin/login.aspx";
+            divAppNavMenu.Visible = false;
         }
         if (Session["iUserID"] != null) {
+            divAppNavMenu.Visible = true;
             if (Convert.ToInt16(Session["iUserID"].ToString()) != 0)
             {
+                //appNav
+
+                aDashboard.HRef = "~/app/journalists/dashboard.aspx";
+                aSearch.HRef = "~/app/journalists/search.aspx";
+                aPressRelease.HRef = "~/app/journalists/pressreleases/pressreleases.aspx";
+                aSettings.HRef = "~/app/communicators/profileedit.aspx";
+                aLogout.HRef = "~/app/login.aspx?logout=true";
 
                 //txtGeneralSearch.Visible = true;
                 aPricePlans.HRef = "~/register.aspx";

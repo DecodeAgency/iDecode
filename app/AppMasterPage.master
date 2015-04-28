@@ -33,15 +33,72 @@
         <div style="background-color: #222;border-color: #090909;height:70px">
             <div style="width:960px; margin:0 auto"><img runat="server" src="/Website/app/styling/images/logo.png" id="imgLogo" style="width: 230px;margin-top: 10px;" /><div style="float:right; width: 730px;margin-top: 9px;"><asp:TextBox Width="300" runat="server" ID="txtGeneralSearch" Text="Search for Journalists, Keywords and Topics" /><div class="NavigationMenuAndSearch"><a href="/">Home</a><a runat="server" id="aPricePlans">Plans and Pricing</a><a runat="server" id="aLogin">Login</a></div></div></div>
         </div>
+        <div class="AppNavigationMenuContainer Width960" style="width:934px" runat="server" id="divAppNavMenu" visible="false">
+            <div class="FloatLeft">
+                <div class="divSmallProfileImage">
+
+                </div>
+            </div>
+            <div class="FloatRight">
+                <ul>
+                    <li><a runat="server" id="aDashboard" href="#">Dashboard</a></li>
+                    <li><a runat="server" id="aSearch" href="#">Search</a></li>
+                    <li><a runat="server" id="aPressRelease" href="#">Press Releases</a></li>
+                    <li><a runat="server" id="aSettings" href="#">Settings</a></li>
+                    <li><a runat="server" id="aLogout" href="#">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div >
         <asp:ContentPlaceHolder id="ContentPlaceHolder2" runat="server"> 
         </asp:ContentPlaceHolder>
     </div>
-    <div class="Width960">
+    <div class="Width960 ContentContainer">
         <asp:ContentPlaceHolder id="ContentPlaceHolder3" runat="server"> 
         </asp:ContentPlaceHolder>
     </div>
+        <div class="FooterContainer">
+            <div class="Width960">
+                <div class="divFooterC">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li>About Decode Agency</li>
+                        <li>Contact Us</li>
+                        <li>&nbsp;</li>
+                        <li>Privacy Policy</li>
+                        <li>Terms and Conditions</li>
+                    </ul>
+                </div>
+                <div class="divFooterC">
+                    <h3>For Journalists</h3>
+                    <ul>
+                        <li>Find Journalists</li>
+                        <li>Verification Process</li>
+                    </ul>                   
+                </div>
+                <div class="divFooterC">
+                    <h3>For Communicators</h3>
+                    <ul>
+                        <li>Find Communicators</li>
+                        <li>Media Lists</li>
+                    </ul>
+                </div>
+                <div class="divFooterC">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>hello@decode.co.za</li>
+                        <li>Twitter</li>
+                        <li>Facebook</li>
+                        <li>LinkedIn</li>
+                        <li>(012) 000 0000</li>
+                        <li>Copyright &copy; 2015 Decode Agency</li>
+                    </ul>
+                </div>
+                <asp:ContentPlaceHolder id="ContentPlaceHolder4" runat="server"> 
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>    
     </form>
 </body>
 </html>
