@@ -43,6 +43,8 @@ public partial class app_AppMasterPage : System.Web.UI.MasterPage
                     aLogin.HRef = "~/app/admin/login.aspx?logout=true";
                 }
                 var oUser = new User(Convert.ToInt16(Session["iUserID"].ToString()), "");
+                litWhosLoggedIn.Text = "Yoh, " + oUser.FirstName;
+                divSmaillProfileImage.Style.Add("background-image", "url('" + getImageURL(oUser.TwitterProfileImageURL, oUser.ImageFormat, oUser.UserID) + "')");
                 if (oUser.UserTypeID == 1)
                 {
                     aPricePlans.HRef = "~/app/communicators/profileedit.aspx";
@@ -63,8 +65,21 @@ public partial class app_AppMasterPage : System.Web.UI.MasterPage
         
     }
 
-    protected void Page_LoadComplete(object sender, EventArgs e)
+    public string getImageURL(string sTwitterProfileImageURL, string sImageFormat, int iUserID)
     {
-
+        string output = "";
+        if (sTwitterProfileImageURL != "")
+        {
+            output = sTwitterProfileImageURL;
+        }
+        else if (sImageFormat != "")
+        {
+            output = "../images/profileimages/" + Convert.ToInt32(iUserID) + "." + sImageFormat;
+        }
+        else
+        {
+            output = "../images/profileimages/0.png";
+        }
+        return output;
     }
 }

@@ -433,6 +433,16 @@ input#btnSubscribe {
     margin-left: 25px;
 }
 
+.divSmallProfileImage {
+    width:50px;
+    height:50px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 100%;
+    border: 3px solid #545885;
+    display: inline-block;
+}
+
 .ProfileSocialButton {
     float: left;
     width: 102px;
@@ -879,10 +889,11 @@ h4 {
 }
 
 .AppNavigationMenuContainer {
-  margin: 20px auto;
-  padding: 20px 13px;
-  border-radius: 5px;
-  background-color: #394263;
+    margin: 20px auto;
+    padding: 11px 13px 8px 13px;
+    border-radius: 5px;
+    background-color: #394263;
+    overflow: hidden;
 }
 
     .AppNavigationMenuContainer ul li {
@@ -892,7 +903,7 @@ h4 {
     .AppNavigationMenuContainer ul li a {
       color: #fff !Important;
       padding: 10px;
-      font-size: 12px !Important;
+      font-size: 13px !Important;
       margin:5px 20px
     }
 
@@ -927,4 +938,22 @@ h4 {
         .divFooterC ul li {
             list-style-type:none;
             margin: 10px 0;
+            font-weight: normal;
         }
+
+.FloatLeft {
+    float:left;
+}
+
+.FloatRight {
+    float:right
+}
+
+.IsThisYourName {
+  display: block;
+  float: left;
+  margin-top: 22px;
+  margin-right: 10px;
+  color: #fff;
+  font-size: 13px !Important;
+}

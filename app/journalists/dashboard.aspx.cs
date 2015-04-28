@@ -29,7 +29,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
     {
         try
         {            
-            if (Session["iUserID"] == null) { Response.Redirect("~/app/admin/login.aspx", true); }
+            if (Session["iUserID"] == null) { Response.Redirect("~/app/login.aspx", true); }
             int iUserID = Convert.ToInt16(Session["iUserID"].ToString());
             this.Page.Title = "iDecode | Dashboard";
             var oUser = new User(iUserID,"");
