@@ -1,0 +1,514 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Syncfusion.EJ.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Syncfusion.JavaScript.Web.Barcode">
+            <summary>
+            Represents the Barcode UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.BarcodeDesigner">
+            <summary>
+            Gets a collection of Barcode values
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.BulletGraph">
+            <summary>
+            Represents the Button UI element.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.JavaScript.Web.BulletGraphDesigner.bg">
+            <summary>
+            Initializes the control designer and loads the specified component.
+            </summary>
+            <param name="component">The control being designed.</param>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.Chart">
+            <summary>
+            Represents the Chart UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.ChartDesigner">
+            <summary>
+            Gets a collection of Button values
+            </summary>
+        </member>
+        <member name="F:Syncfusion.JavaScript.Web.ChartDesigner.chrt">
+            <summary>
+            Initializes the control designer and loads the specified component.
+            </summary>
+            <param name="component">The control being designed.</param>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.CircularGauge">
+            <summary>
+            Represents the CircularGauge UI element.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.GradientStop.Color">
+            <summary>
+            Gets or sets the stop color.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.GradientStop.Offset">
+            <summary>
+            Gets or sets the stop offset.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.Overview">
+            <summary>
+            Represents the Diagram UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.DigitalGauge">
+            <summary>
+            Represents the DigitalGauge UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.LinearGauge">
+            <summary>
+            Represents the LinearGauge UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.Map">
+            <summary>
+            Represents the Map UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.MapDesigner">
+            <summary>
+            Gets a collection of Map values
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.RangeNavigator">
+            <summary>
+            Represents the Chart UI element.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.JavaScript.Web.RangeNavigatorDesigner.range">
+            <summary>
+            Initializes the control designer and loads the specified component.
+            </summary>
+            <param name="component">The control being designed.</param>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.Diagram">
+            <summary>
+            Represents the Diagram UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.SymbolPalette">
+            <summary>
+            Represents the Diagram UI element.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.DiagramPalette.Expanded">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="!:Palette"/> is expanded.
+            </summary>
+            <value>
+              <c>true</c> if expanded; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.DiagramPalette.ID">
+            <summary>
+            Gets or sets the id of the palette.
+            </summary>
+            <value>
+            The palette name.
+            </value>       
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.DiagramPalette.Name">
+            <summary>
+            Gets or sets the name of the palette.
+            </summary>
+            <value>
+            The palette name.
+            </value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.DiagramPalette.Items">
+            <summary>
+            Gets the palette children.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.DiagramPalette.ChildCount">
+            <summary>
+            Gets the palette child count.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.DiagramPalette.Capacity">
+            <summary>
+            Gets or sets the capacity of palette.
+            </summary>
+            <value>
+            The capacity.
+            </value>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.Accordion">
+            <summary>
+            Represents the Accordion UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.Button">
+            <summary>
+            Represents the Button UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.ButtonDesigner">
+            <summary>
+            Gets a collection of Button values
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.Captcha">
+            <summary>
+            Represents the Button UI element.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.JavaScript.Web.Captcha.RenderCaptchaImage">
+            <summary>
+            Renders the captcha image
+            </summary>      
+        </member>
+        <member name="M:Syncfusion.JavaScript.Web.Captcha.Generate(System.Int32,System.String,System.Int32)">
+            <summary>
+            Generates Random Text
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.CheckBox">
+            <summary>
+            Represents the CheckBox UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.CheckBoxDesigner">
+            <summary>
+            Gets a collection of RadioButton values
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.ColorPicker">
+            <summary>
+            Represents the ColorPicker UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.ColorPickerDesigner">
+            <summary>
+            Gets a collection of DatePicker values
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.DatePicker">
+            <summary>
+            Represents the Datepicker UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.DatePickerDesigner">
+            <summary>
+            Gets a collection of DatePicker values
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.DateTimePicker">
+            <summary>
+            Represents the DateTimePicker UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.Dialog">
+            <summary>
+            Represents the Dialog UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.DropDownListDesigner">
+            <summary>
+            Gets a collection of DropDownList values
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.Gantt">
+            <summary>
+            Represents the Gantt UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.ListBoxDesigner">
+            <summary>
+            Gets a collection of ListBox values
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.MaskEdit">
+            <summary>
+            Represents the MaskEdit UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.MaskEditDesigner">
+            <summary>
+            Gets a collection of DatePicker values
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.ProgressBar">
+            <summary>
+            Represents the ProgressBar UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.ProgressBarDesigner">
+            <summary>
+            Gets a collection of Button values
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.RadioButton">
+            <summary>
+            Represents the Radio Button UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.RadioButtonDesigner">
+            <summary>
+            Gets a collection of RadioButton values
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.ReportViewer">
+            <summary>
+            Class ReportViewer.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.JavaScript.Web.ReportViewer.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Renders the control to the specified HTML writer.
+            </summary>
+            <param name="writer">The <see cref="T:System.Web.UI.HtmlTextWriter" /> object that receives the control content.</param>
+        </member>
+        <member name="M:Syncfusion.JavaScript.Web.ReportViewer.Render">
+            <summary>
+            Renders the instance of ReportViewer.
+            </summary>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:Syncfusion.JavaScript.Web.ReportViewer.LoadViewState(System.Object)">
+            <summary>
+            Loads the state of the view state.
+            </summary>
+            <param name="state">The state.</param>
+        </member>
+        <member name="M:Syncfusion.JavaScript.Web.ReportViewer.SaveViewState">
+            <summary>
+            Saves any view-state changes that have occurred since the time the page was posted back to the server.
+            </summary>
+            <returns>The control's current view state. If there is no view state associated with the control, this method returns null.</returns>
+        </member>
+        <member name="M:Syncfusion.JavaScript.Web.ReportViewer.UpdateServerModel(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Updates the server model.
+            </summary>
+            <param name="ClientModel">The client model.</param>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.Model">
+            <summary>
+            Gets or sets the ReportViewer model.
+            </summary>
+            <value>The model.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.height">
+            <summary>
+            Gets or sets the height.
+            </summary>
+            <value>The height.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.width">
+            <summary>
+            Gets or sets the width.
+            </summary>
+            <value>The width.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.DataSources">
+            <summary>
+            Gets or sets the list of data sources for the RDLC report.
+            </summary>
+            <value>The data sources.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.Parameters">
+            <summary>
+            Gets or sets the list of parameters associated with the report.
+            </summary>
+            <value>The parameters.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.ToolbarSettings">
+            <summary>
+            Specifies the toolbar settings.
+            </summary>
+            <value>The toolbar settings.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.PageSettings">
+            <summary>
+            Specifies the toolbar settings.
+            </summary>
+            <value>The toolbar settings.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.ExportSettings">
+            <summary>
+            Specifies the export settings.
+            </summary>
+            <value>The export settings.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.ReportServiceUrl">
+            <summary>
+            Specifies the report Web API service url.
+            </summary>
+            <value>The report service URL.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.ReportPath">
+            <summary>
+            Gets or sets the path of the report file.
+            </summary>
+            <value>The report path.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.ReportServerUrl">
+            <summary>
+            Gets or sets the reports server URL.
+            </summary>
+            <value>The report server URL.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.RenderMode">
+            <summary>
+            Specifies the render layout.
+            </summary>
+            <value>The processing mode.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.ProcessingMode">
+            <summary>
+            Specifies the processing mode of the report.
+            </summary>
+            <value>The processing mode.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.ZoomFactor">
+            <summary>
+            Gets or sets the zoom factor for report viewer.
+            </summary>
+            <value>The zoom factor.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.Locale">
+            <summary>
+            Specifies the locale for report viewer.
+            </summary>
+            <value>The locale.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.OnClientReportLoaded">
+            <summary>
+            Fires when the report is loaded.If you want to perform any operation after the successful loading of report, you can make use of the reportLoaded event.
+            </summary>
+            <value>The on client report loaded.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.OnClientReportError">
+            <summary>
+            Fires when any error occurred while rendering the report.If you want to perform any operation when an error occurs in the report, you can make use of the reportError event.
+            </summary>
+            <value>The on client report error.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.OnClientRenderingBegin">
+            <summary>
+            Fires before report rendering is completed.If you want to perform any operation before the rendering of report,you can make use of the renderingBegin event.
+            </summary>
+            <value>The on client rendering begin.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.OnClientRenderingComplete">
+            <summary>
+            Fires after report rendering completed.If you want to perform any operation after the rendering of report,you can make use of this renderingComplete event.
+            </summary>
+            <value>The on client rendering complete.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.OnClientDrillThrough">
+            <summary>
+            Fires during drill through action done in report.If you want to perform any operation when a drill through action is performed, you can make use of the drillThrough event.
+            </summary>
+            <value>The on client drill through.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.OnClientViewReportClick">
+            <summary>
+            Fires when click the ViewReport.If you want to modify the current parameter collection while viewReport click, you can make use of the viewReportClick event.
+            </summary>
+            <value>The on client view Report Click.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewer.OnClientDestroy">
+            <summary>
+            Fires when the report viewer is destroyed successfully.If you want to perform any operation after destroying the reportviewer control,you can make use of the destroy event.
+            </summary>
+            <value>The on client destroy.</value>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.ReportViewerCreator">
+            <summary>
+            Class ReportViewerCreator.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.JavaScript.Web.ReportViewerCreator.#ctor(Syncfusion.JavaScript.Web.ReportViewer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.JavaScript.Web.ReportViewerCreator"/> class.
+            </summary>
+            <param name="reportModel">The report model.</param>
+        </member>
+        <member name="M:Syncfusion.JavaScript.Web.ReportViewerCreator.CreateContainer(System.String)">
+            <summary>
+            Creates the container.
+            </summary>
+            <param name="controlId">The control identifier.</param>
+            <returns>HtmlString.</returns>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewerCreator.Width">
+            <summary>
+            Gets or sets the width.
+            </summary>
+            <value>The width.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewerCreator.Height">
+            <summary>
+            Gets or sets the height.
+            </summary>
+            <value>The height.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewerCreator.TagName">
+            <summary>
+            Gets the name of the tag.
+            </summary>
+            <value>The name of the tag.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewerCreator.PluginName">
+            <summary>
+            Gets the name of the plugin.
+            </summary>
+            <value>The name of the plugin.</value>
+        </member>
+        <member name="P:Syncfusion.JavaScript.Web.ReportViewerCreator.Model">
+            <summary>
+            Gets the ReportViewer model.
+            </summary>
+            <value>The model.</value>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.ReportViewerDesigner">
+            <summary>
+            Gets a collection of ReportViewer values
+            </summary>
+        </member>
+        <member name="F:Syncfusion.JavaScript.Web.ReportViewerDesigner.reportviewer">
+            <summary>
+            Initializes the control designer and loads the specified component.
+            </summary>
+            <param name="component">The control being designed.</param>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.Ribbon">
+            <summary>
+            Represents the Ribbon UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.RTE">
+            <summary>
+            Represents the RTE UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.SplitButton">
+            <summary>
+            Represents the SplitButton UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.Tab">
+            <summary>
+            Represents the Tab UI element.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.JavaScript.Web.TimePickerDesigner">
+            <summary>
+            Gets a collection of TimePicker values
+            </summary>
+        </member>
+    </members>
+</doc>

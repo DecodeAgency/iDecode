@@ -1,0 +1,2995 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Syncfusion.PivotAnalysis.Base</name>
+    </assembly>
+    <members>
+        <member name="T:Syncfusion.PivotAnalysis.Base.IPivotControl">
+            <summary>
+            Interface for Pivot Grid
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IPivotControl.PivotColumns">
+            <summary>
+            Obtains the Number of Pivot Columns
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IPivotControl.PivotFields">
+            <summary>
+            Obtains the Number of Pivot Fileds
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IPivotControl.PivotRows">
+            <summary>
+            Obtains the Number of Pivot Rows
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IPivotControl.Filters">
+            <summary>
+            Obtains the Filter Expressions
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IPivotControl.PivotCalculations">
+            <summary>
+            Gets the Calculation to be performed in PivotGrid
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IPivotControl.DeferLayoutUpdate">
+            <summary>
+            Used to Peform refreshing operations.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IPivotControl.ShowCalculationsAsColumns">
+            <summary>
+            To show Rows in columns and vice-versa
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IPivotControl.PivotEngine">
+            <summary>
+            PivotEngine
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IPivotControl.ItemSource">
+            <summary>
+            Source of the Items in pivot Grid
+            </summary>
+        </member>
+        <member name="E:Syncfusion.PivotAnalysis.Base.IPivotControl.ShowDisabledGroupBackgroundPropertyChanged">
+            <summary>
+            is used to specify whether the background has to be changed or not.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.FilterHelper">
+            <summary>
+            This class encapsulates support for computing filter values and expressions. It is primarily intended
+            as a internal use class.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterHelper.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterHelper.AddFilterExpression(System.String,System.String)">
+            <summary>
+            Adds a FilterExpression.
+            </summary>
+            <param name="name">The name of this expression.</param>
+            <param name="expression">A string holding a well-formed logical expression</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterHelper.RemoveFilterExpression(Syncfusion.PivotAnalysis.Base.FilterExpression)">
+            <summary>
+            Removes a FilterExpression.
+            </summary>
+            <param name="exp">The name of the FilterExpression to be removed.</param>
+            <returns>True if the expression was successfully removed, false otherwise.</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterHelper.Clear">
+            <summary>
+            Clears all FilterExpressions.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterHelper.CaseSensitive">
+            <summary>
+            Gets or sets whether comparisons are case sensitive. The default is true.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterHelper.Count">
+            <summary>
+            Gets the count of the filters currently in this helper class.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterHelper.Item(System.Int32)">
+            <summary>
+            Gets an particular FilterExpression in the order that the expressions have been added.
+            </summary>
+            <param name="i">The index of desired FilterExpression.</param>
+            <returns>The FilterExpression.</returns>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.FilterExpression">
+            <summary>
+            This class encapsulates the information needed to define a filter.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterExpression.#ctor">
+            <summary>
+            Empty Constructor of FilterExpression
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterExpression.#ctor(System.String)">
+            <summary>
+            A constructor method that executes on instantiation of FilterExpression class.
+            </summary>
+            <param name="dimensionName">Name of the PivotItem</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterExpression.#ctor(System.String,System.String,System.String)">
+            <summary>
+            A constructor method that executes on instantiation of FilterExpression class.
+            </summary>
+            <param name="dimensionName">Name of the PivotItem</param>
+            <param name="dimensionHeader">Friendly Text of the PivotItem</param>
+            <param name="expression">Logical expression defining the filter</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterExpression.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            A constructor method that executes on instantiation of FilterExpression class.
+            </summary>
+            <param name="dimensionName">Name of the PivotItem</param>
+            <param name="dimensionHeader">Friendly Text of the PivotItem</param>
+            <param name="expression">Logical expression defining the filter</param>
+            <param name="format">Format of the expression</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterExpression.#ctor(System.String,System.String)">
+             <summary>
+             A constructor method that executes on instantiation of FilterExpression class.
+             </summary>
+             <param name="name">It indicates the DimensionName</param>
+            <param name="expression">The well formed logical expression defining the filter.</param>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.FilterExpression.dimensionName">
+            <summary>
+            Gets or sets the Dimension name.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterExpression.ComputedValue(System.Object,System.Boolean,Syncfusion.PivotAnalysis.Base.PivotEngine)">
+            <summary>
+            Use this method to retrieve the computed value of this expression on an object.
+            </summary>
+            <param name="component">The object to be evaluated.</param>
+            <returns>The computed value.</returns>
+            <remarks>
+            The first time this method is call, a delegate for the FilterExpression is created, and then this delegate
+            is calls passing in the component. Subsequent calls to this method just result into the existing delegate call.
+            </remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterExpression.DimensionName">
+            <summary>
+            Determines the dimension to be set
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterExpression.Format">
+            <summary>
+            Gets or sets the format.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterExpression.DimensionHeader">
+            <summary>
+            Gets or sets the Dimension header.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterExpression.Evaluator">
+            <summary>
+            Evaluates the given value
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterExpression.Error">
+            <summary>
+            Gets the last error that was logged during the compilation and calculation phases.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterExpression.ErrorString">
+            <summary>
+            Gets a descriptive string for the last error raised.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterExpression.Name">
+            <summary>
+            Gets or sets the name of this FilterExpression.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterExpression.Expression">
+            <summary>
+            Gets or sets the well-formed logical expression that defines this FilterExpression.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterExpression.Tag">
+            <summary>
+            Denotes the Name
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterExpression.CaseSensitive">
+            <summary>
+            Gets or sets whether ths expression should be treated in a case sensitive manner.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.CalculationExtensionsBackground.TokenizeStrings(System.String,Syncfusion.PivotAnalysis.Base.ExpressionError@)">
+            <summary>
+            Replaces strings in formulas with tokens so string remain immutable during parsing.
+            </summary>
+            <param name="formula">The formula with quoted strings.</param>
+            <param name="error">Error code if any.</param>
+            <returns>A string that represnts the formula with quoted strings replaced by tokens.</returns>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.CalculationExtensionsBackground.DynamicPropertyTypeTable">
+            <summary>
+            Gets or sets a collection of property types associated with an ExpandoObject/dynamic object available in .NET 4.0.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.CalculationExtensions.TokenizeStrings(System.String,Syncfusion.PivotAnalysis.Base.ExpressionError@)">
+            <summary>
+            Replaces strings in formulas with tokens so string remain immutable during parsing.
+            </summary>
+            <param name="formula">The formula with quoted strings.</param>
+            <param name="error">Error code if any.</param>
+            <returns>A string that represnts the formula with quoted strings replaced by tokens.</returns>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.CalculationExtensions.DynamicPropertyTypeTable">
+            <summary>
+            Gets or sets a collection of property types associated with an ExpandoObject/dynamic object available in .NET 4.0.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.ExpressionError">
+            <summary>
+            Denoted the different Error types
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.ExpressionError.None">
+            <summary>
+            Denotes no Error
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.ExpressionError.MissingRightQuote">
+            <summary>
+            Denotes MissingRightQuote
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.ExpressionError.MismatchedParentheses">
+            <summary>
+            Denotes MismatchedParentheses
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.ExpressionError.CannotCompareDifferentTypes">
+            <summary>
+            Denotes CannotCompareDifferentTypes
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.ExpressionError.UnknownOperator">
+            <summary>
+            Denotes UnknownOperator
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.ExpressionError.NotAValidFormula">
+            <summary>
+            Denotes NotAValidFormula
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.ExpressionError.ExceptionRaised">
+            <summary>
+            DenotesExceptionRaised
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.PivotComputationInfo">
+            <summary>
+            This class holds the information needed for the calculations that appear in a Pivot Grid. For each calculation seen, there is an associated
+            PivotComputationInfo object that is added to the <see cref="T:Syncfusion.PivotAnalysis.Base.PivotComputationInfo"/> collection.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.#ctor">
+            <summary>
+            Performs certain Manipulations with data
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.GetSummaryInstance(Syncfusion.PivotAnalysis.Base.SummaryType)">
+            <summary>
+            Returns a <see cref="T:Syncfusion.PivotAnalysis.Base.SummaryBase"/> object of the specified <see cref="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.SummaryType"/>.
+            </summary>
+            <param name="st">The SummaryType.</param>
+            <returns>A SummaryBase object.</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.ToString">
+            <summary>
+            Converts to String
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.GetComputationTypes">
+            <summary>
+            Returns a sorted list of computation names based on the <see cref="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.SummaryType"/> enumerations.
+            </summary>
+            <returns>A list of computation names.</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.GetSchema">
+            <summary>
+            This method is reserved and should not be used. When implementing the IXmlSerializable interface, you should return null (Nothing in Visual Basic) from this method, and instead, if specifying a custom schema is required, apply the <see cref="T:System.Xml.Serialization.XmlSchemaProviderAttribute"/> to the class.
+            </summary>
+            <returns>
+            An <see cref="T:System.Xml.Schema.XmlSchema"/> that describes the XML representation of the object that is produced by the <see cref="M:System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)"/> method and consumed by the <see cref="M:System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)"/> method.
+            </returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            Generates an object from its XML representation.
+            </summary>
+            <param name="reader">The <see cref="T:System.Xml.XmlReader"/> stream from which the object is deserialized.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Converts an object into its XML representation.
+            </summary>
+            <param name="writer">The <see cref="T:System.Xml.XmlWriter"/> stream to which the object is serialized.</param>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.AllowSort">
+            <summary>
+            Gets or sets whether this calculation column can be sorted when
+            RowPivotsOnly is true in the PivotEngine. 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.AllowFilter">
+            <summary>
+            Gets or sets whether this calculation column can be filtered when
+            RowPivotsOnly is true in the PivotEngine. 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.EnableHyperlinks">
+            <summary>
+            Gets or sets whether this calculation column should be hyperlinked when RowPivotsOnly is true in the PivotEngine.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.FieldName">
+            <summary>
+            Gets or sets the name of the property to be used in this calculation.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.FieldHeader">
+            <summary>
+            Gets or sets the title you want to see in the header for this pivot item.
+            </summary>
+            <value>The field header.</value>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.Description">
+            <summary>
+            Gets or sets a description of the calculation.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.InnerMostComputationsOnly">
+            <summary>
+            Gets or sets whether the aggregation results appear for only the innermost
+            level. 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.PadString">
+            <summary>
+            Gets or sets the PadString used when SummaryType is DisplayIfDiscreteValuesEqual.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.CalculationName">
+            <summary>
+            Gets or sets what is displayed in the pivot table if more than one calculation is included in the Pivot Grid.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.AllowRunTimeGroupByField">
+            <summary>
+            Gets or sets the value to enable/disable grouping for this pivot item. Default value is true.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.Summary">
+            <summary>
+            Gets or sets the <see cref="T:Syncfusion.PivotAnalysis.Base.SummaryBase"/> object that is used to define this calculation. This value is altomatically set 
+            when you specify any non-custom value of <see cref="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.SummaryType"/>. If you specify SummaryType.Custom, then you are required
+            to set Summary to be an instance of your custom SummaryBase derived object.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.SummaryType">
+            <summary>
+            Gets or sets the SummaryType enumeration for this calculation. Setting it to any value of than Custom
+            will also properly set Summary.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.CalculationType">
+            <summary>
+            Gets or sets the CalculationType enumeration for this computation object.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.BaseField">
+            <summary>
+            Gets or sets the Base Field value for calculations.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.Formula">
+            <summary>
+            Gets or sets a formula that defines the value as an algebraic expresion of other computations where these 
+            computations are referenced by their <see cref="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.CalculationName"/> enclosed within square brackets.
+            </summary>
+            <remarks>
+            For example is the value of Formula is "[AvgPrice]-[AvgCost]", then there would need to be two other computations whose names are
+            AvgPrice and AvgCost, and the value displayed for this computation would be the difference between those two values.
+            </remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.Expression">
+            <summary>
+            Used internally for Formula calculation types.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.Format">
+            <summary>
+            Gets of sets the format string to be used to format this calculation results in the Pivot Grid. Default format string is #.##
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.DefaultValue">
+            <summary>
+            Gets or sets the default value to be used if this summary calculation gets null value.
+            </summary>        
+        </member>
+        <member name="E:Syncfusion.PivotAnalysis.Base.PivotComputationInfo.PropertyChanged">
+            <summary>
+            Event denoting whether the property is changed
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.SummaryDisplayLevel">
+            <summary>
+            Controls whether a Summary calculation is displayed for all levels, or for the inner-most level only.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SummaryDisplayLevel.All">
+            <summary>
+            Indicates to display the summary at all pivot levels.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SummaryDisplayLevel.InnerMostOnly">
+            <summary>
+            Indicates to display the summary at only the inner most pivot level.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.SummaryType">
+            <summary>
+            Enumerates the summary types availabe for use as calculations in the Pivot Grid.
+            </summary>
+            <remarks>
+            If you use the value Custom in a ComputationInfo object, then you are required to explicitly set the ComputationInfo.Summary value.
+            </remarks>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SummaryType.DoubleTotalSum">
+            <summary>
+            Computes the sum of double or integer values.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SummaryType.DoubleAverage">
+            <summary>
+            Computes the simple average of double or integer values.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SummaryType.DoubleMaximum">
+            <summary>
+            Computes the maximum of double or integer values.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SummaryType.DoubleMinimum">
+            <summary>
+            Computes the minimum of double or integer values.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SummaryType.DoubleStandardDeviation">
+            <summary>
+            Computes the standard deviation of double or integer values.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SummaryType.DoubleVariance">
+            <summary>
+            Computes the variance of double or integer values.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SummaryType.Count">
+            <summary>
+            Computes the count of double or integer values.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SummaryType.DecimalTotalSum">
+            <summary>
+            Computes the sum of decimal values.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SummaryType.IntTotalSum">
+            <summary>
+            Computes the sum of integer values.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SummaryType.Custom">
+            <summary>
+            Specifies that you are using a custom SummaryBase object to define the calculation.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SummaryType.DisplayIfDiscreteValuesEqual">
+            <summary>
+            Displays the common value if all the values to be aggregated are the same, and displays a <see cref="F:Syncfusion.PivotAnalysis.Base.SummaryType.DisplayIfDiscreteValuesEqual"/>
+            if the values to be aggregated are not all the same.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.CalculationType">
+            <summary>
+            Calculation type defines the view for a particular computational object (Or value field).
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.NoCalculation">
+            <summary>
+            Remove the custom calculations and restore to original values (Default value).
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.PercentageOfGrandTotal">
+            <summary>
+            Displays a value cell as a percentage of grand total of all value cells of Pivot Engine.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.PercentageOfColumnTotal">
+            <summary>
+            Displays all value cells in each column as a percentage of its corresponding column total.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.PercentageOfRowTotal">
+            <summary>
+            Displays all value cells in each row as a percentage of its corresponding row total.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.PercentageOfParentColumnTotal">
+            <summary>
+            Displays a value cell as a percentage of parent column item values.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.PercentageOfParentRowTotal">
+            <summary>
+            Displays a value cell as a percentage of parent row item values.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.PercentageOfParentTotal">
+            <summary>
+            Displays a value cell as a percentage of Base Field (Parent Row/Column Total).
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.Index">
+            <summary>
+            Displays a value cell as an index value based on PivotEngine generation.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.Formula">
+            <summary>
+            Displays a calculation based on a well formed algebraic expression involving other calculations.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.PercentageOf">
+            <summary>
+            Displays values as a percentage of the value of the Base item in the Base field.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.DifferenceFrom">
+            <summary>
+            Displays values as the difference from the value of the Base item in the Base field.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.PercentageOfDifferenceFrom">
+            <summary>
+            Displays values as the percentage difference from the value of the Base item in the Base field.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.RunningTotalIn">
+            <summary>
+            Displays the value for successive items in the Base field as a running total.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.PercentageOfRunningTotalIn">
+            <summary>
+            Calculates the value for successive items in the Base field that are displayed as a running total as a percentage.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.RankSmallestToLargest">
+            <summary>
+            Displays the rank of selected values in a specific field, listing the smallest item in the field as 1, and each larger value will have a higher rank value.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.CalculationType.RankLargestToSmallest">
+            <summary>
+            Displays the rank of selected values in a specific field, listing the largest item in the field as 1, and each smaller value will have a higher rank value.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:Syncfusion.PivotAnalysis.Base.DisplayOption.None" -->
+        <member name="F:Syncfusion.PivotAnalysis.Base.DisplayOption.Calculations">
+            <summary>
+            fully present in the pivot engine and visible in the calculation areas
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.DisplayOption.Summary">
+            <summary>
+            fully present in the pivot engine and visible in the interior summaries areas
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.DisplayOption.GrandTotals">
+            <summary>
+            fully present in the pivot engine and visible in the GrandTotals area
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.DisplayOption.All">
+            <summary>
+            fully present in the pivot engine and fully visible in the display
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.SummaryBase">
+            <summary>
+            This class is an abstract class that defines the necessary functionality to do pivot calculations.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.SummaryBase.Combine(System.Object)">
+            <summary>
+            Use this method to combine a value from an object in the Pivot Grid's data source with the accumulation values held in this instance.
+            </summary>
+            <param name="other">The value to be included in the compuation.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.SummaryBase.Reset">
+            <summary>
+            Resets all internal values so the calculations begins anew.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.SummaryBase.GetResult">
+            <summary>
+            Returns the calculation value.
+            </summary>
+            <returns>The calculation value.</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.SummaryBase.GetInstance">
+            <summary>
+            Provides a new instance of this SummaryBase object.
+            </summary>
+            <returns>New instance of this SummaryBase.</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.SummaryBase.CombineSummary(Syncfusion.PivotAnalysis.Base.SummaryBase)">
+            <summary>
+            Use this method to combine another SummaryBase object with the accumulation values held in this instance.
+            </summary>
+            <param name="other">The other SummaryBase object.</param>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.SummaryBase.ShowNullAsBlank">
+            <summary>
+            Gets or sets whether the PivotGrid cell should display Null value as blank instead of 0(which is the default behavior)
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.IAdjustable">
+            <summary>
+            Use this interface to enable short cut calculations to adjust a summary when an underlying
+            value changes. The idea is to avoid recomputing the summary from scratch. For example, if 
+            your summary computes the total of a set of values, you can quickly adjust this computed
+            total when a value changes by subtracting the old value and adding the new value without
+            having to recompute the total from scratch. Not all types of calculations lend themselves
+            to this short cut behavior.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IAdjustable.AdjustForNewContribution(System.Object)">
+            <summary>
+            Adjusts the summary for a change in one of its underlying values.
+            </summary>
+            <param name="newContribution">The new value of the changed field.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IAdjustable.AdjustForOldContribution(System.Object)">
+            <summary>
+            Adjusts the summary for a change in one of its underlying values.
+            </summary>
+            <param name="oldContribution">The old value of the changed field.</param>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.CountSummary">
+            <summary>
+            Counts the summary values
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.CountSummary.ToString">
+            <summary>
+            Converts the data to string
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.CountSummary.Combine(System.Object)">
+            <summary>
+            Comblnes different values into one
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.CountSummary.CombineSummary(Syncfusion.PivotAnalysis.Base.SummaryBase)">
+            <summary>
+            Combines the summary into one
+            </summary>
+            <param name="other">SummaryBase</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.CountSummary.Reset">
+            <summary>
+            Resets teh variable
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.CountSummary.GetResult">
+            <summary>
+            Obtains the result
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.CountSummary.GetInstance">
+            <summary>
+            Gets the Instance of the Class
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.CountSummary.AdjustForNewContribution(System.Object)">
+            <summary>
+            AdjustForNewContribution
+            </summary>
+            <param name="newContribution">object</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.CountSummary.AdjustForOldContribution(System.Object)">
+            <summary>
+            AdjustForOldContribution
+            </summary>
+            <param name="oldContribution">object</param>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.DoubleMinSummary">
+            <summary>
+            Calculates the Double Minimum summary
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleMinSummary.ToString">
+            <summary>
+            Converts the value to String
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleMinSummary.Combine(System.Object)">
+            <summary>
+            Combines the different values together
+            </summary>
+            <param name="other">object</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleMinSummary.CombineSummary(Syncfusion.PivotAnalysis.Base.SummaryBase)">
+            <summary>
+            Combines the different Summary into one
+            </summary>
+            <param name="other">SummaryBase</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleMinSummary.Reset">
+            <summary>
+            Resets teh variable
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleMinSummary.GetResult">
+            <summary>
+            Calculates the result
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleMinSummary.GetInstance">
+            <summary>
+            Gets the insance
+            </summary>
+            <returns>DoubleMinSummary</returns>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.DoubleMaxSummary">
+            <summary>
+            Class that performs the operation related to maximum summary values.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleMaxSummary.ToString">
+            <summary>
+            Converts the value to string type
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleMaxSummary.Combine(System.Object)">
+            <summary>
+            Combines the different values together
+            </summary>
+            <param name="other">object</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleMaxSummary.CombineSummary(Syncfusion.PivotAnalysis.Base.SummaryBase)">
+            <summary>
+            Combines the different summaries together
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleMaxSummary.Reset">
+            <summary>
+            Resets the value of the variables
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleMaxSummary.GetResult">
+            <summary>
+            Obtains the Maximum value 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleMaxSummary.GetInstance">
+            <summary>
+            returns the instance of type DoubleMaxSummary
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.DoubleStDevSummary">
+            <summary>
+            Class that holds different functions to perform operations on summary row
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleStDevSummary.ToString">
+            <summary>
+            Converts the Data to String type
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleStDevSummary.Combine(System.Object)">
+            <summary>
+            Combines the different values together
+            </summary>
+            <param name="other">object</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleStDevSummary.CombineSummary(Syncfusion.PivotAnalysis.Base.SummaryBase)">
+            <summary>
+            Combines the different summaries together
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleStDevSummary.Reset">
+            <summary>
+            Resets the Value of the variables.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleStDevSummary.GetResult">
+            <summary>
+            Obtains the result
+            </summary>
+            <returns>object</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleStDevSummary.GetInstance">
+             <summary>
+            Gets the Instance of the Class
+             </summary>
+             <returns>SummaryBase</returns>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.DoubleVarianceSummary">
+            <summary>
+            class that performs methods related to DoubleVarianceSummary
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleVarianceSummary.ToString">
+            <summary>
+            Returns the Variable in String Format.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleVarianceSummary.Combine(System.Object)">
+            <summary>
+            Combines the different values together
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleVarianceSummary.CombineSummary(Syncfusion.PivotAnalysis.Base.SummaryBase)">
+            <summary>
+            Combines the different summaries together
+            </summary>
+            <param name="other">SummaryBase</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleVarianceSummary.Reset">
+            <summary>
+            Resets sumX2,sumX,n to Null
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleVarianceSummary.GetResult">
+            <summary>
+            Gets the result
+            </summary>
+            <returns>object</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleVarianceSummary.GetInstance">
+            <summary>
+            Gets the instance of the Summary
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.DoubleAverageSummary">
+            <summary>
+            Performs computation and calculates the Average Summary.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleAverageSummary.ToString">
+            <summary>
+            Converts the data to String type
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleAverageSummary.Combine(System.Object)">
+            <summary>
+            Merges the values
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleAverageSummary.CombineSummary(Syncfusion.PivotAnalysis.Base.SummaryBase)">
+            <summary>
+            Combines different summaries into one
+            </summary>
+            <param name="other">SummaryBase</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleAverageSummary.Reset">
+            <summary>
+            Resets the total and count
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleAverageSummary.GetResult">
+            <summary>
+            Gets the result
+            </summary>
+            <returns>result</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleAverageSummary.GetInstance">
+            <summary>
+            Gets the Instance of the object
+            </summary>
+            <returns>DoubleAverageSummary</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleAverageSummary.AdjustForNewContribution(System.Object)">
+            <summary>
+            AdjustForNewContribution
+            </summary>
+            <param name="newContribution">object</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleAverageSummary.AdjustForOldContribution(System.Object)">
+            <summary>
+            AdjustForOldContribution
+            </summary>
+            <param name="oldContribution">object</param>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.DoubleTotalSummary">
+            <summary>
+            Doubles the Total Summary
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleTotalSummary.ToString">
+            <summary>
+            Returns the string for the concerned data
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleTotalSummary.Combine(System.Object)">
+            <summary>
+            Comblies one with other type
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleTotalSummary.CombineSummary(Syncfusion.PivotAnalysis.Base.SummaryBase)">
+            <summary>
+            Combines different Summaries
+            </summary>
+            <param name="other">SummaryBase</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleTotalSummary.Reset">
+            <summary>
+            Resets the total to Null
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleTotalSummary.GetResult">
+            <summary>
+            Gets the toal value
+            </summary>
+            <returns>object</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleTotalSummary.GetInstance">
+            <summary>
+            Gets the Instance of the Class
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleTotalSummary.AdjustForNewContribution(System.Object)">
+            <summary>
+            AdjustForNewContribution
+            </summary>
+            <param name="newContribution">object</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DoubleTotalSummary.AdjustForOldContribution(System.Object)">
+            <summary>
+            AdjustForOldContribution
+            </summary>
+            <param name="oldContribution">object</param>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.IntTotalSummary">
+            <summary>
+            Includes different methods for performing different calculations
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IntTotalSummary.ToString">
+            <summary>
+            Converts to the string type
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IntTotalSummary.Combine(System.Object)">
+            <summary>
+            Combines different Values together
+            </summary>
+            <param name="other">object</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IntTotalSummary.CombineSummary(Syncfusion.PivotAnalysis.Base.SummaryBase)">
+            <summary>
+            Comblies different Summary
+            </summary>
+            <param name="other">SummaryBase</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IntTotalSummary.Reset">
+            <summary>
+            Resets the variable
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IntTotalSummary.GetResult">
+            <summary>
+            Obtains the result
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IntTotalSummary.GetInstance">
+            <summary>
+            Obtains the instance
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IntTotalSummary.AdjustForNewContribution(System.Object)">
+            <summary>
+            AdjustForNewContribution
+            </summary>
+            <param name="newContribution">object</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IntTotalSummary.AdjustForOldContribution(System.Object)">
+            <summary>
+            AdjustForOldContribution
+            </summary>
+            <param name="oldContribution">object</param>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.DecimalTotalSummary">
+            <summary>
+            Decimal Total Summary
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DecimalTotalSummary.ToString">
+            <summary>
+            Converts the data to String
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DecimalTotalSummary.Combine(System.Object)">
+            <summary>
+            Combines the different values together
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DecimalTotalSummary.CombineSummary(Syncfusion.PivotAnalysis.Base.SummaryBase)">
+            <summary>
+            combines the summaries together
+            </summary>
+            <param name="other">SummaryBase</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DecimalTotalSummary.Reset">
+            <summary>
+            Resets teh variable
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DecimalTotalSummary.GetResult">
+            <summary>
+            Calculates the result
+            </summary>
+            <returns>total</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DecimalTotalSummary.GetInstance">
+            <summary>
+            Obtains the instance of the object
+            </summary>
+            <returns>DecimalTotalSummary</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DecimalTotalSummary.AdjustForNewContribution(System.Object)">
+            <summary>
+            AdjustForNewContribution
+            </summary>
+            <param name="newContribution">object</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DecimalTotalSummary.AdjustForOldContribution(System.Object)">
+            <summary>
+            AdjustForOldContribution
+            </summary>
+            <param name="oldContribution">object</param>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.DisplayIfDiscreteValuesEqual">
+            <summary>
+            Displays if te discrete values are equal
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DisplayIfDiscreteValuesEqual.#ctor">
+            <summary>
+            Displays if the discrete values are equal.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DisplayIfDiscreteValuesEqual.Combine(System.Object)">
+            <summary>
+            Combies the different values together 
+            </summary>
+            <param name="other">object</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DisplayIfDiscreteValuesEqual.Reset">
+            <summary>
+             Resetst the value for the varibles
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DisplayIfDiscreteValuesEqual.GetResult">
+            <summary>
+            Gets the Resultant value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DisplayIfDiscreteValuesEqual.GetInstance">
+            <summary>
+            Gets the instance of the DisplayIfDiscreteValuesEqual class
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DisplayIfDiscreteValuesEqual.CombineSummary(Syncfusion.PivotAnalysis.Base.SummaryBase)">
+            <summary>
+            Combines the different summaries into one.
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.DisplayIfDiscreteValuesEqual.PadString">
+            <summary>
+            Returns teh padded string
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.PivotEngine">
+            <summary>
+            This class encapsulates pivoting calculation support. To use it, you first populate the <see cref="P:Syncfusion.PivotAnalysis.Base.PivotEngine.PivotColumns"/> and 
+            <see cref="P:Syncfusion.PivotAnalysis.Base.PivotEngine.PivotRows"/> collections to define the properties being pivoted. You then populate the <see cref="P:Syncfusion.PivotAnalysis.Base.PivotEngine.PivotCalculations"/>
+            collection to define the values you would like to see populated.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.AddFilter(Syncfusion.PivotAnalysis.Base.FilterExpression)">
+            <summary>
+            Adds a <see cref="T:Syncfusion.PivotAnalysis.Base.FilterExpression"/> to the pivot schema for this engine.
+            </summary>
+            <param name="item">FilterExpression</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.InsertFilter(System.Int32,Syncfusion.PivotAnalysis.Base.FilterExpression)">
+            <summary>
+            Inserts a <see cref="T:Syncfusion.PivotAnalysis.Base.FilterExpression"/> to the pivot schema for this engine at a specified Index
+            </summary>
+            <param name="index">The index.</param>
+            <param name="exp">The FilterExpression.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.RemoveFilter(Syncfusion.PivotAnalysis.Base.FilterExpression)">
+            <summary>
+            Removes a <see cref="T:Syncfusion.PivotAnalysis.Base.FilterExpression"/> from the pivot schema for this engine.
+            </summary>
+            <param name="exp">The FIlterExpression</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.ClearFilters">
+            <summary>
+            Clears all FilterExpressions from the pivot schema for this engine.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.FindFilterByName(System.String)">
+            <summary>
+            Finds a <see cref="T:Syncfusion.PivotAnalysis.Base.FilterExpression"/> in <see cref="P:Syncfusion.PivotAnalysis.Base.PivotEngine.Filters"/> given its name.
+            </summary>
+            <param name="filterName">The name of the desired FilterExpression.</param>
+            <returns>The FilterExpression.</returns>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.PivotEngine.ExpanderSortflag">
+            <summary>
+            Sets the flag for peforming sorting operation
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.GetSortDirection(System.Int32)">
+            <summary>
+            Gets the sort direction of a particular column even if the column
+            has been moved from it initial position. This is only used when RowPivotsOnly is true.
+            </summary>
+            <param name="col"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.ClearSorts">
+            <summary>
+            Clears all the sorted order in grid
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.ClearSortAt(System.Int32)">
+            <summary>
+            Clears the sort at the specified index.
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.AnyValueColumnsSorted">
+            <summary>
+            returns the sorted columns' count
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.ResolveColumnIndex(System.Int32)">
+            <summary>
+            Returns the original position of the column in the PivotCalculations collection. 
+            This is only used when RowPivotsOnly is true.
+            </summary>
+            <param name="columnIndex">The current position of the column in the display.</param>
+            <returns>Returns the original position of the column as determined 
+            by its position in the PivotCalculations collection.</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.IsColumnSorted(System.Int32)">
+            <summary>
+            Checks whether a column at the index in the display is sorted or not.
+            </summary>
+            <param name="columnIndex">The index of the column in the display.</param>
+            <returns>True if sorted, false otherwise.</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.CanFilterColumn(System.Int32)">
+            <summary>
+            Checks whether a column at the given display index is filterable. This is only used when RowPivotsOnly is true.
+            </summary>
+            <param name="columnIndex">The index of the column in the display.</param>
+            <returns>True if the column can be filtered and false otherwise.</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.CanSortColumn(System.Int32)">
+            <summary>
+            Checks whether a column at the given display index is sortable. This is only used when RowPivotsOnly is true.
+            </summary>
+            <param name="columnIndex">The index of the column in the display.</param>
+            <returns>True if the column can be sorted and false otherwise.</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.GetFieldNameAtIndex(System.Int32)">
+            <summary>
+            Returns the field name at a given column even if the column has been moved from its original
+            position. This is only used when RowPivotsOnly is true.
+            </summary>
+            <param name="columnIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.PivotEngine.columnIndexes">
+            <summary>
+            List that holds columnIndexes
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.AdjustColumnIndexes(System.Int32,System.Int32)">
+            <summary>
+            This method is used internally within the Syncfusion library code.
+            </summary>
+            <param name="from">Old index position.</param>
+            <param name="to">New index position.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.SortByCalculation(System.Int32)">
+            <summary>
+            Sorts the different values by calculation
+            </summary>
+            <param name="colIndex">int</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.SortByCalculation(System.Int32,System.Boolean)">
+            <summary>
+            Sorts the different values by calculation
+            </summary>
+            <param name="colIndex">int</param>
+            <param name="isMultiColumn">bool</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.SortByCalculation(System.Int32,System.Boolean,System.ComponentModel.ListSortDirection)">
+            <summary>
+            Performs sorting after the calculation
+            </summary>
+            <param name="colIndex">int</param>
+            <param name="isMultiColumn">bool</param>
+            <param name="dir">ListSortDirection</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.SortColumnHeader(System.Int32)">
+            <summary>
+            Performs the sorting operation in Column header
+            </summary>
+            <param name="colHeaderIndex">int</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.EnsureCalculationsLoaded">
+            <summary>
+            When EnableOnDemandCalculations is true, calling this method will ensure that all the summary calculations are fully computed.
+            This is used internally.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.DoLazyCalculation">
+            <summary>
+            When <see cref="P:Syncfusion.PivotAnalysis.Base.PivotEngine.EnableOnDemandCalculations"/> is true, this method will compute all summary calculation for the first row that has not been calculated yet.
+            </summary>
+            <returns>Returns true if all rows have their summary calculation completed, false otherwise.</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.RefreshItemProperties">
+            <summary>
+            Used to fill/refill the ItemProperties with newly added/updated fields.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.AddAllowedField(Syncfusion.PivotAnalysis.Base.FieldInfo)">
+            <summary>
+            Adds the fields to AllowedField
+            </summary>
+            <param name="fi">FieldInfo</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.GetVisibleRecords(System.Collections.Generic.List{Syncfusion.PivotAnalysis.Base.FilterExpression})">
+            <summary>
+            Returns the collection of objects which are currently used in the grid.
+            </summary>
+            <param name="Filters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.GetRowColumnPivotValuesAt(System.Int32,System.Int32,System.String@)">
+            <summary>
+            Get Row's and Column's PivotValues
+            </summary>
+            <param name="row">int</param>
+            <param name="column">int</param>
+            <param name="calcFieldName">string</param>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.GetRawItemsFor(System.Int32,System.Int32)">
+            <summary>
+            Gets the List of Raw Items 
+            </summary>
+            <param name="row">int</param>
+            <param name="col">int</param>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.GetRawItemsForEach(System.Int32,System.Int32)">
+            <summary>
+            Gets the List collection for Raw Items
+            </summary>
+            <param name="row">int</param>
+            <param name="col">int</param>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.RemoveAllowedField(Syncfusion.PivotAnalysis.Base.FieldInfo)">
+            <summary>
+            Removes the Allowed field from grid
+            </summary>
+            <param name="fi"></param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.PopulateDefaultPropertyFields">
+            <summary>
+             populates the default property field
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.ClearAllowedFields">
+            <summary>
+            Clears the allowed fields
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.SuspendComputations">
+            <summary>
+            Suspends calculations as pivot items are added or removed from either the RowPivots or ColumnPivots 
+            collections, or when pivot calculations are added or removed from the PivotCalcualtions collection.
+            </summary>
+            <remarks>
+            By default, calculations are always suspended. Once you have populated all the appropriate collections
+            to define your pivot table, you call <see cref="M:Syncfusion.PivotAnalysis.Base.PivotEngine.Populate"/> to tell the engine to generate the pivot
+            table contents that you can access by indexing the engine.
+            </remarks>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.ResumeComputations">
+            <summary>
+            Resumes calculations after a call to SuspendComputations without resetting the pivot table.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.ResumeComputations(System.Boolean)">
+            <summary>
+            Resumes calculations after a call to SuspendComputations with the option of resetting the pivot table.
+            </summary>
+            <param name="resetPivotCollections">True if the pivot table should be recomputed, false otherwise.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.ResumeComputations(System.Boolean,System.Boolean)">
+            <summary>
+            Resumes calculations after a call to SuspendComputations with the option of resetting the pivot table.
+            </summary>
+            <param name="resetPivotCollections">True if the pivot table should be recomputed, false otherwise.</param>
+            <param name="shouldRefresh">True if the pivot grid should be refreshed, false otherwise</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.Populate">
+            <summary>
+            Use this method to populate the values of the current pivot table.
+            </summary>
+            <remarks>
+            Once you have populated the PivotColumns, PivotRows, and PivotCalculations collections, you
+            call this method to actually populate this engine with the pivot calculations. After this call,
+            you can then access information on the contents of any cell by indexing the engine object. The 
+            indexers are zero based.
+            </remarks>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.Reset">
+            <summary>
+            Resets the pivot table and all its collections to an empty status.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.AddPivotCalculation(Syncfusion.PivotAnalysis.Base.PivotComputationInfo)">
+            <summary>
+            Adds a calculation to the PivotCalculations collection.
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.InsertPivotCalculation(System.Int32,Syncfusion.PivotAnalysis.Base.PivotComputationInfo)">
+            <summary>
+            Inserts the pivot calculation at a specified index
+            </summary>
+            <param name="index">The index.</param>
+            <param name="info">The info.</param>        
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.RemovePivotCalculation(Syncfusion.PivotAnalysis.Base.PivotComputationInfo)">
+            <summary>
+            Removes a calculation from the PivotCalculations collection.
+            </summary>
+            <param name="info">The PivotComputationInfo object to be removed.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.AddRowPivot(Syncfusion.PivotAnalysis.Base.PivotItem)">
+            <summary>
+            Adds a PivotItem to the PivotRows collection.
+            </summary>
+            <param name="pivotItem">The item to be added.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.InsertRowPivot(System.Int32,Syncfusion.PivotAnalysis.Base.PivotItem)">
+            <summary>
+            Inserts a PivotItem to the PivotRows collection to a specified index
+            </summary>
+            <param name="index">The index.</param>
+            <param name="pivotItem">The pivot item.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.RemoveRowPivot(Syncfusion.PivotAnalysis.Base.PivotItem)">
+            <summary>
+            Removes a PivotItem from the PivotRows collection.
+            </summary>
+            <param name="pivotItem">The item to be removed.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.AddColumnPivot(Syncfusion.PivotAnalysis.Base.PivotItem)">
+            <summary>
+            Adds a PivotItem to the PivotColumns collection.
+            </summary>
+            <param name="pivotItem">The item to be added.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.InsertColumnPivot(System.Int32,Syncfusion.PivotAnalysis.Base.PivotItem)">
+            <summary>
+            Inserts a PivotItem to the PivotColumns collection at a specified Index
+            </summary>
+            <param name="index">The index.</param>
+            /// <param name="pivotItem">The item to be added.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.RemoveColumnPivot(Syncfusion.PivotAnalysis.Base.PivotItem)">
+            <summary>
+            Removes a PivotItem from the PivotColumns collection.
+            </summary>
+            <param name="pivotItem">The item to be removed.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.PopulateValueCells">
+            <summary>
+            Populates the value cells.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.CoverColumnHeaders">
+            <summary>
+            Covers the column headers
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.CoverGrandTotalRanges">
+            <summary>
+            Covers the GrandTotalRanges
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.CoverRowHeaders">
+            <summary>
+            CoverRowHeaders
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.IsSummaryColumn(System.Int32)">
+            <summary>
+             Checks whether a column at the index is Summary column or not.
+            </summary>
+            <param name="colIndex">int</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.IsSummaryColumn(System.Int32,System.Int32@)">
+            <summary>
+             Checks whether a column at the index is Summary column or not.
+            </summary>
+            <param name="colIndex">int</param>
+            <param name="k">ref int</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.IsSummaryColumnWhileOnDemand(System.Int32,System.Int32@)">
+            <summary>
+            Checks whether a column at the index is Summary column or not.
+            </summary>
+            <param name="colIndex">int</param>
+            <param name="k">ref</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.IsSummaryColumnWhileTopSummary(System.Int32)">
+            <summary>
+            Checks whether a column at the index is Summary column or not when GridLayout is TopSummary.
+            </summary>
+            <param name="colIndex"></param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.IsSummaryRowWhileTopSummary(System.Int32)">
+            <summary>
+            Checks whether a row at the index is Summary row or not when GridLayout is TopSummary.
+            </summary>
+            <param name="rowIndex"></param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.IsSummaryRow(System.Int32,System.Int32@)">
+            <summary>
+            Checks whether a row at the index is Summary row or not.
+            </summary>
+            <param name="rowIndex">int</param>
+            <param name="k">ref int</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.IsRowSummary(System.Int32)">
+            <summary>
+             Checks whether a column at the index is Summary row or not.
+            </summary>
+            <param name="colIndex">int</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.AddComparers(System.Type)">
+            <summary>
+            Adds a <see cref="T:Syncfusion.PivotAnalysis.Base.FilterExpression"/> comparer for the specific pivot item.
+            </summary>
+            <param name="item">property type of the pivot item</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.OnPivotSchemaChanged(Syncfusion.PivotAnalysis.Base.PivotSchemaChangedArgs)">
+            <summary>
+            Raises the <see cref="E:Syncfusion.PivotAnalysis.Base.PivotEngine.PivotSchemaChanged"/> event.
+            </summary>
+            <param name="e">The event argument.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.RaisePivotSchemaChangedEvent(Syncfusion.PivotAnalysis.Base.PivotSchemaChangedArgs)">
+            <summary>
+            Raises the <see cref="E:Syncfusion.PivotAnalysis.Base.PivotEngine.PivotSchemaChanged"/> event.
+            </summary>
+            <param name="e">The event argument.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.UpdateAllSummariesRespectingHiddenRowIndexes">
+            <summary>
+            This method will recompute all summaries ignoring any summary row whose index is
+            in HiddenRowIndexes.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.GetHiddenRowKeyValueColumnIndex">
+            <summary>
+            GetHiddenRowKeyValueColumnIndex
+            </summary>
+            <returns>int</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotEngine.GetUnindexedPivotCellInfo(System.Int32,System.Int32)">
+            <summary>
+            Gets the UnindexedPivotCellInfo 
+            </summary>
+            <param name="row">int</param>
+            <param name="col">int</param>
+            <returns>PivotCellInfo</returns>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.IndexEngine">
+            <summary>
+            Gets or sets the Indexed engine.
+            </summary>
+            <remarks>This is way of access the <see cref="P:Syncfusion.PivotAnalysis.Base.PivotEngine.IndexEngine"/> object from the pivot engine class in order to perform the on demand process.</remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.GetValue">
+            <summary>
+            Gets or sets a <see cref="T:Syncfusion.PivotAnalysis.Base.GetValueDelegate"/> delegate that returns a property value for a given object.
+            </summary>
+            <remarks>
+            If this member is null, the IndexEngine will use reflection to obtain property values from objects in
+            the <see cref="P:Syncfusion.PivotAnalysis.Base.PivotEngine.DataSource"/>. Note usually, a well written delegate can provide values more efficiently
+            than using reflection. For performance improvements, you will want to provide a well written delegate for
+            this property.
+            </remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.UseIndexedEngine">
+            <summary>
+            Gets or sets whether an optimized algorithm that relies on indexing the raw
+            data should be used to compute the pivot information.
+            </summary>
+            Setting this property indicates that the PivotEngine should use an a newer way of computing
+            the pivot information. This technique requires more memory but will work significantly quicker 
+            for pivots that have a large number of cells. For smaller pivots, there is no gain in performance
+            with this newer technique.
+            <remarks>
+            </remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.ApplyFormattedSummary">
+            <summary>
+            Gets or Sets the formatted total value for the subtotal/grandtotal cells
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.IsDataDynamic">
+            <summary>
+            Gets or sets whether the DataSource is a collection of dynamic objects supported in the .Net 4.0 framework.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.ShowGrandTotals">
+            <summary>
+            Gets or sets whether grand total calculations should be completed by the engine.
+            </summary>
+            <remarks>
+            The default value is true.
+            </remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.GridLayout">
+            <summary>
+            Gets or sets whether sub totals calculations should be shown on top or not.
+            </summary>
+            <remarks>
+            The default value is Normal.
+            </remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.ShowSingleCalculationHeader">
+            <summary>
+            Gets or sets whether a calculation header row is visible when there is a single calculation. The default is false. This property does not affect settings when UseIndexedEngine is true.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.EnableLazyLoadOnDemandCalculations">
+            <summary>
+            When EnableOnDemandCalculations is true, setting this property to true, allows the UI to trigger the summary calculations
+            during the application idle cycles.
+            </summary>
+            <remarks>
+            This means that the summaries in the pipvot may be fully populated when the user does something like sort or filter a pivot item
+            which avoids a delay. If EnableOnDemandCalculations is false, setting this property has no effect.
+            </remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.EnableOnDemandCalculations">
+            <summary>
+            Gets of sets whether the calculations are postponed until the value is requested through the Indexer on PivotEngine. The default value is false.
+            </summary>
+            <remarks>
+            The default calculation behavior is for all the value cells to be populated during the call to PivotEngine.Calculate. When EnableOnDemandCalculations
+            is set true, then the calculations are postponed until there is a initial request for a calculated value. At that time, the calculation is completed
+            and stored. Subsequent requests for a value return the stored value instead of redoing the calculations.
+            
+            Setting the EnableOnDemandCalculations allows the initial display of a large pivot table as only the visible cells will need to be calculated. This
+            speed up in initial display, does come at the cost of a slight degradation in first-time scrolling performance as the cells that are newly made visible
+            through the scrolling require a calculation to be completed. This setting is not available when RowPivotsOnly is false.
+            </remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.ShowNullAsBlank">
+            <summary>
+            Gets or sets whether the PivotGrid cell should display Null value as blank instead of 0(which is the default behavior)
+            </summary>
+            <remarks>
+            The default value is false.
+            </remarks>       
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.RowCount">
+            <summary>
+            Gets the number of rows in this pivot table.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.ColumnCount">
+            <summary>
+            Gets the number of columns in this pivot table;
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.CoveredRanges">
+            <summary>
+            Gets a list of <see cref="T:Syncfusion.PivotAnalysis.Base.CoveredCellRange"/> objects that specify
+            the cells that need to be covered.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.Filters">
+            <summary>
+            Gets a List holding <see cref="T:Syncfusion.PivotAnalysis.Base.FilterExpression"/> values that
+            specify any filters that need to be applied to this pivot table.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.SummaryLibrary">
+            <summary>
+            Gets a dictionary of SummaryBase computations available in this PivotEngine.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.PivotValues">
+            Gets the underlying object collection represented in the PivotEngine. 
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.HiddenRowIndexes">
+            <summary>
+            Gets the Values of the different hidden rows
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.HiddenPivotRowGroups">
+            <summary>
+            Gets of sets the different hidden row groups
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.HiddenPivotColumnGroups">
+            <summary>
+            Gets of sets the different hidden column groups
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.RowPivotsOnly">
+            <summary>
+            Gets or sets whether column pivots will be used.
+            </summary>
+            <remarks>Turning this property on enables value column
+            support such as sorting and filtering the value calculations 
+            that is normally found in a flat grid.</remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.SortDirection">
+            <summary>
+            Gets or sets the sorting direction
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.NotPopulated">
+            <summary>
+            Used internally.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.PopulationStatus">
+            <summary>
+            Used internally.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets the <see cref="T:Syncfusion.PivotAnalysis.Base.PivotCellInfo"/> object associated with a particular cell
+            in the pivot table. The PivotCellInfo contains Value and FormattedText properties
+            that hold this cell's contents.
+            </summary>
+            <param name="rowIndex">The 0-based row index of the cell.</param>
+            <param name="columnIndex1">The 0-based column index of the cell.</param>
+            <returns>A PivotCellInfo object that contains information on the cell contents.</returns>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.PivotRows">
+            <summary>
+            Gets or set a collection of row pivot properties.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.PivotColumns">
+            <summary>
+            Gets or sets a collection of column pivot properties.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.PivotCalculations">
+            <summary>
+            Gets or sets a collection of pivot calculations.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.UseDescriptionInCalculationHeader">
+            <summary>
+            Gets or sets whether the <see cref="P:Syncfusion.PivotAnalysis.Base.PivotEngine.UseDescriptionInCalculationHeader"/> or the
+            <see cref="P:Syncfusion.PivotAnalysis.Base.PivotEngine.UseDescriptionInCalculationHeader"/> is displayed in the header cell
+            when more than one calculation is being used. The default behavior is to use
+            the FieldName.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.EmptyPivot">
+            <summary>
+            Gets whether a pivot results contains any items.
+            <remarks>For example, if you apply a filter which filters
+            out all items in the underlying data source, then this
+            EmptyPivot property will be set true. The RowCount and ColumnCount will
+            be set to one, and the Engine[0, 0] will hold the value
+            <see cref="P:Syncfusion.PivotAnalysis.Base.PivotEngine.EmptyPivotString"/>.</remarks>
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.EmptyPivotString">
+            <summary>
+            Gets or sets the string that appears when no items are present in a pivot result.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.GrandString">
+            <summary>
+            Gets or sets the prefix string for the collection-wide totals that appear below and to the right of the pivot table.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.UsePercentageFormat">
+            <summary>
+            Gets or sets whether the formatted text of the columns which has Percentage caluclation type, must applied with given format or default percentage format #,##%
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.LoadInBackground">
+            <summary>
+            Gets or sets the value for the LoadInBackground property which controls whether the initial pivot operations
+            are done off the UI thread.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.CacheRawValues">
+            <summary>
+            Gets or sets whether underlying raw values are cached as the pivot is being built. If these values are cached,
+            then GetRawItemsFor method calls do not require tranversing the underlying data to complete.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.ShowCalculationsAsColumns">
+            <summary>
+            Gets or sets whether the calculations should appear as rows or columns. THe default behavior is 
+            for the calculations to appear as columns.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.ShowEmptyCells">
+            <summary>
+            Gets or sets a value indicating whether show empty value cell if summary value has null value.
+            By default true.
+            </summary>       
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.DataSource">
+            <summary>
+            Gets or sets source of data for this pivot table. This object should be either 
+            an IEnumerable list, or a DataTable.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.DataSourceList">
+            <summary>
+            Used internally. Gets or sets an IEnumerable list that is used as the data for the
+            pivot table. The default behavior is to initialize this list from DataSource.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.ItemType">
+            <summary>
+            Gets of sets the type of the objects in the DataSource. This property is usually initialized
+            directly from the DataSource.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.ItemProperties">
+            <summary>
+            Gets or sets a collection of property descriptors for the items in the DataSource. This property is 
+            usually initialized directly from the DataSource.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.AllowedFields">
+            <summary>
+            Gets a collection of <see cref="T:Syncfusion.PivotAnalysis.Base.FieldInfo"/> objects that hold field names that you want
+            to be visible in the engine. The names can be either public property names of the underlying data
+            objects, or they can be expression field.
+            </summary>
+            <remarks>
+            If your data contains fields that you do not want exposed to the pivoting process,
+            then add the names of the properties you want to include to this list. All other
+            fields will be excluded. 
+            
+            If you leave this collection empty, the default behavior will be to make all public
+            properties available for use in the pivot table.
+            
+            To add an expression field, set the FieldInfo.FieldType to FieldsType.Expression and set FieldInfo.Expression
+            to be a string holding a well formed expression defining the value that should appear in this field.</remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.ItemCollection">
+            <summary>
+            Gets or Sets the Collection of Items
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.VisibleRecords">
+            <summary>
+            Gets or sets the collection of objects which are currently used in the grid.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.LockComputations">
+            <summary>
+            Gets or sets the boolean value to indicate whether the computation need to happen. 
+            It is handled in suspend and resume computation method
+            </summary>
+        </member>
+        <member name="E:Syncfusion.PivotAnalysis.Base.PivotEngine.PivotSchemaChanged">
+            <summary>
+            Event raised whenever the pivot schema for the engine changed.
+            </summary>
+        </member>
+        <member name="E:Syncfusion.PivotAnalysis.Base.PivotEngine.PropertyChanged">
+            <summary>
+            PropertyChanged event that is triggered when the property of the cell is changed.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.PivotEngine.SortKeys">
+            <summary>
+            Class that holds properties which is used to handle grid level single sort as well as multi sort
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.SortKeys.Index">
+            <summary>
+            Gets or sets the row index
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.SortKeys.Keys">
+            <summary>
+            Gets or sets the collection of row indexes
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotEngine.SortKeys.BlockSize">
+            <summary>
+            Gets or sets the size of grid cell range
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.PivotEngine.CalcSortComparer">
+            <summary>
+            Class used for sorting the PivotedRow/column 
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DateComparer.Compare(System.Object,System.Object)">
+            <summary>
+            Compare for DateTime objects
+            </summary>
+            <param name="x">object</param>
+            <param name="y">object</param>
+            <returns>integer</returns>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.PivotGridConstants">
+            <summary>
+             Class that holds different Grid Constants.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.PivotGridConstants.AllString">
+            <summary>
+            Variable that holds all the values in filter.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.PivotGridConstants.TotalString">
+            <summary>
+            Holds the Total String
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.FilterItemElement">
+            <summary>
+            Holds the different Filter Item's collection
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterItemElement.#ctor">
+            <summary>
+            Gets or Sets the Filter item's elements
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterItemElement.AcceptChanges">
+            <summary>
+            To accept the changes in Engine
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterItemElement.RejectChanges">
+            <summary>
+            To reject the changes in Engine
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterItemElement.CompareTo(System.Object)">
+            <summary>
+             To compare the filter items
+            </summary>
+            <param name="obj">object</param>
+            <returns>int</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterItemElement.ToString">
+            <summary>
+            Converts the data to String type.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterItemElement.Key">
+            <summary>
+            Gets or Sets the key
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterItemElement.IsSelected">
+            <summary>
+            Gets or Sets the bool value of Selected option
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterItemElement.SelectedState">
+            <summary>
+            Gets or Sets the bool value of SelectedState
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterItemElement.IsChanged">
+            <summary>
+            Gets or Sets the bool value of ChangedState
+            </summary>
+        </member>
+        <member name="E:Syncfusion.PivotAnalysis.Base.FilterItemElement.PropertyChanged">
+            <summary>
+            PropertyChanged event that is triggered when the property of the cell is changed.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.FilterItemsCollection">
+            <summary>
+            Class that holds the collection of the objects that are filtered.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.#ctor">
+            <summary>
+            Constructor setting different properties for the filter collection
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.showSubTotal">
+            <summary>
+            Gets or Sets the value to show/hide the sub total of PivotItem. Default value is true
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.AddIfUnique(Syncfusion.PivotAnalysis.Base.FilterItemElement)">
+            <summary>
+            Add the filter Item elements at the respective location
+            </summary>
+            <param name="filterItemElement"></param>
+            <returns>int</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.AcceptChanges">
+            <summary>
+            Accept the changes in items
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.RejectChanges">
+            <summary>
+            Rejects the changes in items
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.SetName(System.String)">
+            <summary>
+            Method used to sets the Name of the FilterItem
+            </summary>
+            <param name="name">string</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.AddWireEvent(Syncfusion.PivotAnalysis.Base.FilterItemElement)">
+            <summary>
+            Add the filter items in collection
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.GetFilterExpressionForDataView">
+            <summary>
+             To Get the DataView of Filter Expression
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.GetFilterExpression(System.Boolean)">
+            <summary>
+            To get the Expression of Filter Item
+            </summary>
+            <param name="IEnumerableSource">bool</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.GetFilterItem">
+            <summary>
+            Gives the Items in Filter
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.FilterProperty">
+            <summary>
+            Gets and sets the Filter property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.AllFilterItem">
+            <summary>
+            Gets and sets teh property for all the filter items.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.Name">
+            <summary>
+            Gets and sets the data for the Name property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.DisplayHeader">
+            <summary>
+            Gets or Sets DisplayHeader
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.Format">
+            <summary>
+            Gets or sets the format
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.AllowRunTimeGroupByField">
+            <summary>
+            Gets or sets the value to enable/disable grouping for this filter item. Default value is true.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FilterItemsCollection.FilteredValues">
+            <summary>
+             Gets or Sets the filter values
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.BinaryList">
+            <summary>
+            Gets and sets the filter's Binary List.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.BinaryList.AddIfUnique(System.IComparable)">
+            <summary>
+            Method that returns the Integer value after performing insertion.
+            </summary>
+            <param name="o">IComparable</param>
+            <returns>int</returns>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.PivotItem">
+            <summary>
+            Enacapulates the information needed to define a pivot item, for either a row or column pivot.
+            </summary>
+            <remarks>
+            A pivot item is a property in the underlying data objects 
+            that is used to grouped the data in a pivot table. You can add pivot items to both the 
+            PivotColumns and PivotRows collection in a mutually exclusive manner.</remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotItem.SummaryType">
+            <summary>
+            Gets or sets the summary type for calculations use.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotItem.Summary">
+            <summary>
+            Gets or sets the summary for calculations use.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotItem.ShowSubTotal">
+            <summary>
+            Gets or sets whether the subtotal for this item can be shown or hidden
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotItem.AllowSort">
+            <summary>
+            Gets or sets whether this calculation column can be sorted when
+            RowPivotsOnly is true in the PivotEngine. 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotItem.AllowFilter">
+            <summary>
+            Gets or sets whether this calculation column can be filtered when
+            RowPivotsOnly is true in the PivotEngine. 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotItem.EnableHyperlinks">
+            <summary>
+            Gets or sets whether this row pivot column should be hyperlinked when RowPivotsOnly is true in the PivotEngine.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotItem.FieldMappingName">
+            <summary>
+            Gets or sets the property's mappingname.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotItem.FieldHeader">
+            <summary>
+            Gets or sets the title you want to see in the header for this pivot item.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotItem.TotalHeader">
+            <summary>
+            Gets or sets the string you want appended to the pivot item's summary cells.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotItem.Format">
+            <summary>
+            Gets or dets the format for the string
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotItem.Comparer">
+            <summary>
+            Gets or sets the IComparer object used for sorting. If this value is null, then sorting is done assuming this field is IComparable.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotItem.AllowRunTimeGroupByField">
+            <summary>
+            Gets or sets the value to enable/disable grouping for this pivot item. Default value is true.
+            </summary>
+        </member>
+        <member name="E:Syncfusion.PivotAnalysis.Base.PivotItem.PropertyChanged">
+            <summary>
+            PropertyChanged event that is triggered when the property of the item is changed.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.HiddenGroup">
+            <summary>
+            Class used to hold the properties of each hidden group
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.ExtensionClass">
+            <summary>
+            Class which has method to determines whether the specified item is in the collection
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.ExtensionClass.Has(System.Collections.Generic.List{Syncfusion.PivotAnalysis.Base.HiddenGroup},Syncfusion.PivotAnalysis.Base.HiddenGroup)">
+            <summary>
+            Determines whether the specified item is in the collection
+            </summary>
+            <param name="t">The Collection.</param>
+            <param name="hiddenGroup">The hidden group.</param>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.SummaryPivotItem">
+            <summary>
+            This class is primarily for internal use. It is used to generate the rows and columns that hold summaries of pivot calculations.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.SummaryPivotItem.CompareTo(System.Object)">
+            <summary>
+            IComparable implementation using the Keys.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.SummaryPivotItem.RowIndex">
+            <summary>
+            Gets or sets the row index of this item.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.SummaryPivotItem.ColIndex">
+            <summary>
+            Gets or sets the column index of this item.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.SummaryPivotItem.Values">
+            <summary>
+            Gets or sets the list of calculations in the pivot item.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.SummaryPivotItem.Keys">
+            <summary>
+            Gets or sets row/column key values for an indexed look-up of this item.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.CoveredCellRange">
+            <summary>
+            This class defines a set of four integers that define a covered range in the zero-based coordinate system of a pivot table.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.CoveredCellRange.#ctor">
+            <summary>
+            Gets the Range of the covered cells
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.CoveredCellRange.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Contructor.
+            </summary>
+            <param name="top"></param>
+            <param name="left"></param>
+            <param name="bottom"></param>
+            <param name="right"></param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.CoveredCellRange.ToString">
+            <summary>
+            overridden.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.CoveredCellRange.Top">
+            <summary>
+            Gets or sets the top index.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.CoveredCellRange.Left">
+            <summary>
+            Gets or sets the left indeex.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.CoveredCellRange.Bottom">
+            <summary>
+            Gets or sets the bottom index.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.CoveredCellRange.Right">
+            <summary>
+            Gets or sets the right index.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.PivotCellInfo">
+            <summary>
+            This class provides information about a specific cell in a pivot table.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotCellInfo.#ctor">
+            <summary>
+            Gets the information of the pivot cells
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotCellInfo.ToString">
+            <summary>
+            Returns the string type of the data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotCellInfo.DoubleValue">
+            <summary>
+            Gets the double value.
+            </summary>
+            <value>The double value.</value>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotCellInfo.Value">
+            <summary>
+            Gets or sets the value in the cell.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotCellInfo.CellRange">
+            <summary>
+            Gets or sets any covered range associated with this cell. 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotCellInfo.CellType">
+            <summary>
+            Gets or sets the <see cref="T:Syncfusion.PivotAnalysis.Base.PivotCellType"/> of this cell.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotCellInfo.Key">
+            <summary>
+            Gets or sets the formatted text displayed in this cell.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotCellInfo.Format">
+            <summary>
+            Gets or Sets the format for the cells
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotCellInfo.Tag">
+            <summary>
+            Gets and sets the Name.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotCellInfo.Summary">
+            <summary>
+            Gets and sets the Summary  for the cell.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotCellInfo.ParentCell">
+            <summary>
+            Gets or sets the parent cell.
+            </summary>
+            <value>The parent cell.</value>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotCellInfo.UniqueText">
+            <summary>
+            Gets or sets the unique text.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotCellInfo.RawValues">
+            <summary>
+            Gets the RawValues of the particular PivotCellInfo 
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.PivotCellInfos">
+            <summary>
+            Gets the Information for the Pivot Grid.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotCellInfos.#ctor">
+            <summary>
+            Empty constructor for Pivot Grid.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotCellInfos.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Constructor accepting the rowcount and colCount.
+            </summary>
+            <param name="rowCount">int</param>
+            <param name="colCount">int</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.PivotCellInfos.GetLength(System.Int32)">
+            <summary>
+            Gets the length of the value at specified index.
+            </summary>
+            <param name="index">int</param>
+            <returns>int</returns>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotCellInfos.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets and sets the rowIndex and colIndex.
+            </summary>
+            <param name="rowIndex">rowIndex</param>
+            <param name="colIndex">colIndex</param>
+            <returns></returns>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.PivotCellType">
+            <summary>
+            Enumerates the possible pivot cell types.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.PivotCellType.ValueCell">
+            <summary>
+            Cell holds a summary value.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.PivotCellType.ExpanderCell">
+            <summary>
+            Cell is a row/column header that holds an expander.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.PivotCellType.HeaderCell">
+            <summary>
+            Cell is a non-expander row or column header.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.PivotCellType.TopLeftCell">
+            <summary>
+            Cell is the top left portion of the pivot table.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.PivotCellType.TotalCell">
+            <summary>
+            Cell is a row/column header that marks a total row or column.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.PivotCellType.CalculationHeaderCell">
+            <summary>
+            Cell is a header cell holding a calculation name.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.PivotCellType.RowHeaderCell">
+            <summary>
+            Cell is row header
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.PivotCellType.ColumnHeaderCell">
+            <summary>
+            Cell is column header
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.PivotCellType.GrandTotalCell">
+            <summary>
+            Cell is a grand total cell.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.PivotSchemaChangedEventHandler">
+            <summary>
+            Event handler for the <see cref="T:Syncfusion.PivotAnalysis.Base.PivotSchemaChangedEventHandler"/> event.
+            </summary>
+            <param name="sender">The PivotEngine raising the event.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.PivotSchemaChangedArgs">
+            <summary>
+            Event argument for the <see cref="T:Syncfusion.PivotAnalysis.Base.PivotSchemaChangedArgs"/> event.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotSchemaChangedArgs.ChangeHints">
+            <summary>
+            Gets or sets <see cref="T:Syncfusion.PivotAnalysis.Base.SchemaChangeHints"/> regarding the schema information changed.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.PivotSchemaChangedArgs.OverrideDeferLayoutUpdate">
+            <summary>
+            Gets or sets weather should override the defer layout update settings
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.SchemaChangeHints">
+            <summary>
+            Enumerates information on what changes have occurred in the pivot schema.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SchemaChangeHints.None">
+            <summary>
+            No specific information available about the change. The entire engine should be populated to ensure the change is properly reflected.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SchemaChangeHints.GrandTotalVisibility">
+            <summary>
+            Indicate the engine's <see cref="F:Syncfusion.PivotAnalysis.Base.SchemaChangeHints.GrandTotalVisibility"/> property has changed.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SchemaChangeHints.RowAdded">
+            <summary>
+            Indicate that the engine should refresh because of a new row being added.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SchemaChangeHints.CalculationChanged">
+            <summary>
+            Indicate that the engine should re-populate based on selected calculation type.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.SchemaChangeHints.HeadersChanged">
+            <summary>
+            Indicate that the engine should re-populate the headers based on field headers.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.FieldInfo">
+            <summary>
+            Gets the information about the field.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FieldInfo.Equals(System.Object)">
+            <summary>
+            Returns the boolean value for the function
+            </summary>
+            <param name="obj">object</param>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FieldInfo.GetHashCode">
+            <summary>
+            REturnd the Hash code for the given value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.FieldInfo.CompareTo(System.Object)">
+            <summary>
+            Comapres the value with the other values
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FieldInfo.FieldType">
+            <summary>
+            Gets and sets the field type
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FieldInfo.Name">
+            <summary>
+            Gets and sets the Name
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FieldInfo.Expression">
+            <summary>
+            Gets and sets the Expression
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.FieldInfo.Format">
+            <summary>
+            Gets and sets the Format
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.ExpressionPropertyDescriptor">
+            <summary>
+            A class that illustrates the expression field support along with filtering in PivotEngine.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.ExpressionPropertyDescriptor.#ctor(System.String,System.Attribute[],System.String,System.String,Syncfusion.PivotAnalysis.Base.FilterHelper)">
+            <summary>
+            A Constructor that initializes the attributes of ExpressionPropertyDescriptor object.
+            </summary>
+            <param name="name">Name of the Expression Field.</param>
+            <param name="attributes">Attributes</param>
+            <param name="expression">Expression</param>
+            <param name="format">Format</param>
+            <param name="helper">An object that holds attributes to compute filter values and expressions.</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.ExpressionPropertyDescriptor.CanResetValue(System.Object)">
+            <summary>
+            Resets the value
+            </summary>
+            <param name="component"></param>
+            <returns>object</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.ExpressionPropertyDescriptor.GetValue(System.Object)">
+            <summary>
+            Gets the value of the concerned data
+            </summary>
+            <param name="component"></param>
+            <returns>object</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.ExpressionPropertyDescriptor.ResetValue(System.Object)">
+            <summary>
+            Resets the value
+            </summary>
+            <param name="component">object</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.ExpressionPropertyDescriptor.SetValue(System.Object,System.Object)">
+            <summary>
+            Sets the value for the method
+            </summary>
+            <param name="component">object</param>
+            <param name="value">object</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.ExpressionPropertyDescriptor.ShouldSerializeValue(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="component"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.ExpressionPropertyDescriptor.Expression">
+            <summary>
+            Gets or sets the expression.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.ExpressionPropertyDescriptor.Exp">
+            <summary>
+            Gets or sets the logical expression for filtering.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.ExpressionPropertyDescriptor.Format">
+            <summary>
+            Gets or sets a format associated with the value of this expression.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.ExpressionPropertyDescriptor.ComponentType">
+            <summary>
+            Gets and sets the ComponentType
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.ExpressionPropertyDescriptor.IsReadOnly">
+            <summary>
+            Checks whether the data is read-only
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.ExpressionPropertyDescriptor.PropertyType">
+            <summary>
+            Returns the PropertyType.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.FieldTypes">
+            <summary>
+            Enum holding the field tye
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.FieldTypes.Property">
+            <summary>
+            Gets whether the Field is Property
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.FieldTypes.Expression">
+            <summary>
+            Gets whether the Field is Expression
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.FieldTypes.Unbound">
+            <summary>
+            Gets whether the Field is Unbound
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.GridLayout">
+            <summary>
+            Specifies the layout for the PivotGridControl
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.GridLayout.Normal">
+            <summary>
+            Subtotals will be shown after the details
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.GridLayout.TopSummary">
+            <summary>
+            Subtotals will be shown before the details
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.DynamicPropertyDescriptor">
+            <summary>
+            Class that holds the methods for setting the value for the variable
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DynamicPropertyDescriptor.#ctor(System.String,System.Attribute[])">
+            <summary>
+            Constructor for DynamicPropertyDescriptor 
+            </summary>
+            <param name="name">string</param>
+            <param name="attributes">Attribute</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DynamicPropertyDescriptor.CanResetValue(System.Object)">
+            <summary>
+            Returns the value whether the value is reset. 
+            </summary>
+            <param name="component">object</param>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DynamicPropertyDescriptor.GetValue(System.Object)">
+            <summary>
+            Gets the Values of the value of the type dynamicDictionary
+            </summary>
+            <param name="component"></param>
+            <returns>object</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DynamicPropertyDescriptor.ResetValue(System.Object)">
+            <summary>
+            Resets the value of the variables
+            </summary>
+            <param name="component">object</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DynamicPropertyDescriptor.SetValue(System.Object,System.Object)">
+            <summary>
+            sets the value for the value
+            </summary>
+            <param name="component">object</param>
+            <param name="value">object</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.DynamicPropertyDescriptor.ShouldSerializeValue(System.Object)">
+            <summary>
+            Returns boolean value Whether to serialize the values
+            </summary>
+            <param name="component"></param>
+            <returns>bool</returns>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.DynamicPropertyDescriptor.ComponentType">
+            <summary>
+            Returns the component type.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.DynamicPropertyDescriptor.IsReadOnly">
+            <summary>
+            Sets the Property whether the variable is ReadOnly
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.DynamicPropertyDescriptor.PropertyType">
+            <summary>
+            Gets the PropertyType
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.IndexEngine">
+            <summary>
+            Specifies the Index
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IndexEngine.#ctor(Syncfusion.PivotAnalysis.Base.PivotEngine)">
+            <summary>
+            Constructor of IndexEngine with single paramater
+            </summary>
+            <param name="pivotEngine">PivotEngine</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IndexEngine.#ctor(Syncfusion.PivotAnalysis.Base.PivotEngine,Syncfusion.PivotAnalysis.Base.GetValueDelegate)">
+            <summary>
+             Constructor of IndexEngine with two paramater
+            </summary>
+            <param name="pivotEngine">PivotEngine</param>
+            <param name="del">GetValueDelegate</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IndexEngine.#ctor">
+            <summary>
+            Empty conStructor of IndexEngine class
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IndexEngine.IndexData">
+            <summary>
+            Call this method to have the IndexEngine create index information for the current
+            content reflected in <see cref="P:Syncfusion.PivotAnalysis.Base.IndexEngine.DataSource"/>, <see cref="P:Syncfusion.PivotAnalysis.Base.IndexEngine.PivotRows"/>, <see cref="P:Syncfusion.PivotAnalysis.Base.IndexEngine.PivotColumns"/>
+            and <see cref="P:Syncfusion.PivotAnalysis.Base.IndexEngine.PivotCalculations"/>.
+            </summary>
+            <returns>True if indexing was completed and false if no indexing was done.</returns>
+            <remarks>
+            After successfully executing this method, you can access the pivot contents using an zero-based
+            row, column indexer on this IndexEngine.
+            </remarks>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IndexEngine.IndexData(System.Boolean)">
+            <summary>
+            Call this method to have the IndexEngine create index information for the current
+            content reflected in <see cref="P:Syncfusion.PivotAnalysis.Base.IndexEngine.DataSource"/>, <see cref="P:Syncfusion.PivotAnalysis.Base.IndexEngine.PivotRows"/>, <see cref="P:Syncfusion.PivotAnalysis.Base.IndexEngine.PivotColumns"/>
+            and <see cref="P:Syncfusion.PivotAnalysis.Base.IndexEngine.PivotCalculations"/>.
+            </summary>
+            <param name="onDemand">True if you want this method to return before all the rows are populated.</param>
+            <returns>True if indexing was completed and false if no indexing was done.</returns>
+            <remarks>
+            If onDemand is true, the IndexEngine will returns when the number of rows given in <see cref="P:Syncfusion.PivotAnalysis.Base.IndexEngine.InitialRowLoadAmount"/> 
+            have been loaded. After this method returns, the rest of the rows will be loaded on demand
+            as you index this IndexEngine using row and column indexes. Anytime you index this IndexEngine,
+            if your row request exceeds <see cref="P:Syncfusion.PivotAnalysis.Base.IndexEngine.HighRowLevel"/>, additional rows are populated until it is
+            possible to return your requested value.
+            </remarks>
+            <see cref="P:Syncfusion.PivotAnalysis.Base.IndexEngine.PivotCalculations">        
+            </see>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IndexEngine.SortByCalculation(System.Int32)">
+            <summary>
+            Sorts the value by the calculated value
+            </summary>
+            <param name="colIndex"></param>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.IndexEngine.allIndexesRowFirst">
+            <summary>
+            allIndexesRowFirst
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.IndexEngine.allComparersRowFirst">
+            <summary>
+            allComparersRowFirst
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.IndexEngine.GetCount(Syncfusion.PivotAnalysis.Base.ListIndexInfo)">
+            <summary>
+            Gets the total number of unique slices under this given ListIndexInfo object
+            </summary>
+            <param name="info">The parent ListIndexInfo object.</param>
+            <returns>The number of row or columns that are contained by this ListIndexInfo item.</returns>
+            <remarks>
+            Given an outer row node, the GetCount value for this node is the number of child nodes that are contain
+            under this outer node. This method uses recursions to iterate through all children contained
+            at any level under this outer node. Summing up all the GetCounts for all the outer nodes will give
+            you the total number of all nodes.
+            </remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.HighRowLevel">
+            <summary>
+            Gets the index of the last row that has been loaded when you are using the on-demand loading.
+            </summary>
+            <remarks>
+            You do on-demand loading by passing a true value when you can the IndexEngine method to populate
+            the IndexEngine. When this is done, IndexEngine will returns after loading the number of rows 
+            indicated <see cref="F:Syncfusion.PivotAnalysis.Base.IndexEngine.initialRowLoadAmount"/>. The rest of the rows will be populated on-demand 
+            as your code requests a row higher than this property.
+            </remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.InitialRowLoadAmount">
+            <summary>
+            Gets or sets the numner of rows that are initially loaded when you are using on-demand loading.
+            </summary>
+            <remarks>
+            You do on-demand loading by passing a true value when you can the IndexEngine method to populate
+            the IndexEngine. When this is done, IndexEngine will returns after loading the number of rows 
+            indicated by this property. The rest of the rows will be populated on-demand as your code requests
+            a row higher than <see cref="P:Syncfusion.PivotAnalysis.Base.IndexEngine.HighRowLevel"/>.
+            </remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.SortDirection">
+            <summary>
+            Gets or sets the sorting direction
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets the PivotCellInfo that holds the information being displayed
+            by the pivot at the given row and column. 
+            </summary>
+            <param name="row">The row index (zero-based).</param>
+            <param name="col">The column index (zero-based).</param>
+            <returns>The PivotCellInfo associated with the cell pointed to by the row and col.</returns>
+            <remarks>
+            Note that this indexer will return a null value if the row and col values pick out a cell
+            that is not visible due to being part of a covered cell.
+            </remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.GetValue">
+            <summary>
+            Gets or sets a <see cref="T:Syncfusion.PivotAnalysis.Base.GetValueDelegate"/> delegate that returns a property value for a given object.
+            </summary>
+            <remarks>
+            If this member is null, the IndexEngine will use reflection to obtain property values from objects in
+            the <see cref="P:Syncfusion.PivotAnalysis.Base.IndexEngine.DataSource"/>. Note usually, a well written delegate can provide values more efficiently
+            than using reflection. For performance improvements, you will want to provide a well written delegate for
+            this property.
+            </remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.PivotRows">
+            <summary>
+            Gets the PivotRows used in this pivot.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.PivotColumns">
+            <summary>
+            Gets the PivotColumns used in this pivot.
+            </summary>       
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.PivotCalculations">
+            <summary>
+            Gets the PivotCalculations used in this pivot.
+            </summary>
+            <remarks>
+            If the IndexEngine is created using a PivotEngine, then this PivotCalculations is
+            the pivotEngine.PivotCalculations collection from the associated PivotEngine.
+            </remarks>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.Filters">
+            <summary>
+            Gets a List holding <see cref="T:Syncfusion.PivotAnalysis.Base.FilterExpression"/> values that
+            specify any filters that need to be applied to this pivot table.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.DataSource">
+            <summary>
+            Gets or sets source of data for this pivot table. This object should be either 
+            an IEnumerable list, or a DataTable.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.CoveredRanges">
+            <summary>
+            Gets a list of <see cref="T:Syncfusion.PivotAnalysis.Base.CoveredCellRange"/> objects that specify
+            the cells that need to be covered.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.RowCount">
+            <summary>
+            Gets the number of rows in the pivot.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.ColumnCount">
+            <summary>
+            Gets the number of columns in the pivot.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.ColumnOffSetToValues">
+            <summary>
+            Get the number of columns that hold the row header information to the left of the numerical
+            values in the pivot.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.IndexEngine.RowOffSetToValues">
+            <summary>
+            Gets the number of rows that hold the column header information above the numerical
+            values in the pivot.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.GetValueDelegate">
+            <summary>
+            Use to get the property value without using reflection
+            </summary>
+            <param name="o">object</param>
+            <param name="name">string</param>
+            <returns>IComparable</returns>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.SortComparer">
+            <summary>
+            Class used compare and sort the given collection
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.SortComparer.#ctor(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Collections.IComparer},Syncfusion.PivotAnalysis.Base.GetValueDelegate)">
+            <summary>
+            Performs the comaparing operation in Sorting
+            </summary>
+            <param name="propertyNames">List</param>
+            <param name="formats">List</param>
+            <param name="comparers">List</param>
+            <param name="GetValue">GetValueDelegate</param>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.SortComparer.Compare(System.Object,System.Object)">
+            <summary>
+            Compares the different objects.
+            </summary>
+            <param name="x">object</param>
+            <param name="y">object</param>
+            <returns>int</returns>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.ListIndexInfo">
+            <summary>
+            Class that holds primarily the information on one row in a pivot table. Additionally, this
+            calls can be used to hold information on the row/column header structures.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.ListIndexInfo.#ctor">
+            <summary>
+            Gets the Type of the variable
+            </summary>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.ListIndexInfo.ToString">
+            <summary>
+            Converts the data to string type.
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:Syncfusion.PivotAnalysis.Base.ListIndexInfo.CompareTo(Syncfusion.PivotAnalysis.Base.ListIndexInfo)">
+            <summary>
+            Compares the different values
+            </summary>
+            <param name="other">ListIndexInfo</param>
+            <returns>int</returns>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.ListIndexInfo.StartIndex">
+            <summary>
+            Holds the starting Index value.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.ListIndexInfo.LastIndex">
+            <summary>
+            Holds the Ending Index value.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.ListIndexInfo.Display">
+            <summary>
+            Gets and sets teh display property
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.ListIndexInfo.Children">
+            <summary>
+            Gets and sets the list of children
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.ListIndexInfo.Summaries">
+            <summary>
+             Gets and sets the list of Summaries
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.ListIndexInfo.Type">
+            <summary>
+            Gets ad sets the RowType
+            </summary>
+        </member>
+        <member name="P:Syncfusion.PivotAnalysis.Base.ListIndexInfo.ParentInfo">
+            <summary>
+            Get the information abou the parent
+            </summary>
+        </member>
+        <member name="T:Syncfusion.PivotAnalysis.Base.RowType">
+            <summary>
+            Enum provides option to select row type
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.RowType.None">
+            <summary>
+            When no type is set for Row
+            </summary>
+        </member>
+        <member name="F:Syncfusion.PivotAnalysis.Base.RowType.Summary">
+            <summary>
+            When type is set for Row as Summary
+            </summary>
+        </member>
+    </members>
+</doc>

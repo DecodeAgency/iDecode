@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/app/AppMasterPage.master" AutoEventWireup="true" CodeFile="pressrelease.aspx.cs" Inherits="app_journalists_pressreleases_pressrelease" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 </asp:Content>
@@ -10,14 +10,25 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" Runat="Server">
-    <div class="LeftBlockContainer">
-        <center>
+
+    <div class="LeftBlockContainer">       
+        <div class="Block">
+            <h3>Campaign Options</h3>
             <asp:DropDownList runat="server" ID="ddUserCampaignGroups" DataSourceID="dsUserCampaignGroups" DataValueField="CampaignGroupName" DataTextField="CampaignGroupName" CssClass="SearchDropDowns" Width="279" />
             <asp:TextBox runat="server" ID="txtSubject" Text="Subject" /><br />
             <asp:TextBox runat="server" ID="txtFromEmail" Text="From Email Address"  /><br />
             <asp:TextBox runat="server" ID="txtFromName" Text="From Name" /><br />
-            <asp:Button runat="server" ID="btnCreateCampaign" OnClick="btnCreateCampaign_Click" Text="Create Campaign" CssClass="Pinky" />
-        </center>
+            <center>
+                <asp:Button runat="server" ID="btnCreateCampaign" OnClick="btnCreateCampaign_Click" Text="Create Campaign" CssClass="Pinky" />
+            </center>       
+        </div>
+    </div>
+    <div class="MiddleBlockContainer">
+        <div class="Block" style="width: 620px;">
+            <h3>Campaign Content</h3>
+            <ej:RTE ID="rteSample" Width="620" Height="440" ShowFooter="true" runat="server">
+            </ej:RTE>
+        </div>
     </div>
     <asp:SqlDataSource ID="dsUserCampaignGroups" runat="server" ConnectionString="<%$ ConnectionStrings:CS %>" SelectCommand="
             SELECT UserCampaignGroupID, ISNULL(UserID,0) AS UserID, 

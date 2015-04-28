@@ -27,7 +27,7 @@ public partial class app_journalists_pressreleases_pressrelease : System.Web.UI.
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        this.Page.Title = "iDecode | Create Press Release";
     }
     protected void btnCreateCampaign_Click(object sender, EventArgs e)
     {
@@ -53,7 +53,7 @@ public partial class app_journalists_pressreleases_pressrelease : System.Web.UI.
         options.ToName = "*|FNAME|" + " " + "*|LNAME|";
         //options.TemplateID = 32;
         //options.Title = "";
-        content.HTML = "<b>Finally</b><br/><a href='*|UNSUB|'>Unsubscribe from this list </a> ";
+        content.HTML = rteSample.Value;
 
         mc.CreateCampaign("regular", options, content, segmentoptions, null);
     }

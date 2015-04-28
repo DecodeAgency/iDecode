@@ -872,3 +872,7 @@ h4 {
     width: 100%;
     margin-top: 20px;
 }
+
+.e-icon, .e-rte-toolbar-icon, .e-bgcolor-icon, .e-fontcolor-icon, .e-rte-footericon, .e-rte-resize {
+  font-family: 'ej-webfont' !Important;
+}
