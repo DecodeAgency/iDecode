@@ -30,7 +30,7 @@ public partial class app_journalists_pressreleases_pressrelease : System.Web.UI.
         if (Session["iUserID"] == null) { Response.Redirect("~/app/login.aspx", true); }
         this.Page.Title = "iDecode | Create Press Release";
 
-        if (Request.QueryString["prid"].ToString() != null) {
+        if (Request.QueryString["prid"] != null) {
             int iUserCampaignID = Convert.ToInt32(Request.QueryString["prid"].ToString());
             var oUserCampaign = new UserCampaign(iUserCampaignID);
 
@@ -41,6 +41,30 @@ public partial class app_journalists_pressreleases_pressrelease : System.Web.UI.
             txtSubject.Text = oUserCampaign.Subject;
             txtFromEmail.Text = oUserCampaign.FromEmail;
             txtFromName.Text = oUserCampaign.FromName;
+
+            rteSample.Value = oUserCampaign.CampaignContent;
+
+            if (oUserCampaign.StatusID == 1) { //sent
+                btnSendCampaign.Text = "Campaign Sent Successfully.";
+                btnSendCampaign.Enabled = false;
+            }
+
+            //Scheduled
+            if (oUserCampaign.StatusID == 2)
+            {
+                btnScheduleCampaign.Enabled = false;
+                btnScheduleCampaign.Text = "Scheduled for " + oUserCampaign.ScheduleDateTime.ToString("dd-MMM-yyyy HH:mm");
+                dtScheduleDateTime.Visible = false;
+            }
+
+            //Scheduled
+            if (oUserCampaign.StatusID == 0)
+            {
+                btnScheduleCampaign.Visible = true;
+                dtScheduleDateTime.Visible = true;
+                btnCancelSchedule.Visible = false;
+            }
+
             //ddUserCampaignGroups
         }
     }
@@ -63,10 +87,28 @@ public partial class app_journalists_pressreleases_pressrelease : System.Web.UI.
 
     protected void btnSendCampaign_Click(object sender, EventArgs e)
     {
-
+        int iUserCampaignID = Convert.ToInt32(Request.QueryString["prid"].ToString());
+        var oUserCampaign = new UserCampaign(iUserCampaignID);
+        mc.SendCampaign(oUserCampaign.MailChimpCampaignID);
+        oUserCampaign.StatusID = 1; //Sent
+        oUserCampaign.Save(2);
     }
 
     protected void btnScheduleCampaign_Click(object sender, EventArgs e)
+    {
+        DateTime dScheduleDateTime = DateTime.Now;
+
+        dScheduleDateTime = dtScheduleDateTime.Value.AddHours(-3);
+
+        int iUserCampaignID = Convert.ToInt32(Request.QueryString["prid"].ToString());
+        var oUserCampaign = new UserCampaign(iUserCampaignID);
+        mc.ScheduleCampaign(oUserCampaign.MailChimpCampaignID,dScheduleDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+        oUserCampaign.StatusID = 2; //Scheduled
+        oUserCampaign.ScheduleDateTime = dScheduleDateTime;
+        oUserCampaign.Save(2);
+    }
+
+    protected void btnUpdateCampaign_Click(object sender, EventArgs e)
     {
 
     }
@@ -76,11 +118,8 @@ public partial class app_journalists_pressreleases_pressrelease : System.Web.UI.
         int iUserCampaignID = Convert.ToInt32(Request.QueryString["prid"].ToString());
         var oUserCampaign = new UserCampaign(iUserCampaignID); 
         mc.UnscheduleCampaign(oUserCampaign.MailChimpCampaignID);
-    }
-
-    protected void btnUpdateCampaign_Click(object sender, EventArgs e)
-    {
-
+        oUserCampaign.StatusID = 0; //Nothing
+        oUserCampaign.Save(2);
     }
 
     protected void btnSendTestCampaign_Click(object sender, EventArgs e)
@@ -114,11 +153,14 @@ public partial class app_journalists_pressreleases_pressrelease : System.Web.UI.
         options.ListId = sListID;
         oUserCampaign.MailChimpListID = sListID;
         options.Subject = txtSubject.Text;
+
         oUserCampaign.Subject = txtSubject.Text;
         options.FromEmail = txtFromEmail.Text;
+
         oUserCampaign.FromEmail = txtFromEmail.Text;
         options.FromName = txtFromName.Text;
-        oUserCampaign.FromEmail = txtFromEmail.Text;
+        oUserCampaign.FromName = txtFromName.Text;
+
         options.ToName = "*|FNAME|" + " " + "*|LNAME|";
         oUserCampaign.ToName = "*|FNAME|" + " " + "*|LNAME|";
         //options.TemplateID = 32;

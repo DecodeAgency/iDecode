@@ -17,8 +17,9 @@
             <center>
                 <asp:Button runat="server" ID="btnSendTestCampaign" OnClick="btnSendTestCampaign_Click" Text="Send Test Campaign" CssClass="Pinky" />
                 <asp:Button runat="server" ID="btnSendCampaign" OnClick="btnSendCampaign_Click" Text="Send Campaign" CssClass="Pinky" />
+                <ej:DateTimePicker ID="dtScheduleDateTime" runat="server" Value="7/18/2014" Width="180px"></ej:DateTimePicker>
                 <asp:Button runat="server" ID="btnScheduleCampaign" OnClick="btnScheduleCampaign_Click" Text="Schedule Campaign" CssClass="Pinky" />
-                <asp:Button runat="server" ID="btnCancelSchedule" OnClick="btnCancelSchedule_Click" Text="Cancel Schedule" CssClass="Pinky" Visible="false" />
+                <asp:Button runat="server" ID="btnCancelSchedule" OnClick="btnCancelSchedule_Click" Text="Cancel Schedule" CssClass="Pinky" />
                 <asp:Button runat="server" ID="btnDeleteCampaign" OnClick="btnDeleteCampaign_Click" Text="Delete Campaign" CssClass="Pinky" />
             </center>
         </div>               

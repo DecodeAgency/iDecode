@@ -21,6 +21,8 @@ public class UserCampaign
     private DateTime dDateTimeStamp = DateTime.Now;
     private DateTime dLastUpdatedDate = DateTime.Now;
     private string sMailChimpCampaignID = "";
+    private int iStatusID = 0;
+    private DateTime dScheduleDateTime = DateTime.Now;
 
     public int UserCampaignID
     {
@@ -99,6 +101,18 @@ public class UserCampaign
         set { sMailChimpCampaignID = value; }
     }
 
+    public int StatusID 
+    {
+        get { return iStatusID; }
+        set { iStatusID = value; }    
+    }
+
+    public DateTime ScheduleDateTime
+    {
+        get { return dScheduleDateTime; }
+        set { dScheduleDateTime = value; }
+    }
+
 	public UserCampaign()
 	{
 
@@ -123,7 +137,7 @@ public class UserCampaign
             sSQL = "SELECT UserCampaignID, ISNULL(UserID,0) AS UserID, ISNULL(MailChimpListID,'') AS MailChimpListID,ISNULL(Subject,'') AS Subject, ";
             sSQL += "ISNULL(FromEmail,'') AS FromEmail, ISNULL(FromName,'') AS FromName, ISNULL(ToName,'') AS ToName, ";
             sSQL += "ISNULL(TemplateID,0) AS TemplateID, ISNULL(Title,'') AS Title, ISNULL(CampaignContent,'') AS CampaignContent, ";
-            sSQL += "ISNULL(DateTimeStamp,GETDATE()) AS DateTimeStamp, ISNULL(LastUpdatedDate,GETDATE()) AS LastUpdatedDate, ISNULL(MailChimpCampaignID,'') AS MailChimpCampaignID ";
+            sSQL += "ISNULL(DateTimeStamp,GETDATE()) AS DateTimeStamp, ISNULL(LastUpdatedDate,GETDATE()) AS LastUpdatedDate, ISNULL(MailChimpCampaignID,'') AS MailChimpCampaignID, ISNULL(StatusID,0) AS StatusID, ISNULL(ScheduleDateTime,GETDATE()) AS ScheduleDateTime ";
             sSQL += "FROM UserCampaigns ";
             sSQL += "WHERE UserCampaignID = " + ID.ToString();
 
@@ -145,7 +159,9 @@ public class UserCampaign
                 sCampaignContent = dr["CampaignContent"].ToString();
                 dDateTimeStamp = Convert.ToDateTime(dr["DateTimeStamp"].ToString()); ;
                 dLastUpdatedDate = Convert.ToDateTime(dr["LastUpdatedDate"].ToString());
-                sMailChimpCampaignID = dr["MailChimpCampaignID"].ToString(); ;
+                sMailChimpCampaignID = dr["MailChimpCampaignID"].ToString();
+                iStatusID = Convert.ToInt32(dr["StatusID"].ToString());
+                dScheduleDateTime = Convert.ToDateTime(dr["ScheduleDateTime"].ToString()); ;
             }
             else
             {
@@ -177,11 +193,11 @@ public class UserCampaign
             thisConnection.Open();
             if (TypeID == 1)
             {
-                nonqueryCommand.CommandText = "INSERT INTO UserCampaigns (UserID, MailChimpListID, Subject, FromEmail, FromName, ToName, TemplateID, Title, CampaignContent, DateTimeStamp, LastUpdatedDate, MailChimpCampaignID) VALUES (@UserID, @MailChimpListID, @Subject, @FromEmail, @FromName, @ToName, @TemplateID, @Title, @CampaignContent, @DateTimeStamp, @LastUpdatedDate, @MailChimpCampaignID); SELECT SCOPE_IDENTITY() ";
+                nonqueryCommand.CommandText = "INSERT INTO UserCampaigns (UserID, MailChimpListID, Subject, FromEmail, FromName, ToName, TemplateID, Title, CampaignContent, DateTimeStamp, LastUpdatedDate, MailChimpCampaignID, StatusID, ScheduleDateTime) VALUES (@UserID, @MailChimpListID, @Subject, @FromEmail, @FromName, @ToName, @TemplateID, @Title, @CampaignContent, @DateTimeStamp, @LastUpdatedDate, @MailChimpCampaignID, @StatusID, @ScheduleDateTime); SELECT SCOPE_IDENTITY() ";
             }
             else
             {
-                nonqueryCommand.CommandText = "UPDATE UserCampaigns SET UserID = @UserID, MailChimpListID = @MailChimpListID, Subject = @Subject, FromEmail = @FromEmail, FromName = @FromName, ToName = @ToName, TemplateID = @TemplateID, Title = @Title, CampaignContent = @CampaignContent, DateTimeStamp = @DateTimeStamp, LastUpdatedDate = @LastUpdatedDate, MailChimpCampaignID = @MailChimpCampaignID WHERE UserCampaignID = " + iUserCampaignID.ToString();
+                nonqueryCommand.CommandText = "UPDATE UserCampaigns SET UserID = @UserID, MailChimpListID = @MailChimpListID, Subject = @Subject, FromEmail = @FromEmail, FromName = @FromName, ToName = @ToName, TemplateID = @TemplateID, Title = @Title, CampaignContent = @CampaignContent, DateTimeStamp = @DateTimeStamp, LastUpdatedDate = @LastUpdatedDate, MailChimpCampaignID = @MailChimpCampaignID, StatusID = @StatusID, ScheduleDateTime = @ScheduleDateTime  WHERE UserCampaignID = " + iUserCampaignID.ToString();
             }
 
             nonqueryCommand.Parameters.Add("@UserID", SqlDbType.Int);
@@ -196,6 +212,8 @@ public class UserCampaign
             nonqueryCommand.Parameters.Add("@DateTimeStamp", SqlDbType.DateTime);
             nonqueryCommand.Parameters.Add("@LastUpdatedDate", SqlDbType.DateTime);
             nonqueryCommand.Parameters.Add("@MailChimpCampaignID", SqlDbType.VarChar);
+            nonqueryCommand.Parameters.Add("@StatusID", SqlDbType.Int);
+            nonqueryCommand.Parameters.Add("@ScheduleDateTime", SqlDbType.DateTime);
 
             nonqueryCommand.Parameters["@UserID"].Value = iUserID;
             nonqueryCommand.Parameters["@MailChimpListID"].Value = sMailChimpListID;
@@ -209,8 +227,9 @@ public class UserCampaign
             nonqueryCommand.Parameters["@DateTimeStamp"].Value = dDateTimeStamp;
             nonqueryCommand.Parameters["@LastUpdatedDate"].Value = dLastUpdatedDate;
             nonqueryCommand.Parameters["@MailChimpCampaignID"].Value = sMailChimpCampaignID;
+            nonqueryCommand.Parameters["@StatusID"].Value = iStatusID;
+            nonqueryCommand.Parameters["@ScheduleDateTime"].Value = dScheduleDateTime;
 
-            
             if (TypeID == 1)
             {
                 newId = Convert.ToInt32(nonqueryCommand.ExecuteScalar());
