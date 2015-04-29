@@ -34,12 +34,12 @@
             <div style="width:960px; margin:0 auto"><img runat="server" src="/Website/app/styling/images/logo.png" id="imgLogo" style="width: 230px;margin-top: 10px;" /><div style="float:right; width: 730px;margin-top: 9px;"><asp:TextBox Width="300" runat="server" ID="txtGeneralSearch" Text="Search for Journalists, Keywords and Topics" /><div class="NavigationMenuAndSearch"><a href="/">Home</a><a runat="server" id="aPricePlans">Plans and Pricing</a><a runat="server" id="aLogin">Login</a></div></div></div>
         </div>
         <div class="AppNavigationMenuContainer Width960" style="width:934px" runat="server" id="divAppNavMenu" visible="false">
-            <div class="FloatLeft">
-                <div class="divSmallProfileImage">
-
+            <div class="FloatRight">
+                <div class="">
+                    <span class="IsThisYourName"><asp:Literal runat="server" ID="litWhosLoggedIn" /></span><div class="divSmallProfileImage" runat="server" id="divSmaillProfileImage"></div>
                 </div>
             </div>
-            <div class="FloatRight">
+            <div class="FloatLeft" style="margin-top: 22px;">
                 <ul>
                     <li><a runat="server" id="aDashboard" href="#">Dashboard</a></li>
                     <li><a runat="server" id="aSearch" href="#">Search</a></li>
@@ -58,6 +58,7 @@
         <asp:ContentPlaceHolder id="ContentPlaceHolder3" runat="server"> 
         </asp:ContentPlaceHolder>
     </div>
+    <div style="clear:both; height:20px"></div>
         <div class="FooterContainer">
             <div class="Width960">
                 <div class="divFooterC">

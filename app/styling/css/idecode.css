@@ -413,12 +413,13 @@ input#btnSubscribe {
 .ProfileHeader {
     width: 620px;
     margin-right: 10px;
-    height: 135px;
+    min-height: 135px;
     float: left;
     background-color: #394165;
     color: #fff;
     border-radius: 5px;
     line-height: 20px;
+    padding-bottom:10px;
 }
 .ProfileImage {
     height: 125px;
@@ -468,7 +469,7 @@ input#btnSubscribe {
     border-bottom: 1px solid #1f253d;
     padding-bottom: 10px;
     margin-top: 10px;
-    min-height: 80px;
+    min-height: 50px;
     overflow: hidden;
     line-height: 20px;
             

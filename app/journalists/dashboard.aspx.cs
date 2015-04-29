@@ -94,7 +94,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
                         if (p.Name == "text")
                         {
                             //sTweet = p.Value.ToString();
-                            string sDate = ToLongString(DateTime.Now - DateTime.ParseExact((string)o["created_at"], "ddd MMM dd HH:mm:ss zzz yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal));
+                            string sDate = ToLongString(DateTime.Now - DateTime.ParseExact((string)o["created_at"], "ddd MMM dd HH:mm:ss zzz yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeLocal));
                             divShowTweets.InnerHtml += "<div class='JobHistoryContainer'><div style='margin-top:10px'>" + ParseTweet((string)o["text"]) + "</div><div style='float:right'>" + sDate.ToString() + " ago</div></div>";
                         }
                     }
@@ -409,4 +409,32 @@ public partial class app_admin_dashboard : System.Web.UI.Page
         return iCount;
     }
 
+    protected void rptRecentUpdates_DataBinding(object sender, EventArgs e)
+    {
+        
+    }
+    protected void rptRecentUpdates_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        HiddenField hidUpdatedProfileID = e.Item.FindControl("hidUpdatedProfileID") as HiddenField;
+        Literal litUpdateStatus = e.Item.FindControl("litUpdateStatus") as Literal;
+        Literal litDatePosted = e.Item.FindControl("litDatePosted") as Literal;
+
+        int iUpdatedProfileID = Convert.ToInt32(hidUpdatedProfileID.Value);
+        var oUser = new User(iUpdatedProfileID, "");
+        //TimeSpan ts = TimeSpan.Parse(Convert.ToDateTime(litDatePosted.Text).ToString("dd:MM:yyyy:h:m"));
+
+        //litDatePosted.Text = Convert.ToDateTime(litDatePosted.Text).ToString("dd:MM:yyyy:hh:mm");// ToLongString(ts);
+        string sDate = ToLongString(DateTime.Now - DateTime.ParseExact(Convert.ToDateTime(litDatePosted.Text).ToString("ddd MMM dd HH:mm:ss zzz yyyy"), "ddd MMM dd HH:mm:ss zzz yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeLocal));
+
+        litDatePosted.Text = sDate + " ago";
+
+        if (oUser.UserTypeID == 1) 
+        {
+            litUpdateStatus.Text = "Communicator: <a href='profile.aspx?uid=" + oUser.UserID  + "'>" + oUser.FirstName + " " + oUser.LastName + "</a> profile was updated.";
+        }
+        else if (oUser.UserTypeID == 2)
+        {
+            litUpdateStatus.Text = "Journalist: <a href='../communicators/profile.aspx?uid=" + oUser.UserID + "'>" + oUser.FirstName + " " + oUser.LastName + "</a> profile was updated.";
+        }       
+    }
 }

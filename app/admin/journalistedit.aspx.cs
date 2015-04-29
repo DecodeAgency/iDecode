@@ -284,6 +284,21 @@ public partial class app_journo_profileedit : System.Web.UI.Page
         }
     }
 
+    protected void btnBack_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            var oGeneralFunctions = new GeneralFunctions();
+            oGeneralFunctions.UserSessionTrail(Convert.ToInt32(Session["iUserID"].ToString()), HttpContext.Current.Session.SessionID.ToString(), Request.RawUrl.ToString());
+            Response.Redirect("~/app/admin/journalists.aspx", true);
+        }
+        catch (Exception ex)
+        {
+            var oGeneralFunctions = new GeneralFunctions();
+            oGeneralFunctions.UserError(Convert.ToInt32(Session["iUserID"].ToString()), ex.ToString());
+        }
+    }
+
     private void GetMetaTagValue(string url)
     {
         var getHtmlDoc = new HtmlWeb();

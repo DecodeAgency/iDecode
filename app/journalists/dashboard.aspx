@@ -19,6 +19,18 @@
             </center>
         </div>
         <div class="Block">
+            <h3>Recent Updates</h3>
+            <asp:Repeater runat="server" ID="rptRecentUpdates" DataSourceID="dsRecentUpdates" OnDataBinding="rptRecentUpdates_DataBinding" OnItemDataBound="rptRecentUpdates_ItemDataBound">
+                <ItemTemplate>
+                    <div class='JobHistoryContainer'>
+                        <div style='margin-top:10px'><asp:literal runat="server" ID="litUpdateStatus" Text='<%# "Journalist: Obakeng Molebatsi profile has been updated." %>' /></div>
+                        <div style='float:right'><asp:literal runat="server" ID="litDatePosted" Text='<%# Eval ("DateTimeStamp") %>' /></div>
+                    </div>
+                    <asp:HiddenField runat="server" ID="hidUpdatedProfileID" Value='<%# Eval ("UpdatedProfileID") %>' />                   
+                </ItemTemplate>
+            </asp:Repeater>  
+        </div>
+        <div class="Block">
             <h3>Press Releases</h3>
             <h4><asp:literal runat="server" ID="litTotalPressReleases" Text="0" /></h4>
             <center>
@@ -61,6 +73,12 @@
             </center>
         </div>
     </div>
+    <asp:SqlDataSource ID="dsRecentUpdates" runat="server" ConnectionString="<%$ ConnectionStrings:CS %>" SelectCommand="
+        SELECT TOP 5 *, RIGHT(Trail,LEN(Trail) - CHARINDEX('=',Trail)) AS UpdatedProfileID FROM UserSessionTrails WHERE UserSessionTrailID IN (
+	        SELECT MIN(UserSessionTrailID) FROM UserSessionTrails WHERE Trail LIKE '%edit%' GROUP BY Trail, DateTimeStamp  
+        )
+        ORDER BY DateTimeStamp DESC">
+    </asp:SqlDataSource>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder4" Runat="Server">
 </asp:Content>

@@ -11,7 +11,16 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" Runat="Server">
 
-    <div class="LeftBlockContainer">       
+    <div class="LeftBlockContainer">
+        <div class="Block">
+            <h3>Send That Thing</h3>
+            <center>
+                <asp:Button runat="server" ID="btnSendCampaign" OnClick="btnSendCampaign_Click" Text="Send Campaign" CssClass="Pinky" />
+                <asp:Button runat="server" ID="btnScheduleCampaign" OnClick="btnScheduleCampaign_Click" Text="Schedule Campaign" CssClass="Pinky" />
+                <asp:Button runat="server" ID="btnCancelSchedule" OnClick="btnCancelSchedule_Click" Text="Cancel Schedule" CssClass="Pinky" Visible="false" />
+                <asp:Button runat="server" ID="btnDeleteCampaign" OnClick="btnDeleteCampaign_Click" Text="Delete Campaign" CssClass="Pinky" />
+            </center>
+        </div>               
         <div class="Block">
             <h3>Campaign Options</h3>
             <asp:DropDownList runat="server" ID="ddUserCampaignGroups" DataSourceID="dsUserCampaignGroups" DataValueField="CampaignGroupName" DataTextField="CampaignGroupName" CssClass="SearchDropDowns" Width="279" />

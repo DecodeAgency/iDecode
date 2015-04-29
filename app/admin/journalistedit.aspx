@@ -134,6 +134,9 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" Runat="Server">
+    <div style="float:right">
+        <asp:Button Width="130" CssClass="BackButton" runat="server" ID="btnBack" Text="Back" OnClick="btnBack_Click" />
+    </div>
     <div class="HeaderWrapper">
         <div class="ProfileHeader">
             <div class="ProfileImage" runat="server" id="divProfileImage"></div>
