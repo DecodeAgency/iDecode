@@ -28,7 +28,7 @@ public partial class app_AppMasterPage : System.Web.UI.MasterPage
 
                 aDashboard.HRef = "~/app/journalists/dashboard.aspx";
                 aSearch.HRef = "~/app/journalists/search.aspx";
-                aPressRelease.HRef = "~/app/journalists/pressreleases/pressreleases.aspx";
+                aPressRelease.HRef = "~/app/journalists/pressreleases/userpressreleases.aspx";
                 aSettings.HRef = "~/app/communicators/profileedit.aspx";
                 aLogout.HRef = "~/app/login.aspx?logout=true";
 

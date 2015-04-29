@@ -12,9 +12,10 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" Runat="Server">
 
     <div class="LeftBlockContainer">
-        <div class="Block">
+        <div class="Block" runat="server" id="divSendThatThing" visible="true">
             <h3>Send That Thing</h3>
             <center>
+                <asp:Button runat="server" ID="btnSendTestCampaign" OnClick="btnSendTestCampaign_Click" Text="Send Test Campaign" CssClass="Pinky" />
                 <asp:Button runat="server" ID="btnSendCampaign" OnClick="btnSendCampaign_Click" Text="Send Campaign" CssClass="Pinky" />
                 <asp:Button runat="server" ID="btnScheduleCampaign" OnClick="btnScheduleCampaign_Click" Text="Schedule Campaign" CssClass="Pinky" />
                 <asp:Button runat="server" ID="btnCancelSchedule" OnClick="btnCancelSchedule_Click" Text="Cancel Schedule" CssClass="Pinky" Visible="false" />
@@ -29,6 +30,7 @@
             <asp:TextBox runat="server" ID="txtFromName" Text="From Name" /><br />
             <center>
                 <asp:Button runat="server" ID="btnCreateCampaign" OnClick="btnCreateCampaign_Click" Text="Create Campaign" CssClass="Pinky" />
+                <asp:Button runat="server" ID="btnUpdateCampaign" OnClick="btnUpdateCampaign_Click" Text="Update Campaign" CssClass="Pinky" Visible="false" />
             </center>       
         </div>
     </div>

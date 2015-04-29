@@ -51,6 +51,12 @@ public class UserCampaign
         set { sFromEmail = value; }
     }
 
+    public string FromName
+    {
+        get { return sFromName; }
+        set { sFromName = value; }
+    }
+
     public string ToName
     {
         get { return sToName; }

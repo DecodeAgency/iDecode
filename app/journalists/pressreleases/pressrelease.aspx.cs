@@ -29,10 +29,68 @@ public partial class app_journalists_pressreleases_pressrelease : System.Web.UI.
     {
         if (Session["iUserID"] == null) { Response.Redirect("~/app/login.aspx", true); }
         this.Page.Title = "iDecode | Create Press Release";
+
+        if (Request.QueryString["prid"].ToString() != null) {
+            int iUserCampaignID = Convert.ToInt32(Request.QueryString["prid"].ToString());
+            var oUserCampaign = new UserCampaign(iUserCampaignID);
+
+            btnCreateCampaign.Visible = false;
+            btnUpdateCampaign.Visible = true;
+            divSendThatThing.Visible = true;
+
+            txtSubject.Text = oUserCampaign.Subject;
+            txtFromEmail.Text = oUserCampaign.FromEmail;
+            txtFromName.Text = oUserCampaign.FromName;
+            //ddUserCampaignGroups
+        }
     }
     protected void btnCreateCampaign_Click(object sender, EventArgs e)
     {
             CreatePressRelease(ddUserCampaignGroups.SelectedValue);
+    }
+
+    protected void btnDeleteCampaign_Click(object sender, EventArgs e)
+    {
+        int iUserCampaignID = Convert.ToInt32(Request.QueryString["prid"].ToString());
+        var oUserCampaign = new UserCampaign(iUserCampaignID);
+        if (oUserCampaign.MailChimpCampaignID != ""){
+            mc.DeleteCampaign(oUserCampaign.MailChimpCampaignID);
+        }        
+        oUserCampaign.Delete();
+
+        Response.Redirect("~/app/journalists/pressreleases/userpressreleases.aspx", true);
+    }
+
+    protected void btnSendCampaign_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnScheduleCampaign_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnCancelSchedule_Click(object sender, EventArgs e)
+    {
+        int iUserCampaignID = Convert.ToInt32(Request.QueryString["prid"].ToString());
+        var oUserCampaign = new UserCampaign(iUserCampaignID); 
+        mc.UnscheduleCampaign(oUserCampaign.MailChimpCampaignID);
+    }
+
+    protected void btnUpdateCampaign_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnSendTestCampaign_Click(object sender, EventArgs e)
+    {
+        System.Collections.Generic.List<string> listEmails = new System.Collections.Generic.List<string>();
+        listEmails.Add("obakeng@decode.co.za");
+
+        int iUserCampaignID = Convert.ToInt32(Request.QueryString["prid"].ToString());
+        var oUserCampaign = new UserCampaign(iUserCampaignID);
+        mc.SendCampaignTest(oUserCampaign.MailChimpCampaignID,listEmails);
     }
 
     public void CreatePressRelease(string sCampaignGroupName)
@@ -43,7 +101,7 @@ public partial class app_journalists_pressreleases_pressrelease : System.Web.UI.
         MailChimp.Campaigns.CampaignFilter listfilter = new MailChimp.Campaigns.CampaignFilter();
         MailChimp.Campaigns.CampaignListResult lists = mc.GetCampaigns();
 
-        
+
         MailChimp.Campaigns.CampaignCreateOptions options = new MailChimp.Campaigns.CampaignCreateOptions();
         MailChimp.Campaigns.CampaignCreateContent content = new MailChimp.Campaigns.CampaignCreateContent();
         MailChimp.Campaigns.CampaignSegmentOptions segmentoptions = new MailChimp.Campaigns.CampaignSegmentOptions();
@@ -60,9 +118,9 @@ public partial class app_journalists_pressreleases_pressrelease : System.Web.UI.
         options.FromEmail = txtFromEmail.Text;
         oUserCampaign.FromEmail = txtFromEmail.Text;
         options.FromName = txtFromName.Text;
-        oUserCampaign.FromEmail = txtFromName.Text;
+        oUserCampaign.FromEmail = txtFromEmail.Text;
         options.ToName = "*|FNAME|" + " " + "*|LNAME|";
-        oUserCampaign.ToName = "*|FNAME|" + " " + "*|LNAME|"; 
+        oUserCampaign.ToName = "*|FNAME|" + " " + "*|LNAME|";
         //options.TemplateID = 32;
         options.Title = txtSubject.Text;
         oUserCampaign.Title = txtSubject.Text;
@@ -82,14 +140,14 @@ public partial class app_journalists_pressreleases_pressrelease : System.Web.UI.
         string sMailChimpCampaignID = lists.Data[0].Id;
         oUserCampaign.MailChimpCampaignID = sMailChimpCampaignID;
         Convert.ToInt32(oUserCampaign.Save(1));
-             
+
         //oUserCampaign.Save(2);
     }
 
     public string GetListID(string sListGroupName)
     {
         string sResult = "";
-        
+
         try
         {
             sPostURL += "/lists/list.format?apikey=" + sAPIKey + "&list_name=" + sListGroupName;
@@ -115,30 +173,7 @@ public partial class app_journalists_pressreleases_pressrelease : System.Web.UI.
             oGeneralFunctions.UserError(Convert.ToInt32(Session["iUserID"].ToString()), ex.ToString());
 
             return ex.ToString();
-        }  
-    }
-    protected void btnDeleteCampaign_Click(object sender, EventArgs e)
-    {
-
+        }
     }
 
-    protected void btnSendCampaign_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void btnScheduleCampaign_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void btnUnscheduleCampaign_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void btnCancelSchedule_Click(object sender, EventArgs e)
-    {
-
-    }
 }
