@@ -18,6 +18,10 @@ using System.Text.RegularExpressions;
 using MailChimp;
 using MailChimp.Lists;
 
+using System.Security;
+using System.Security.Permissions;
+
+[assembly: AllowPartiallyTrustedCallers]
 public partial class app_journalists_pressreleases_pressrelease : System.Web.UI.Page
 {
     const string sAPIKey = "c71be3cd3f3421bbd16f7e06968b1a5c-us8";
