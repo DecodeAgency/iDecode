@@ -49,6 +49,13 @@
         <div class="Block">
             <h3>Latest Tweets</h3>
              <div runat="server" id="divShowTweets"></div>
+            <div runat="server" id="dvTwitterHandle" style="display:none;">
+                <div class="divShortBio">
+                <asp:TextBox runat="server" ID="txtTwitterHandle"></asp:TextBox>
+                    </div>
+                <asp:Button runat="server" ID="btnLoadTweets" Text="Load Tweets" CssClass="SignInButton" OnClick="btnLoadTweets_Click" />
+         
+            </div>
         </div>
     </div>
     <div class="RightBlockContainer">

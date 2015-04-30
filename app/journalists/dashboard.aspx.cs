@@ -47,59 +47,13 @@ public partial class app_admin_dashboard : System.Web.UI.Page
 
             if (oUser.TwitterUsername != "")
             {
-                string sBearer = "AAAAAAAAAAAAAAAAAAAAAEhjewAAAAAA6%2B3HZJ5tpzcHEXobNTo%2F7%2BYT7Oc%3D06JMFvVxeHslrlLo5azQ5tmOBfiAo0eyCgHebQSfmgl3dtQY4a";
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.twitter.com/1.1/statuses/user_timeline.json?count=5&exclude_replies=true&screen_name=" + oUser.TwitterUsername);
-                request.Method = "GET";
-                request.Headers.Add("Authorization", "Bearer " + sBearer);
-                WebResponse response = request.GetResponse();
-                String responseString = "";
-                using (Stream stream = response.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(stream, Encoding.UTF8);
-                    responseString = reader.ReadToEnd();
-                }
-
-
-                JArray jArray = JArray.Parse(responseString);
-                JObject ou = new JObject();
-                string sTweet = "";
-                string sname = "";
-                foreach (JObject o in jArray.Children<JObject>())
-                {
-                    foreach (JProperty p in o.Properties())
-                    {
-                        if (p.Name == "user")
-                        {
-
-                            ou = JObject.Parse(p.Value.ToString());
-                            sname = "<a href='http://twitter.com/" + (string)ou["screen_name"] + "'>" + (string)ou["name"] + "</a>";
-                            //if (sCurrentCity == "")
-                            //{
-                            //    sCurrentCity = ou["location"].ToString();
-                            //}
-                            //if (sShortBiography == "")
-                            //{
-                            //    sShortBiography = ou["description"].ToString();
-                            //}
-
-                        }
-                    }
-                }
-
-                foreach (JObject o in jArray.Children<JObject>())
-                {
-                    foreach (JProperty p in o.Properties())
-                    {
-
-                        if (p.Name == "text")
-                        {
-                            //sTweet = p.Value.ToString();
-                            string sDate = ToLongString(DateTime.Now - DateTime.ParseExact((string)o["created_at"], "ddd MMM dd HH:mm:ss zzz yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeLocal));
-                            divShowTweets.InnerHtml += "<div class='JobHistoryContainer'><div style='margin-top:10px'>" + ParseTweet((string)o["text"]) + "</div><div style='float:right'>" + sDate.ToString() + " ago</div></div>";
-                        }
-                    }
-                }
+                LoadTweets(oUser.TwitterUsername.ToString());
             }
+            else
+                    {
+                        dvTwitterHandle.Style.Add(HtmlTextWriterStyle.Display, "block;");
+                    }
+       
         }
         catch (Exception ex)
         {
@@ -437,4 +391,88 @@ public partial class app_admin_dashboard : System.Web.UI.Page
             litUpdateStatus.Text = "Journalist: <a href='../communicators/profile.aspx?uid=" + oUser.UserID + "'>" + oUser.FirstName + " " + oUser.LastName + "</a> profile was updated.";
         }       
     }
+
+    protected void LoadTweets (string UserName)
+    {
+        string sBearer = "AAAAAAAAAAAAAAAAAAAAAEhjewAAAAAA6%2B3HZJ5tpzcHEXobNTo%2F7%2BYT7Oc%3D06JMFvVxeHslrlLo5azQ5tmOBfiAo0eyCgHebQSfmgl3dtQY4a";
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.twitter.com/1.1/statuses/user_timeline.json?count=5&exclude_replies=true&screen_name=" + UserName);
+        request.Method = "GET";
+        request.Headers.Add("Authorization", "Bearer " + sBearer);
+        WebResponse response = request.GetResponse();
+        String responseString = "";
+        using (Stream stream = response.GetResponseStream())
+        {
+            StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+            responseString = reader.ReadToEnd();
+        }
+
+
+        JArray jArray = JArray.Parse(responseString);
+        JObject ou = new JObject();
+        string sTweet = "";
+        string sname = "";
+        foreach (JObject o in jArray.Children<JObject>())
+        {
+            foreach (JProperty p in o.Properties())
+            {
+                if (p.Name == "user")
+                {
+
+                    ou = JObject.Parse(p.Value.ToString());
+                    sname = "<a href='http://twitter.com/" + (string)ou["screen_name"] + "'>" + (string)ou["name"] + "</a>";
+                    //if (sCurrentCity == "")
+                    //{
+                    //    sCurrentCity = ou["location"].ToString();
+                    //}
+                    //if (sShortBiography == "")
+                    //{
+                    //    sShortBiography = ou["description"].ToString();
+                    //}
+
+                }
+            }
+
+        }
+
+        foreach (JObject o in jArray.Children<JObject>())
+        {
+            foreach (JProperty p in o.Properties())
+            {
+
+                if (p.Name == "text")
+                {
+                    //sTweet = p.Value.ToString();
+                    string sDate = ToLongString(DateTime.Now - DateTime.ParseExact((string)o["created_at"], "ddd MMM dd HH:mm:ss zzz yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeLocal));
+                    divShowTweets.InnerHtml += "<div class='JobHistoryContainer'><div style='margin-top:10px'>" + ParseTweet((string)o["text"]) + "</div><div style='float:right'>" + sDate.ToString() + " ago</div></div>";
+                }
+            }
+        }
+
+    }
+    protected void btnLoadTweets_Click (object sender, EventArgs e)
+    {
+        try
+        {
+        LoadTweets(txtTwitterHandle.Text.ToString());   
+        string sSQL;
+        System.Data.SqlClient.SqlCommand cm;
+        string sConStr = System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
+
+            string sTwitterhandle = txtTwitterHandle.Text;
+            sTwitterhandle = sTwitterhandle.Replace("@", "");
+            sSQL = "UPDATE Users SET TwitterUserName = '"+sTwitterhandle +"' WHERE UserID = " + Convert.ToInt32(Session["iUserID"].ToString());
+
+            cm = new SqlCommand(sSQL, new SqlConnection(sConStr));
+            cm.Connection.Open();
+            cm.ExecuteScalar();
+            
+            cm.Connection.Close();
+            cm.Dispose();
+        }
+        catch (Exception ex)
+        {
+          
+        }
+    }
+
 }
