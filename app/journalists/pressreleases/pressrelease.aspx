@@ -12,7 +12,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" Runat="Server">
 
     <div class="LeftBlockContainer">
-        <div class="Block" runat="server" id="divSendThatThing" visible="true">
+        <div class="Block" runat="server" id="divSendThatThing" visible="false">
             <h3>Send That Thing</h3>
             <center>
                 <asp:Button runat="server" ID="btnSendTestCampaign" OnClick="btnSendTestCampaign_Click" Text="Send Test Campaign" CssClass="Pinky" />
