@@ -468,6 +468,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
             
             cm.Connection.Close();
             cm.Dispose();
+            dvTwitterHandle.Style.Add(HtmlTextWriterStyle.Display, "none;");
         }
         catch (Exception ex)
         {
