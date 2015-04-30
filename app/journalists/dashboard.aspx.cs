@@ -165,76 +165,197 @@ public partial class app_admin_dashboard : System.Web.UI.Page
         int iUserID = Convert.ToInt16(Session["iUserID"].ToString());
         var oUser = new User(iUserID, "");
         double dPercentage = 0;
+        string sList = "";
+        int iCount = 0;
 
+        sList = "<h1>Kindly fill the following to complete your Profile </h1> <br/>";
         if (!(String.IsNullOrEmpty(oUser.FirstName)))
         {
             dPercentage += 6.25;
         }
+        else
+        {
+         
+            sList += "<a href='./profileedit.aspx'>First Name </a><br/>";
+            iCount++;
+        }
+        
         if (!(String.IsNullOrEmpty(oUser.LastName)))
         {
             dPercentage += 6.25;
+        }
+        else
+        {
+          
+            sList += "<a href='./profileedit.aspx'>Last Name </a><br/>";
+            iCount++;
         }
         if (!(oUser.TwitterUserID == null || oUser.TwitterUserID == 0))
         {
             dPercentage += 6.25;
         }
+        else
+        {
+           
+            sList += "<a href='./profileedit.aspx'>Twitter ID </a><br/>";
+            iCount++;
+        }
         if (!(String.IsNullOrEmpty(oUser.TwitterUsername)))
         {
             dPercentage += 6.25;
+        }
+        else
+        {
+           
+            sList += "<a href='./profileedit.aspx'>Twitter Handle </a><br/>";
+            iCount++;
         }
         if (!(String.IsNullOrEmpty(oUser.FacebookUsername)))
         {
             dPercentage += 6.25;
         }
+        else
+        {
+            iCount++;
+            sList += "<a href='./profileedit.aspx'>Facebook Username </a><br/>";
+        }
         if (!(String.IsNullOrEmpty(oUser.LinkedInUsername)))
         {
             dPercentage += 6.25;
+        }
+        else
+        {
+            if (iCount < 5)
+            {
+            iCount++;
+            sList += "<a href='./profileedit.aspx'>LinkedIn Username </a><br/>";
+            }
         }
         if(!(String.IsNullOrEmpty(oUser.TwitterProfileImageURL)))
         {
             dPercentage += 6.25;
         }
+        else
+        {
+            if (iCount < 5)
+            {
+                iCount++;
+                sList += "<a href='./profileedit.aspx'>Twitter Profile Image </a><br/>";
+            }
+        }
         if (!(String.IsNullOrEmpty(oUser.CurrentCity)))
         {
             dPercentage += 6.25;
+        }
+        else
+        {
+            if (iCount < 5)
+            {
+                iCount++;
+                sList += "<a href='./profileedit.aspx'>Current City</a><br/>";
+            }
         }
         if (!(String.IsNullOrEmpty(oUser.ContactMobile)))
         {
             dPercentage += 6.25;
         }
+        else
+        {
+            if (iCount < 5)
+            {
+                iCount++;
+                sList += "<a href='./profileedit.aspx'>Contact Number </a><br/>";
+            }
+        }
         if (!(String.IsNullOrEmpty(oUser.ContactOffice)))
         {
             dPercentage += 6.25;
+        }
+        else
+        {
+            if (iCount < 5)
+            {
+                iCount++;
+                sList += "<a href='./profileedit.aspx'>Office Number</a><br/>";
+            }
         }
         if (!(String.IsNullOrEmpty(oUser.FaxNumber)))
         {
             dPercentage += 6.25;
         }
+        else
+        {
+            if (iCount < 5)
+            {
+                iCount++;
+                sList += "<a href='./profileedit.aspx'>Fax Number </a><br/>";
+            }
+        }
         if (!(String.IsNullOrEmpty(oUser.EmailAddress)))
         {
             dPercentage += 6.25;
+        }
+        else
+        {
+            if (iCount < 5)
+            {
+                iCount++;
+                sList += "<a href='./profileedit.aspx'>Email Address </a><br/>";
+            }
         }
         if (!(String.IsNullOrEmpty(oUser.WebsiteAddress)))
         {
             dPercentage += 6.25;
         }
+        else
+        {
+            if (iCount < 5)
+            {
+                iCount++;
+                sList += "<a href='./profileedit.aspx'>Website Address </a><br/>";
+            }
+        }
         if (!(String.IsNullOrEmpty(oUser.ShortBiography)))
         {
             dPercentage += 0;
+        }
+        else
+        {
+            if (iCount < 5)
+            {
+                iCount++;
+                sList += "<a href='./profileedit.aspx'>Short Biography </a><br/>";
+            }
         }
         if (!(String.IsNullOrEmpty(oUser.CurrentJobTitle)))
         {
             dPercentage += 6.25;
         }
+        else
+        {
+            if (iCount < 5)
+            {
+                iCount++;
+                sList += "<a href='./profileedit.aspx'>Current Job Title </a><br/>";
+            }
+        }
         if (!(String.IsNullOrEmpty(oUser.CurrentJobPublication)))
         {
             dPercentage += 6.25;
+        }
+        else
+        {
+            if (iCount < 5)
+            {
+                iCount++;
+                sList += "<a href='./profileedit.aspx'>Current Publication </a><br/>";
+            }
         }
         string sPercentage = "";
         sPercentage = dPercentage + "%";
         dvInnerComplete.Style[HtmlTextWriterStyle.Width] = sPercentage;
         litPercentage.Text = "your profile is " + sPercentage + " complete";
-
+        litInCompleteList.Text = sList;
     }
 
     public string ToLongString(TimeSpan time)

@@ -66,6 +66,8 @@
             </div> 
             <div class="divShortBio" style="text-align:center;margin-top:20px;display: inline-block;">
             <asp:literal runat="server" ID="litPercentage">your profile is 0% complete</asp:literal></div>
+    <div class="JobHistoryContainer" style="text-align:center;margin-top:20px;display: inline-block;">
+            <asp:literal runat="server" ID="litInCompleteList"></asp:literal></div>
         </div>
         <div class="Block">
             <h3>Journalist Groups</h3>
