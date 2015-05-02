@@ -39,8 +39,6 @@ public class User
     private string sCurrentJobPublication = "";
     private int iBeatID = 0;
     private int iPackageID = 0;
-    private string sEditorName = "";
-    private string sEditorEmail = "";
 
     public int UserID{
         get { return iUserID; }
@@ -107,18 +105,6 @@ public class User
     {
         get { return sWebsiteAddress; }
         set { sWebsiteAddress = value; }
-    }
-
-    public string EditorName
-    {
-        get { return sEditorName; }
-        set { sEditorName = value; }
-    }
-
-    public string EditorEmail
-    {
-        get { return sEditorEmail; }
-        set { sEditorEmail = value; }
     }
 
     public Boolean Active {
@@ -253,8 +239,7 @@ public class User
             sSQL += "ISNULL(FaxNumber,'') AS FaxNumber, ISNULL(EmailAddress,'') AS EmailAddress, ISNULL(Password,'') AS Password, ISNULL(WebsiteAddress,'') AS WebsiteAddress, ISNULL(Active,'false') AS Active, ";
             sSQL += "ISNULL(DateTimeStamp,GETDATE()) AS DateTimeStamp, ISNULL(LastUpdatedDate,GETDATE()) AS LastUpdatedDate, ISNULL(UserTypeID,0) AS UserTypeID, ";
             sSQL += "ISNULL(FacebookUsername,'') AS FacebookUsername, ISNULL(TwitterUsername,'') AS TwitterUsername, ISNULL(LinkedInUsername,'') AS LinkedInUsername, ISNULL(ImageFormat,'') AS ImageFormat, ISNULL(TwitterOauthToken,'') AS TwitterOauthToken, ISNULL(TwitterOauthTokenSecret,'') AS TwitterOauthTokenSecret, ISNULL(TwitterScreenName,'') AS TwitterScreenName, ISNULL(TwitterUserID,0) AS TwitterUserID, ISNULL(TwitterProfileImageURL,'') AS TwitterProfileImageURL, ";
-            sSQL += "ISNULL(ShortBiography,'') AS ShortBiography, ISNULL(Biography,'') AS Biography, ISNULL(CurrentJobTitle,'') AS CurrentJobTitle, ISNULL(CurrentJobPublication,'') AS CurrentJobPublication, ISNULL(BeatID,0) AS BeatID, ISNULL(PackageID,0) AS PackageID, ";
-            sSQL += "ISNULL(EditorName,'') AS EditorName, ISNULL(EditorEmail,'') AS EditorEmail ";
+            sSQL += "ISNULL(ShortBiography,'') AS ShortBiography, ISNULL(Biography,'') AS Biography, ISNULL(CurrentJobTitle,'') AS CurrentJobTitle, ISNULL(CurrentJobPublication,'') AS CurrentJobPublication, ISNULL(BeatID,0) AS BeatID, ISNULL(PackageID,0) AS PackageID ";
             sSQL += "FROM Users";
             
             if (ID != 0){
@@ -302,8 +287,6 @@ public class User
                 sCurrentJobPublication = dr["CurrentJobPublication"].ToString();
                 iBeatID = Convert.ToInt32(dr["BeatID"].ToString());
                 iPackageID = Convert.ToInt32(dr["PackageID"].ToString());
-                sEditorName = dr["EditorName"].ToString();
-                sEditorEmail = dr["EditorEmail"].ToString();
             }
             else
             {
@@ -334,11 +317,11 @@ public class User
             thisConnection.Open();
             if (TypeID == 1)
             {
-                nonqueryCommand.CommandText = "INSERT INTO Users (FirstName, LastName, GenderID, Age, CurrentCity, CountryID, ContactMobile, ContactOffice, FaxNumber, EmailAddress, Password, WebsiteAddress, Active, DateTimeStamp, LastUpdatedDate, UserTypeID, FacebookUsername, TwitterUsername, LinkedInUsername, ImageFormat,TwitterOauthToken,TwitterOauthTokenSecret,TwitterScreenName,TwitterUserID, TwitterProfileImageURL, ShortBiography, Biography, CurrentJobTitle, CurrentJobPublication, BeatID, PackageID, EditorName, EditorEmail) VALUES (@FirstName, @LastName, @GenderID, @Age, @CurrentCity, @CountryID, @ContactMobile, @ContactOffice, @FaxNumber, @EmailAddress, @Password, @WebsiteAddress, @Active, @DateTimeStamp, @LastUpdatedDate, @UserTypeID, @FacebookUsername, @TwitterUsername, @LinkedInUsername, @ImageFormat, @TwitterOauthToken,@TwitterOauthTokenSecret,@TwitterScreenName,@TwitterUserID, @TwitterProfileImageURL, @ShortBiography, @Biography, @CurrentJobTitle, @CurrentJobPublication, @BeatID, @PackageID, @EditorName, @EditorEmail) ";
+                nonqueryCommand.CommandText = "INSERT INTO Users (FirstName, LastName, GenderID, Age, CurrentCity, CountryID, ContactMobile, ContactOffice, FaxNumber, EmailAddress, Password, WebsiteAddress, Active, DateTimeStamp, LastUpdatedDate, UserTypeID, FacebookUsername, TwitterUsername, LinkedInUsername, ImageFormat,TwitterOauthToken,TwitterOauthTokenSecret,TwitterScreenName,TwitterUserID, TwitterProfileImageURL, ShortBiography, Biography, CurrentJobTitle, CurrentJobPublication, BeatID, PackageID) VALUES (@FirstName, @LastName, @GenderID, @Age, @CurrentCity, @CountryID, @ContactMobile, @ContactOffice, @FaxNumber, @EmailAddress, @Password, @WebsiteAddress, @Active, @DateTimeStamp, @LastUpdatedDate, @UserTypeID, @FacebookUsername, @TwitterUsername, @LinkedInUsername, @ImageFormat, @TwitterOauthToken,@TwitterOauthTokenSecret,@TwitterScreenName,@TwitterUserID, @TwitterProfileImageURL, @ShortBiography, @Biography, @CurrentJobTitle, @CurrentJobPublication, @BeatID, @PackageID) ";
             }
             else
             {
-                nonqueryCommand.CommandText = "UPDATE Users SET FirstName = @FirstName, LastName = @LastName, GenderID = @GenderID, Age = @Age, CurrentCity = @CurrentCity, CountryID = @CountryID, ContactMobile = @ContactMobile, ContactOffice = @ContactOffice, FaxNumber = @FaxNumber, EmailAddress = @EmailAddress, Password = @Password, WebsiteAddress = @WebsiteAddress, Active = @Active, DateTimeStamp = @DateTimeStamp, LastUpdatedDate = @LastUpdatedDate, UserTypeID = @UserTypeID, FacebookUsername = @FacebookUsername, TwitterUsername = @TwitterUsername, LinkedInUsername = @LinkedInUsername, ImageFormat = @ImageFormat, TwitterOauthToken = @TwitterOauthToken, TwitterOauthTokenSecret = @TwitterOauthTokenSecret, TwitterScreenName = @TwitterScreenName, TwitterUserID = @TwitterUserID, TwitterProfileImageURL = @TwitterProfileImageURL, ShortBiography = @ShortBiography, Biography = @Biography, CurrentJobTitle = @CurrentJobTitle, CurrentJobPublication = @CurrentJobPublication, BeatID = @BeatID, PackageID = @PackageID, EditorName = @EditorName, EditorEmail = @EditorEmail WHERE UserID = " + iUserID.ToString();
+                nonqueryCommand.CommandText = "UPDATE Users SET FirstName = @FirstName, LastName = @LastName, GenderID = @GenderID, Age = @Age, CurrentCity = @CurrentCity, CountryID = @CountryID, ContactMobile = @ContactMobile, ContactOffice = @ContactOffice, FaxNumber = @FaxNumber, EmailAddress = @EmailAddress, Password = @Password, WebsiteAddress = @WebsiteAddress, Active = @Active, DateTimeStamp = @DateTimeStamp, LastUpdatedDate = @LastUpdatedDate, UserTypeID = @UserTypeID, FacebookUsername = @FacebookUsername, TwitterUsername = @TwitterUsername, LinkedInUsername = @LinkedInUsername, ImageFormat = @ImageFormat, TwitterOauthToken = @TwitterOauthToken, TwitterOauthTokenSecret = @TwitterOauthTokenSecret, TwitterScreenName = @TwitterScreenName, TwitterUserID = @TwitterUserID, TwitterProfileImageURL = @TwitterProfileImageURL, ShortBiography = @ShortBiography, Biography = @Biography, CurrentJobTitle = @CurrentJobTitle, CurrentJobPublication = @CurrentJobPublication, BeatID = @BeatID, PackageID = @PackageID WHERE UserID = " + iUserID.ToString();
             }
 
             nonqueryCommand.Parameters.Add("@FirstName", SqlDbType.VarChar);
@@ -372,8 +355,6 @@ public class User
             nonqueryCommand.Parameters.Add("@CurrentJobPublication", SqlDbType.VarChar);
             nonqueryCommand.Parameters.Add("@BeatID", SqlDbType.Int);
             nonqueryCommand.Parameters.Add("@PackageID", SqlDbType.Int);
-            nonqueryCommand.Parameters.Add("@EditorName", SqlDbType.VarChar);
-            nonqueryCommand.Parameters.Add("@EditorEmail", SqlDbType.VarChar);
 
             nonqueryCommand.Parameters["@FirstName"].Value = sFirstName;
             nonqueryCommand.Parameters["@LastName"].Value = sLastName;
@@ -406,8 +387,6 @@ public class User
             nonqueryCommand.Parameters["@CurrentJobPublication"].Value = sCurrentJobPublication;
             nonqueryCommand.Parameters["@BeatID"].Value = iBeatID;
             nonqueryCommand.Parameters["@PackageID"].Value = iPackageID;
-            nonqueryCommand.Parameters["@EditorName"].Value = sEditorName;
-            nonqueryCommand.Parameters["@EditorEmail"].Value = sEditorEmail;
 
             nonqueryCommand.ExecuteNonQuery();
         }

@@ -59,7 +59,7 @@ public partial class app_login : System.Web.UI.Page
             isLoggedIn = true;
         }
 
-        if (isLoggedIn == true && isActive == true)
+        if (isLoggedIn == true && iTwitterUserID == 0 && isActive == true)
         {
             iDecodeCookie["uid"] = iUserID.ToString();
             iDecodeCookie.Expires = DateTime.Now.AddDays(180);
