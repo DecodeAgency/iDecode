@@ -5,15 +5,26 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script>
         $(document).ready(function () {
+
+            //var hash = window.location.hash;
+
             $(".tabs-menu a").click(function (event) {
+                
                 event.preventDefault();
                 $(this).parent().addClass("current");
+
                 $(this).parent().siblings().removeClass("current");
                 var tab = $(this).attr("href");
-                $(".tab-content").not(tab).css("display", "none");
-                $(tab).fadeIn();
+                window.location.hash = tab;
+
+                $(".tab-content").not(window.location.hash).css("display", "none");
+                $(window.location.hash).fadeIn();
             });
         });
+
+        //if (window.location.hash) {
+            
+        //}
     </script>
     <style>
         textarea {
@@ -114,8 +125,9 @@
             <a href="#" runat="server" id="aProfileSocialButtonEmail"><div class="ProfileSocialButton ProfileContactButton" style="background-color:#72a69b">Email</div></a>
         </div>
     </div>
+    <input type="hidden" name="currentTab" id="currentTab" value="2"/>
     <div class="HeaderWrapper">             
-        <div id="tabs-container">
+        <div id="tabs-container"> 
             <ul class="tabs-menu">
                 <li class="current"><a href="#tab-1">BIO & TITLE</a></li>
                 <li style="display:none"><a href="#tab-2">ARTICLES</a></li>
@@ -236,11 +248,24 @@
                 </div>
                 <div id="tab-4" class="tab-content">
                     <table>
+<<<<<<< HEAD
                         <tr>
                             <td>Twitter Authentication</td>
                             <td><asp:Button runat="server" ID="btnAuthenticateTwitter" OnClick="btnAuthenticateTwitter_Click" Text="Auth Twitter" /> </td>
                         </tr>
                     </table>                </div>
+=======
+                        <tr runat="server" id="divAuthTwitter">
+                            <td>Twitter Authentication</td>
+                            <td><asp:Button runat="server" ID="btnAuthenticateTwitter" OnClick="btnAuthenticateTwitter_Click" Text="Auth Twitter" /> </td>
+                        </tr>
+                        <tr runat="server" id="divTwitterAuthed">
+                            <td style="vertical-align:middle !Important">Twitter Account Linked to Profile</td>
+                            <td style="vertical-align:middle !Important"><div runat="server" class="divSmallProfileImage FloatLeft" id="divAuthTwitterProfileImage"></div>&nbsp;&nbsp;<div style="float:left;margin-left:10px; margin-top:20px"><asp:Literal runat="server" ID="litTwitterScreen" /></div></td>
+                        </tr>
+                    </table>                
+                </div>
+>>>>>>> origin/master
                 <div id="tab-5" class="tab-content">
                     <table>
                         <tr>
@@ -282,6 +307,7 @@
     <asp:XmlDataSource runat="server" id="dsUserArticles">
 
     </asp:XmlDataSource>
+
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder4" Runat="Server">
 </asp:Content>

@@ -77,19 +77,39 @@ public partial class app_communicators_profileedit : System.Web.UI.Page
             sCurrentJobPublication = Nodes["currentjobpublication"].InnerText;
         }
 
+<<<<<<< HEAD
         var oUser = new User(iUserID, "");
+=======
+
+        var oUser = new User(iUserID, "");
+
+        if (oUser.TwitterUserID == null || oUser.TwitterUserID == 0)
+        {
+            divAuthTwitter.Visible = true;
+        }
+        else
+        {
+            litTwitterScreen.Text = oUser.TwitterScreenName;
+            divAuthTwitter.Visible = false;
+        }
+
+
+>>>>>>> origin/master
         this.Page.Title = "iDecode | Manage Communication Officer Profile - " + sFirstName + " " + sLastName;
 
         if (sTwitterProfileImageURL != "")
         {
             divProfileImage.Style.Add("background-image", "url('" + sTwitterProfileImageURL + "')");
+            divAuthTwitterProfileImage.Style.Add("background-image", "url('" + sTwitterProfileImageURL + "')");
         }
         else if (sImageFormat != "")
         {
             divProfileImage.Style.Add("background-image", "url('../images/profileimages/" + Session["iUserID"].ToString() + "." + sImageFormat + "')");
+            divAuthTwitterProfileImage.Style.Add("background-image", "url('../images/profileimages/" + Session["iUserID"].ToString() + "." + sImageFormat + "')");
         }
         else {
             divProfileImage.Style.Add("background-image", "url('../images/profileimages/0.png')");
+            divAuthTwitterProfileImage.Style.Add("background-image", "url('../images/profileimages/0.png')");
         }
 
         litFirstName.Text = sFirstName + " "+ sLastName;
@@ -199,6 +219,11 @@ public partial class app_communicators_profileedit : System.Web.UI.Page
             oUser.TwitterScreenName = screenName;
             oUser.TwitterUserID = userID;
             oUser.TwitterProfileImageURL = user.ProfileImageUrl.Replace("_normal", "");
+<<<<<<< HEAD
+=======
+
+            oUser.Save(2);
+>>>>>>> origin/master
             //trProfileImage.Visible = true;
             //trPassword.Visible = false;
             //trSignInWithTwitter.Visible = false;
