@@ -5,15 +5,26 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script>
         $(document).ready(function () {
+
+            //var hash = window.location.hash;
+
             $(".tabs-menu a").click(function (event) {
+                
                 event.preventDefault();
                 $(this).parent().addClass("current");
+
                 $(this).parent().siblings().removeClass("current");
                 var tab = $(this).attr("href");
-                $(".tab-content").not(tab).css("display", "none");
-                $(tab).fadeIn();
+                window.location.hash = tab;
+
+                $(".tab-content").not(window.location.hash).css("display", "none");
+                $(window.location.hash).fadeIn();
             });
         });
+
+        //if (window.location.hash) {
+            
+        //}
     </script>
     <style>
         textarea {
@@ -114,8 +125,9 @@
             <a href="#" runat="server" id="aProfileSocialButtonEmail"><div class="ProfileSocialButton ProfileContactButton" style="background-color:#72a69b">Email</div></a>
         </div>
     </div>
+    <input type="hidden" name="currentTab" id="currentTab" value="2"/>
     <div class="HeaderWrapper">             
-        <div id="tabs-container">
+        <div id="tabs-container"> 
             <ul class="tabs-menu">
                 <li class="current"><a href="#tab-1">BIO & TITLE</a></li>
                 <li style="display:none"><a href="#tab-2">ARTICLES</a></li>
@@ -287,6 +299,7 @@
     <asp:XmlDataSource runat="server" id="dsUserArticles">
 
     </asp:XmlDataSource>
+
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder4" Runat="Server">
 </asp:Content>
