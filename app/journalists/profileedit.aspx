@@ -272,7 +272,6 @@
                         <tr>
                             <td></td>
                             <td><asp:Button runat="server" ID="btnSocialSave" Text="Save Changes" OnClick="btnSaveBio_Click" CssClass="SearchButton MoveRight15" /></td>
-                            <td><asp:Button runat="server" ID="btnSocialSave" Text="Save Changes" OnClick="btnSocialSave_Click" CssClass="SearchButton MoveRight15" /></td>
                         </tr>
                     </table>
                 </div>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/app/AppMasterPage.master" AutoEventWireup="true" CodeFile="profileedit.aspx.cs" Inherits="app_communicators_profileedit" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/app/AppMasterPage.master" AutoEventWireup="true" CodeFile="profileedit.aspx.cs" Inherits="app_communicators_profileedit" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -235,8 +235,12 @@
                     </table>
                 </div>
                 <div id="tab-4" class="tab-content">
-                    <p>Proin sollicitudin tincidunt quam, in egestas dui tincidunt non. Maecenas tempus condimentum mi, sed convallis tortor iaculis eu. Cras dui dui, tempor quis tempor vitae, ullamcorper in justo. Integer et lorem diam. Quisque consequat lectus eget urna molestie pharetra. Cras risus lectus, lobortis sit amet imperdiet sit amet, eleifend a erat. Suspendisse vel luctus lectus. Sed ac arcu nisi, sit amet ornare tellus. Pellentesque nec augue a nibh pharetra scelerisque quis sit amet felis. Nullam at enim at lacus pretium iaculis sit amet vel nunc. Praesent sapien felis, tincidunt vitae blandit ut, mattis at diam. Suspendisse ac sapien eget eros venenatis tempor quis id odio. Donec lacus leo, tincidunt eget molestie at, pharetra cursus odio. </p>
-                </div>
+                    <table>
+                        <tr>
+                            <td>Twitter Authentication</td>
+                            <td><asp:Button runat="server" ID="btnAuthenticateTwitter" OnClick="btnAuthenticateTwitter_Click" Text="Auth Twitter" /> </td>
+                        </tr>
+                    </table>                </div>
                 <div id="tab-5" class="tab-content">
                     <table>
                         <tr>

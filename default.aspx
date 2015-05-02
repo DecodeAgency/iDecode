@@ -247,7 +247,7 @@
         <div class="divDecode" id="product">
             <div class="Width960">
                 <h2><span style="text-transform:lowercase">i</span>Decode</h2>
-                <div class="HeaderDescription" style="text-align:center">Africa’s first cloud-based PR software – Public access from 1st of May 2015!
+                <div class="HeaderDescription" style="text-align:center">Africa’s first cloud-based PR software – Launching Soon!
                 </div>
                 <div class="divDecodeItems">
                     <div class="divDecodeItem">
@@ -265,7 +265,7 @@
                     </div>
                     <div class="Clear"></div>
                     <div class="divDecodeItem">
-                        <div class="divDecodeItemImage" style="float:right;margin-right:0px;margin-left:20px"><img src="styling/images/DecodeIcon0.png" /></div>
+                        <div class="divDecodeItemImage" style="float:right;margin-right:0px;margin-left:20px"><img src="styling/images/DecodeIcon2.png" /></div>
                         <div class="divDecodeItemName">News Distribution</div>
                         <div class="divDecodeItemDescription">It's hard to believe that so many PR professionals are still sending press releases by BCC'ing emails from Outlook. Decode brings your news distribution processes into the modern-day allowing you to send personalised, measurable news distributions that easily incorporate images and rich formatting.
                             <ul>
