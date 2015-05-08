@@ -82,7 +82,7 @@
     <asp:XmlDataSource runat="server" id="dsUserArticles">
 
     </asp:XmlDataSource>
-    <div class="Block">
+    <div class="Block" runat="server" id="divAddtoGroup">
         <h3>Add to Campaign Group</h3>
         <div runat="server" id="divMessage" class="Message SuccessMessage" visible="false">
             <asp:Literal runat="server" ID="txtSuccessMessage" Text="Journalist added to campaign group." Visible="false" />

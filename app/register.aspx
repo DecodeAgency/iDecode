@@ -100,6 +100,21 @@
                         <td><asp:TextBox CssClass="LoginTextBoxes" runat="server" ID="txtJPassword" Text="Password" onfocus='if (this.value == "Password"){this.value = ""; this.type="password"}' onblur='if (this.value == ""){this.value = "Password";this.type="text"}' /></td>
                     </tr>
                     <tr>
+                        <td>&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style="color:#bfbfbf">For verification purposes, please enter the following</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><asp:TextBox CssClass="LoginTextBoxes" runat="server" ID="txtEditorsName" Text="Editors Name" onfocus='if (this.value == "Editors Name"){this.value = "";}' onblur='if (this.value == ""){this.value = "Editors Name"}' /></td>
+                    </tr>
+                    <tr>
+                        <td><asp:TextBox CssClass="LoginTextBoxes" runat="server" ID="txtEditorsEmail" Text="Editors Email Address" onfocus='if (this.value == "Editors Email Address"){this.value = "";}' onblur='if (this.value == ""){this.value = "Editors Email Address"}' /></td>
+                    </tr>
+                    <tr>
                         <td><asp:Button runat="server" ID="btnJRegister" Text="Get Started" OnClick="btnJRegister_Click" ValidationGroup="Submit" CssClass="SignInButton" /></td>
                     </tr>
                     <tr>

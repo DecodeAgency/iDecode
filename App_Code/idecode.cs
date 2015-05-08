@@ -16,7 +16,7 @@ using System.Security.Cryptography;
 public class idecode : System.Web.Services.WebService {
 
     [WebMethod]
-    public bool NewUser(string FirstName, string LastName, int GenderID, int Age, string CurrentCity, int CountryID, string ContactMobile, string ContactOffice, string FaxNumber, string EmailAddress, string Password, string WebsiteAddress, int UserTypeID, string FacebookUsername, string TwitterUsername, string LinkedInUsername, string ImageFormat, string TwitterOauthToken, string TwitterOauthTokenSecret, string TwitterScreenName, ulong TwitterUserID, string TwitterProfileImageURL, string ShortBiography, string Biography, string CurrentJobTitle, string CurrentJobPublication, int BeatID, int PackageID)
+    public bool NewUser(string FirstName, string LastName, int GenderID, int Age, string CurrentCity, int CountryID, string ContactMobile, string ContactOffice, string FaxNumber, string EmailAddress, string Password, string WebsiteAddress, int UserTypeID, string FacebookUsername, string TwitterUsername, string LinkedInUsername, string ImageFormat, string TwitterOauthToken, string TwitterOauthTokenSecret, string TwitterScreenName, ulong TwitterUserID, string TwitterProfileImageURL, string ShortBiography, string Biography, string CurrentJobTitle, string CurrentJobPublication, int BeatID, int PackageID, string EditorName, string EditorEmail)
     {
         var oUser = new User();
         try
@@ -52,6 +52,8 @@ public class idecode : System.Web.Services.WebService {
             oUser.CurrentJobPublication = CurrentJobPublication;
             oUser.BeatID = BeatID;
             oUser.PackageID = PackageID;
+            oUser.EditorName = EditorName;
+            oUser.EditorEmail = EditorEmail;
 
             oUser.Save(1);
             return true;
@@ -104,13 +106,15 @@ public class idecode : System.Web.Services.WebService {
             sReturn += "<currentjobpublication>" + HttpUtility.HtmlEncode(oUser.CurrentJobPublication) + "</currentjobpublication>";
             sReturn += "<beatid>" + oUser.BeatID + "</beatid>";
             sReturn += "<packageid>" + oUser.PackageID + "</packageid>";
+            sReturn += "<editorname>" + oUser.EditorName + "</editorname>";
+            sReturn += "<editoremail>" + oUser.EditorEmail + "</editoremail>";
         sReturn += "</user>";
         doc.LoadXml("<envelope>" + sReturn + "</envelope>");
         return doc.DocumentElement;
     }
 
     [WebMethod]
-    public bool UpdateUser(int iUserID, string FirstName, string LastName, int GenderID, int Age, string CurrentCity, int CountryID, string ContactMobile, string ContactOffice, string FaxNumber, string EmailAddress, string Password, string WebsiteAddress, int UserTypeID, string FacebookUsername, string TwitterUsername, string LinkedInUsername, string ImageFormat, string TwitterOauthToken, string TwitterOauthTokenSecret, string TwitterScreenName, ulong TwitterUserID, string TwitterProfileImageURL, string ShortBiography, string Biography, string CurrentJobTitle, string CurrentJobPublication, int BeatID, int PackageID)
+    public bool UpdateUser(int iUserID, string FirstName, string LastName, int GenderID, int Age, string CurrentCity, int CountryID, string ContactMobile, string ContactOffice, string FaxNumber, string EmailAddress, string Password, string WebsiteAddress, int UserTypeID, string FacebookUsername, string TwitterUsername, string LinkedInUsername, string ImageFormat, string TwitterOauthToken, string TwitterOauthTokenSecret, string TwitterScreenName, ulong TwitterUserID, string TwitterProfileImageURL, string ShortBiography, string Biography, string CurrentJobTitle, string CurrentJobPublication, int BeatID, int PackageID, string EditorName, string EditorEmail)
     {
         var oUser = new User(iUserID);
 
@@ -146,6 +150,8 @@ public class idecode : System.Web.Services.WebService {
             oUser.CurrentJobPublication = CurrentJobPublication;
             oUser.BeatID = BeatID;
             oUser.PackageID = PackageID;
+            oUser.EditorName = EditorName;
+            oUser.EditorEmail = EditorEmail;
 
             oUser.Save(2);
             return true;

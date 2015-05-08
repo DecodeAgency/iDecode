@@ -176,7 +176,7 @@ public partial class app_communicators_profileedit : System.Web.UI.Page
         var oDecode = new za.co.idecode.test.idecode();
         XmlNode XmlResult = oDecode.LoadUser(iPublicationID, "");
         string sFirstName = "", sLastName = "", sCurrentCity = "", sContactMobile = "", sContactOffice = "", sFaxNumber = "", sEmailAddress = "", sWebsiteAddress = "", sFacebookUsername = "", sTwitterUsername = "", sLinkedInUsername = "", sImageFormat = "", sTwitterProfileImageURL = "", sShortBiography = "", sBiography = "", sCurrentJobTitle = "", sCurrentJobPublication = "";
-        string sPassword = "", sTwitterOauthToken = "", sTwitterOauthTokenSecret = "", sTwitterScreenName = "";
+        string sPassword = "", sTwitterOauthToken = "", sTwitterOauthTokenSecret = "", sTwitterScreenName = "", sEditorname = "", sEditorEmail = "";
         int iUserID = 0, iGenderID = 0, iAge = 0, iCountryID = 0, iUserTypeID = 0, iBeatID = 0, iPackageID = 0;
         ulong iTwitterUserID = 0;
         bool bActive = false;
@@ -216,7 +216,9 @@ public partial class app_communicators_profileedit : System.Web.UI.Page
             sCurrentJobTitle = Nodes["currentjobtitle"].InnerText;
             sCurrentJobPublication = Nodes["currentjobpublication"].InnerText;
             iBeatID = Convert.ToInt32(Nodes["beatid"].InnerText);
-            iPackageID = Convert.ToInt32(Nodes["packageid"].InnerText); 
+            iPackageID = Convert.ToInt32(Nodes["packageid"].InnerText);
+            sEditorname = Nodes["editorname"].InnerText;
+            sEditorEmail = Nodes["editoremail"].InnerText;    
         }
 
         if (upProImage.HasFile)
@@ -227,7 +229,7 @@ public partial class app_communicators_profileedit : System.Web.UI.Page
         }
 
         oDecode = new za.co.idecode.test.idecode();
-        bool bSaveResult = oDecode.UpdateUser(iPublicationID, txtFirstName.Text, txtLastName.Text, iGenderID, Convert.ToInt32(txtAge.Text), txtCurrentCity.Text, iCountryID, txtMobileNumber.Text, txtOfficeNumber.Text, txtFaxNumber.Text, txtEmailAddress.Text, sPassword, txtWebsiteAddress.Text, iUserTypeID, txtFacebookURL.Text, txtTwitterURL.Text, txtLinkedInURL.Text, sImageFormat, sTwitterOauthToken, sTwitterOauthTokenSecret, sTwitterScreenName, iTwitterUserID, sTwitterProfileImageURL, txtOneLineBio.Text, txtLongBiography.Text, txtCurrentJobTitle.Text, txtCurrentJobPublication.Text, iBeatID, iPackageID);
+        bool bSaveResult = oDecode.UpdateUser(iPublicationID, txtFirstName.Text, txtLastName.Text, iGenderID, Convert.ToInt32(txtAge.Text), txtCurrentCity.Text, iCountryID, txtMobileNumber.Text, txtOfficeNumber.Text, txtFaxNumber.Text, txtEmailAddress.Text, sPassword, txtWebsiteAddress.Text, iUserTypeID, txtFacebookURL.Text, txtTwitterURL.Text, txtLinkedInURL.Text, sImageFormat, sTwitterOauthToken, sTwitterOauthTokenSecret, sTwitterScreenName, iTwitterUserID, sTwitterProfileImageURL, txtOneLineBio.Text, txtLongBiography.Text, txtCurrentJobTitle.Text, txtCurrentJobPublication.Text, iBeatID, iPackageID, sEditorname, sEditorEmail);
         Response.Redirect(Request.Url.AbsoluteUri);
     }
 

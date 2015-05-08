@@ -3,6 +3,27 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <style>
+
+        .btnProgress {
+            margin-left: 45px;
+            background-color: #4FC5F7 !important;
+            border: 1px solid #4FC5F7 !important;
+            text-transform: uppercase;
+            color: rgb(255, 255, 255) !important;
+            float: none !important;
+            border-radius: 3px;
+            padding: 2px 5px;
+        }
+
+        .JobHistoryContainer span {
+            width: 190px;
+            display: inline-block;
+            text-transform: lowercase;
+            margin-bottom: 10px;
+            text-transform:capitalize;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
     <div style="background-color: #394165;border-color: #343a5c;height: 50px;margin-bottom: 10px;color: #fff;">
@@ -11,11 +32,18 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" Runat="Server">
     <div class="LeftBlockContainer">
-        <div class="Block">
+        <div class="Block" runat="server" id="divJournalistsCounter" visible="false">
             <h3>Journalists</h3>
             <h4><asp:literal runat="server" ID="litJournalistCount" /></h4>
             <center>
                 <asp:Button runat="server" ID="btnJournalists" Text="Find Journalists" ValidationGroup="Submit" CssClass="SignInButton" OnClick="btnJournalists_Click" />
+            </center>
+        </div>
+        <div class="Block" id="divCommunicatorsCounter" runat="server" visible="false">
+            <h3>Communicators</h3>
+            <h4><asp:literal runat="server" ID="litCommunicatorsCounter" /></h4>
+            <center>
+                <asp:Button runat="server" ID="btnCommunicators" Text="Find Communicators" ValidationGroup="Submit" CssClass="SignInButton" OnClick="btnCommunicators_Click" />
             </center>
         </div>
         <div class="Block">
@@ -23,14 +51,14 @@
             <asp:Repeater runat="server" ID="rptRecentUpdates" DataSourceID="dsRecentUpdates" OnDataBinding="rptRecentUpdates_DataBinding" OnItemDataBound="rptRecentUpdates_ItemDataBound">
                 <ItemTemplate>
                     <div class='JobHistoryContainer'>
-                        <div style='margin-top:10px'><asp:literal runat="server" ID="litUpdateStatus" Text='<%# "Journalist: Obakeng Molebatsi profile has been updated." %>' /></div>
+                        <div style='margin-top:10px'><asp:literal runat="server" ID="litUpdateStatus" /></div>
                         <div style='float:right'><asp:literal runat="server" ID="litDatePosted" Text='<%# Eval ("DateTimeStamp") %>' /></div>
                     </div>
                     <asp:HiddenField runat="server" ID="hidUpdatedProfileID" Value='<%# Eval ("UpdatedProfileID") %>' />                   
                 </ItemTemplate>
             </asp:Repeater>  
         </div>
-        <div class="Block">
+        <div class="Block" runat="server" id="divPressReleases">
             <h3>Press Releases</h3>
             <h4><asp:literal runat="server" ID="litTotalPressReleases" Text="0" /></h4>
             <center>
@@ -64,12 +92,13 @@
             <div runat="server" class="dvOuterComplete" id="dvOuterComplete">
                 <div runat="server" class="dvInnerComplete" id="dvInnerComplete"></div>
             </div> 
-            <div class="divShortBio" style="text-align:center;margin-top:20px;display: inline-block;">
-            <asp:literal runat="server" ID="litPercentage">your profile is 0% complete</asp:literal></div>
-    <div class="JobHistoryContainer" style="text-align:center;margin-top:20px;display: inline-block;">
-            <asp:literal runat="server" ID="litInCompleteList"></asp:literal></div>
+            <div class="divShortBio" style="text-align:center;margin-top:20px;display: inline-block;float: left;">
+            <asp:literal runat="server" ID="litPercentage">Your profile is 0% complete</asp:literal></div>
+            <div class="JobHistoryContainer" style="text-align:left;margin-top:20px;display: inline-block;">
+                <asp:literal runat="server" ID="litInCompleteList"></asp:literal>
+            </div>
         </div>
-        <div class="Block">
+        <div class="Block" runat="server" id="divJournalistGroups">
             <h3>Journalist Groups</h3>
             <div runat="server" id="divMessage" class="Message SuccessMessage" visible="false">
                 <asp:Literal runat="server" ID="txtSuccessMessage" Text="Campaign group added" Visible="false" />
@@ -80,6 +109,9 @@
             <center>
                 <asp:Button runat="server" ID="btnAddGroup" Text="Add Group" ValidationGroup="Submit" CssClass="SignInButton" OnClick="btnAddGroup_Click" />
             </center>
+        </div>
+        <div class="Block" runat="server" id="divPublicJournalistGroups">
+            <h3>Public Media Groups</h3>
         </div>
     </div>
     <asp:SqlDataSource ID="dsRecentUpdates" runat="server" ConnectionString="<%$ ConnectionStrings:CS %>" SelectCommand="

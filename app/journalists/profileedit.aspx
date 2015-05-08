@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/app/AppMasterPage.master" AutoEventWireup="true" CodeFile="profileedit.aspx.cs" Inherits="app_journo_profileedit" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/app/AppMasterPage.master" AutoEventWireup="true" CodeFile="profileedit.aspx.cs" Inherits="app_journo_profileedit" Async="true" %>
 
 <%--<!DOCTYPE html>
 
@@ -72,19 +72,19 @@
             float: left;
             clear: both;
             margin-bottom: 0px;
+            margin-top:20px
         }
 
         .tabs-menu li {
             height: 30px;
             line-height: 30px;
-            float: left;
+            /*float: left;*/
             background-color: #f6f6f6;
             list-style-type: none;
             font-size: 16px;
             font-weight: normal;
             padding: 10px;
-            width: 104px;
-            text-align: center;
+            width: 230px;
         }
 
         .tabs-menu li.current {
@@ -111,30 +111,40 @@
             float: left;
             margin-bottom: 20px;
             width: auto;
-            margin-top: 20px;
         }
 
         .tab-content {
-            width: 580px;
+            width: 670px;
             padding: 20px !Important;
             display: none;
             color: #fff;
+            min-height: 400px;
+            margin-top:20px;
         }
 
         #tab-1 {
          display: block;   
         }
+
+        input[type='text'], input[type='password'], input[type='file'],textarea, input[type='datetime'] {
+          width: 345px !Important;
+        }
+
+        .SearchDropDowns {
+            width: 367px !Important;
+        }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
     <div style="background-color: #394165;border-color: #343a5c;height: 50px;margin-bottom: 10px;color: #fff;">
-           <div class="Width960"><h1>Manage Journalist Profile</h1></div>
+           <div class="Width960"><h1>Manage Your Profile</h1></div>
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" Runat="Server">
-    <div class="HeaderWrapper">
+    <div class="HeaderWrapper" style="display:none">
         <div class="ProfileHeader">
             <div class="ProfileImage" runat="server" id="divProfileImage"></div>
             <div style="background-color: #cc324c;margin-bottom: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;padding-bottom: 1px;">
@@ -146,7 +156,7 @@
             <asp:Literal runat="server" id="litCurrentCity" />     
             <asp:Literal runat="server" ID="litWebsiteAddress" />
         </div>
-        <div style="width:330px;float:left; background-color:red;height:135px">
+        <div style="width:330px;float:left; background-color:red;height:135px; display:none">
             <a href="#" runat="server" target="_blank" id="aProfileSocialButtonFacebook"><div class="ProfileSocialButton" style="background-color:#3b5998">Facebook</div></a>
             <a href="#" runat="server" target="_blank" id="aProfileSocialButtonTwitter"><div class="ProfileSocialButton" style="background-color:#55acee">Twitter</div></a>
             <a href="#" runat="server" target="_blank" id="aProfileSocialButtonLinkedIn"><div class="ProfileSocialButton" style="background-color:#0976b4">LinkedIn</div></a>
@@ -158,11 +168,11 @@
         <div id="tabs-container">
             <ul class="tabs-menu">
                 <li class="current"><a href="#tab-1">BIO & TITLE</a></li>
-                <li><a href="#tab-2">ARTICLES</a></li>
+                <li runat="server" id="aArticles"><a href="#tab-2">ARTICLES</a></li>
                 <li><a href="#tab-3">SOCIAL LINKS</a></li>
                 <li><a href="#tab-4">SETTINGS</a></li>
                 <li><a href="#tab-5">CONTACTS</a></li>
-                <li><a href="#tab-6">JOB HISTORY</a></li>
+                <li runat="server" id="aJobHistory"><a href="#tab-6">JOB HISTORY</a></li>
             </ul>
             <div class="tab">
                 <div id="tab-1" class="tab-content">
@@ -199,20 +209,24 @@
                             <td>Current City</td>
                             <td><asp:TextBox runat="server" ID="txtCurrentCity" CssClass="SearchTextBoxes" /></td>
                         </tr>
+                        <tr runat="server" id="divBeats" visible="false">
+                            <td>Beat</td>
+                            <td><asp:DropDownList CssClass="SearchDropDowns" runat="server" ID="dBeats" DataSourceID="dsBeats" DataTextField="BeatName" DataValueField="BeatID"/></td>
+                        </tr>
                         <tr style="display:none">
                             <td>Age</td>
                             <td><asp:TextBox runat="server" ID="txtAge" /></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td><asp:Button runat="server" ID="btnSaveBio" Text="Save Changes" OnClick="btnSaveBio_Click" CssClass="SearchButton MoveRight15" /></td>
+                            <td><asp:Button runat="server" ID="btnSaveBio" Text="Save Changes" OnClick="btnSaveBio_Click" CssClass="SearchButton" /></td>
                         </tr>
                     </table>
                 </div>
                 <div id="tab-2" class="tab-content">
                     <table>
                         <tr runat="server" id="trArticleLinkURL">                            
-                            <td colspan="2" style="width: 550px;">Enter the URL for one of your article and iDecode will automatically grab the title, description, thumbnail image, and outlet name. You'll be able to edit these fields.<br /><asp:TextBox runat="server" ID="txtArticleLink"></asp:TextBox><asp:Button runat="server" ID="btnProcessArticleLink" OnClick="btnProcessArticleLink_Click" Text="Add" CssClass="SearchButton MoveRight15" /></td>
+                            <td colspan="2" style="width: 670px; border-bottom: 30px solid transparent; margin-bottom: 10px; box-shadow: 0px 1px 0px #000;">Enter the URL for one of your article and iDecode will automatically grab the title, description, thumbnail image, and outlet name. You'll be able to edit these fields.<br /><br /><asp:TextBox runat="server" ID="txtArticleLink"></asp:TextBox><asp:Button runat="server" ID="btnProcessArticleLink" OnClick="btnProcessArticleLink_Click" Text="Add" CssClass="SearchButton" /></td>
                         </tr>
                         <div runat="server" id="divArticleDetails" visible="false">
                             <tr>
@@ -241,7 +255,7 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td><asp:Button runat="server" ID="btnSaveUserArticle" Text="Save Changes" OnClick="btnSaveUserArticle_Click" CssClass="SearchButton MoveRight15" /></td>
+                                <td><asp:Button runat="server" ID="btnSaveUserArticle" Text="Save Changes" OnClick="btnSaveUserArticle_Click" CssClass="SearchButton" /></td>
                             </tr>
                         </div>
                     </table>
@@ -271,12 +285,21 @@
                         </tr>
                         <tr>
                             <td></td>
-                            <td><asp:Button runat="server" ID="btnSocialSave" Text="Save Changes" OnClick="btnSaveBio_Click" CssClass="SearchButton MoveRight15" /></td>
+                            <td><asp:Button runat="server" ID="btnSocialSave" Text="Save Changes" OnClick="btnSaveBio_Click" CssClass="SearchButton" /></td>
                         </tr>
                     </table>
                 </div>
                 <div id="tab-4" class="tab-content">
-                    <p>Proin sollicitudin tincidunt quam, in egestas dui tincidunt non. Maecenas tempus condimentum mi, sed convallis tortor iaculis eu. Cras dui dui, tempor quis tempor vitae, ullamcorper in justo. Integer et lorem diam. Quisque consequat lectus eget urna molestie pharetra. Cras risus lectus, lobortis sit amet imperdiet sit amet, eleifend a erat. Suspendisse vel luctus lectus. Sed ac arcu nisi, sit amet ornare tellus. Pellentesque nec augue a nibh pharetra scelerisque quis sit amet felis. Nullam at enim at lacus pretium iaculis sit amet vel nunc. Praesent sapien felis, tincidunt vitae blandit ut, mattis at diam. Suspendisse ac sapien eget eros venenatis tempor quis id odio. Donec lacus leo, tincidunt eget molestie at, pharetra cursus odio. </p>
+                    <table>
+                        <tr runat="server" id="divAuthTwitter">
+                            <td>Twitter Authentication</td>
+                            <td><asp:Button runat="server" ID="btnAuthenticateTwitter" OnClick="btnAuthenticateTwitter_Click" Text="Auth Twitter" /> </td>
+                        </tr>
+                        <tr runat="server" id="divTwitterAuthed">
+                            <td style="vertical-align:middle !Important">Twitter Account Linked to Profile</td>
+                            <td style="vertical-align:middle !Important"><div runat="server" class="divSmallProfileImage FloatLeft" id="divAuthTwitterProfileImage"></div>&nbsp;&nbsp;<div style="float:left;margin-left:10px; margin-top:20px"><asp:Literal runat="server" ID="litTwitterScreen" /></div></td>
+                        </tr>
+                    </table>   
                 </div>
                 <div id="tab-5" class="tab-content">
                     <table>
@@ -302,7 +325,7 @@
                         </tr>
                         <tr>
                             <td></td>
-                            <td><asp:Button runat="server" ID="btnContactsSave" Text="Save Changes" OnClick="btnSaveBio_Click" CssClass="SearchButton MoveRight15" /></td>
+                            <td><asp:Button runat="server" ID="btnContactsSave" Text="Save Changes" OnClick="btnSaveBio_Click" CssClass="SearchButton" /></td>
                         </tr>
                     </table>
                 </div>
@@ -338,7 +361,7 @@
                         </tr>
                         <tr>
                             <td></td>
-                            <td><asp:Button runat="server" ID="btnAddJob" Text="Add Job" OnClick="btnAddJob_Click" CssClass="SearchButton MoveRight15" /></td>
+                            <td><asp:Button runat="server" ID="btnAddJob" Text="Add Job" OnClick="btnAddJob_Click" CssClass="SearchButton" /></td>
                         </tr>
                      </table>
                      <table>
@@ -362,7 +385,7 @@
                          <tr>
                              <td></td>
                              <td>
-                                 <asp:Button runat="server" ID="btnSaveJobs" Text="Save Changes" OnClick="btnSaveJobs_Click" CssClass="SearchButton MoveRight15" />
+                                 <asp:Button runat="server" ID="btnSaveJobs" Text="Save Changes" OnClick="btnSaveJobs_Click" CssClass="SearchButton" />
                              </td>
                          </tr>
                      </table>
@@ -383,6 +406,9 @@
     <asp:XmlDataSource runat="server" id="dsUserJobs">
 
     </asp:XmlDataSource>
+    <asp:SqlDataSource ID="dsBeats" runat="server" ConnectionString="<%$ ConnectionStrings:CS %>" SelectCommand="
+        SELECT BeatID, ISNULL(BeatName,'') AS BeatName FROM Beats UNION SELECT 0,'----------' ORDER BY BeatName" >
+    </asp:SqlDataSource>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder4" Runat="Server">
 </asp:Content>

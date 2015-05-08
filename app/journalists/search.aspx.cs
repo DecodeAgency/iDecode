@@ -5,9 +5,19 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using System.Data;
+using System.Data.SqlClient;
+
+using MailChimp;
+using MailChimp.Lists;
 
 public partial class app_search : System.Web.UI.Page
 {
+    const string sAPIKey = "c71be3cd3f3421bbd16f7e06968b1a5c-us8";
+    string sPostURL = "https://us8.api.mailchimp.com/2.0/";
+    const string sListID = "a6e338b2b3"; //iDecode Press Releases List ID
+    MailChimpManager mc = new MailChimpManager(sAPIKey);
+
     protected void Page_Load(object sender, EventArgs e)
     {
         //querystrings kqy = Keyword, jn = jounalist name, bid = beatid, mid = mediaoutletid, l=location, t = topic
@@ -76,6 +86,10 @@ public partial class app_search : System.Web.UI.Page
                 sCurrentJobTitle = Nodes["currentjobtitle"].InnerText;
                 sCurrentJobPublication = Nodes["currentjobpublication"].InnerText;
             }
+
+            var oUser = new User(iUserID, "");
+            litJournalistCount.Text = Convert.ToString(oUser.Count(2));
+            litCampaignGroupsCount.Text = Convert.ToString(CountCampaignGroups(iUserID));
         }
         catch (Exception ex) { 
         
@@ -183,4 +197,100 @@ public partial class app_search : System.Web.UI.Page
         }
     }
 
+    protected void rptJournalists_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        System.Web.UI.HtmlControls.HtmlGenericControl divProImage = e.Item.FindControl("divProImage") as System.Web.UI.HtmlControls.HtmlGenericControl;
+        HiddenField hidUser = e.Item.FindControl("hidUserID") as HiddenField;
+
+        var oUser = new User(Convert.ToInt32(hidUser.Value), "");
+        divProImage.Style.Add("background-image", "url('" + getImageURL(oUser.TwitterProfileImageURL, oUser.ImageFormat, Convert.ToInt32(hidUser.Value)) + "')");
+    }
+
+    public string getImageURL(string sTwitterProfileImageURL, string sImageFormat, int iUserID)
+    {
+        string output = "";
+        if (sTwitterProfileImageURL != "")
+        {
+            output = sTwitterProfileImageURL;
+        }
+        else if (sImageFormat != "")
+        {
+            output = "../images/profileimages/" + iUserID + "." + sImageFormat;
+        }
+        else
+        {
+            output = "../images/profileimages/0.png";
+        }
+        return output;
+    }
+    protected void btnAddGroup_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            var oGeneralFunctions = new GeneralFunctions();
+            oGeneralFunctions.UserSessionTrail(Convert.ToInt32(Session["iUserID"].ToString()), HttpContext.Current.Session.SessionID.ToString(), Request.RawUrl.ToString());
+
+            List<InterestGrouping> results = mc.GetListInterestGroupings(sListID);
+
+            mc.AddListInterestGroup(sListID, txtCampaignGroupName.Text, results[0].Id);
+            var oUserCampaignGroup = new UserCampaignGroup();
+            oUserCampaignGroup.UserID = Convert.ToInt32(Session["iUserID"].ToString());
+            oUserCampaignGroup.CampaignGroupName = txtCampaignGroupName.Text;
+            oUserCampaignGroup.Save(1);
+
+            txtSuccessMessage.Visible = true;
+            divMessage.Visible = true;
+
+            txtCampaignGroupName.Text = "";
+        }
+        catch (Exception ex)
+        {
+            divMessage.Visible = true;
+            txtErrorMessage.Visible = true;
+
+            var oGeneralFunctions = new GeneralFunctions();
+            oGeneralFunctions.UserError(Convert.ToInt32(Session["iUserID"].ToString()), ex.ToString());
+        }
+
+    }
+
+    public int CountCampaignGroups(int UserID)
+    {
+        string sSQL;
+        int iCount = 0;
+        System.Data.SqlClient.SqlCommand cm;
+        System.Data.SqlClient.SqlDataReader dr;
+        string sConStr = System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
+
+        try
+        {
+
+            sSQL = "SELECT COUNT(UserCampaignGroupID) As Count FROM UserCampaignGroups WHERE UserID = " + UserID;
+
+            cm = new SqlCommand(sSQL, new SqlConnection(sConStr));
+            cm.Connection.Open();
+            dr = cm.ExecuteReader();
+
+            if (dr.Read())
+            {
+                iCount = Convert.ToInt32(dr["Count"].ToString());
+            }
+            else
+            {
+                iCount = 0;
+            }
+
+            dr.Close();
+            cm.Connection.Close();
+            cm.Dispose();
+        }
+        catch (InvalidCastException e)
+        {
+            throw (e);
+        }
+        dr = null;
+        cm.Connection = null;
+        cm = null;
+        return iCount;
+    }
 }

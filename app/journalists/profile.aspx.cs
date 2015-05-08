@@ -92,6 +92,13 @@ public partial class app_journo_profile : System.Web.UI.Page
             }
 
             this.Page.Title = "iDecode | Journalist - " + sFirstName + " " + sLastName;
+
+
+            if (iUserTypeID == 3)
+            {
+                divAddtoGroup.Visible = false;
+            }
+
             if (sTwitterUsername != "")
             {
                 string sBearer = "AAAAAAAAAAAAAAAAAAAAAEhjewAAAAAA6%2B3HZJ5tpzcHEXobNTo%2F7%2BYT7Oc%3D06JMFvVxeHslrlLo5azQ5tmOBfiAo0eyCgHebQSfmgl3dtQY4a";

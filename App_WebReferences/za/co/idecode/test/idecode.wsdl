@@ -33,6 +33,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="CurrentJobPublication" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="BeatID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="PackageID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EditorName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EditorEmail" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -96,6 +98,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="CurrentJobPublication" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="BeatID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="PackageID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EditorName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EditorEmail" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>

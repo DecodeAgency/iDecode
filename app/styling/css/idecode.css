@@ -703,7 +703,7 @@ ul#ui-id-1 {
     background-color: #e64c65;
     border: 1px solid #e64c65;
     color: #fff;
-    width: 285px;
+    width: 278px;
     float: right;
     border-radius: 5px;
 }
@@ -722,7 +722,7 @@ ul#ui-id-1 {
     color: #9099b7;
     margin: 2px;
     padding: 15px 10px;
-    width: 285px;
+    width: 280px;
 }
 
 .LoginTextBoxes {
@@ -911,7 +911,7 @@ h4 {
 .FooterContainer {
     z-index: 5;
     font-weight: 600;
-    background: #161616;
+    background: #343434;
     color: #999;
     padding-top: 10px;
     min-height: 230px;
@@ -958,3 +958,43 @@ h4 {
   color: #fff;
   font-size: 13px !Important;
 }
+.SpamBlock {
+    background-image: url("../images/mail9-512.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.ClickBlock {
+    background-image: url("../images/mail22-512.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.LocBlock {
+    background-image: url("../images/2380-200.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.UnReadBlock {
+    background-image: url("../images/Mail-WithCursors-512.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.ReadBlock {
+    background-image: url("../images/aaaaa.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.SentBlock {
+    background-image: url("../images/cccc.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+    .SentBlock , .ReadBLock , .UnReadBlock , .LocBlock, .ClickBlock ,.SpamBlock {
+        width: 283px;
+        float: left;
+        min-height: 120px;
+        background-color: #394263;
+        padding: 0px 10px 20px;
+        border-radius: 5px;
+        color: #FFF;
+        margin: 10px 0px;
+    }

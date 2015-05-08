@@ -245,6 +245,8 @@ public partial class app_register : System.Web.UI.Page
                 oUser.Active = true;
                 oUser.UserTypeID = 2;
                 oUser.TwitterProfileImageURL = imgJProImage.Src;
+                oUser.EditorName = txtEditorsName.Text;
+                oUser.EditorEmail = txtEditorsEmail.Text;
                 oUser.Save(2);
                 iDecodeCookie["uid"] = GetUserIdByTwitterID(credentials.UserID).ToString();
                 iDecodeCookie.Expires = DateTime.Now.AddDays(180);
@@ -265,6 +267,8 @@ public partial class app_register : System.Web.UI.Page
                 oUser.Active = true;
                 oUser.UserTypeID = 2;
                 oUser.TwitterProfileImageURL = imgJProImage.Src;
+                oUser.EditorName = txtEditorsName.Text;
+                oUser.EditorEmail = txtEditorsEmail.Text;
                 oUser.Save(1);
                 iDecodeCookie["uid"] = GetUserIdByTwitterID(credentials.UserID).ToString();
                 iDecodeCookie.Expires = DateTime.Now.AddDays(180);

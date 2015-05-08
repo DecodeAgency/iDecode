@@ -3,6 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <style>
+        .CommunicatorName {
+          margin-top: 5px !Important;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
     <div style="background-color: #394165;border-color: #343a5c;height: 50px;margin-bottom: 10px;color: #fff;">
@@ -10,26 +15,89 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" Runat="Server">
-    <div class="SearchItemsContainer">
+    <div class="LeftBlockContainer">
+        <div class="Block">
+            <h3>Search for Journalists</h3>
+            <center>
+                <asp:TextBox runat="server" ID="txtkeyword" CssClass="SearchTextBoxes" Text="e.g. Editor" onfocus='if (this.value == "e.g. Editor"){this.value = "";}' onblur='if (this.value == ""){this.value = "e.g. Editor"}' />
+                <asp:TextBox runat="server" ID="txtJournoName" CssClass="SearchTextBoxes" Text="e.g. Karima Brown" onfocus='if (this.value == "e.g. Karima Brown"){this.value = "";}' onblur='if (this.value == ""){this.value = "e.g. Karima Brown"}'  />
+                <asp:TextBox runat="server" ID="txtLocation" CssClass="SearchTextBoxes" Text="e.g. Johannesburg" onfocus='if (this.value == "e.g. Johannesburg"){this.value = "";}' onblur='if (this.value == ""){this.value = "e.g. Johannesburg"}' />
+                <asp:DropDownList runat="server" ID="ddPublication" DataSourceID="dsPublications" DataTextField="Publication" DataValueField="PublicationID" CssClass="SearchDropDowns"/>
+                <asp:Button runat="server" ID="btnSearch" Text="Search" OnClick="btnSearch_Click" CssClass="SearchButton" />
+            </center>
+        </div>
+        <div class="Block" runat="server" id="divJournalistsCounter">
+            <h3>Journalists</h3>
+            <h4><asp:literal runat="server" ID="litJournalistCount" /></h4>
+        </div>
+    </div>
+    <div class="MiddleBlockContainer">
+        <div class="Block">
+            <h3><asp:Literal runat="server" ID="litSearchHeading" Text="Recently Added Jounalists" /></h3>
+                <asp:Literal runat="server" ID="litSearchResult" Text="No journalists found. Please refine your search criteria." Visible="false" />
+                <asp:repeater runat="server" id="rptJournalists" DataSourceID="dsJournalists" OnItemDataBound="rptJournalists_ItemDataBound">
+                    <itemtemplate>
+                        <div class="JobHistoryContainer">
+                            <a href='<%# "profile.aspx?uid=" + Eval("UserID") %>'>
+                                <asp:HiddenField runat="server" ID="hidUserID" Value='<%# Eval ("UserID") %>' /> 
+                                <div runat="server" id="divProImage" class="PublicationImage" style='<%# "background-image:url(" + Eval("ProfileImage") + ")" %>'></div>
+                                <div class="CommunicatorName"> <%# Eval ("FirstName") + " " + Eval("LastName") %> </div>
+                                <div class="PublicationName"> <%# Eval ("CurrentJobTitle") %> </div>
+                                <div class="PublicationName" style="display:inline-block;width: 200px;"> <%# Eval ("CurrentJobPublication")  %> </div>
+                            </a>
+                        </div>
+                    </itemtemplate>
+                </asp:repeater>
+        </div>
+    </div>
+    <div class="RightBlockContainer">
+        <div class="Block">
+            <h3>Last 5 Searches</h3>
+            <asp:Literal runat="server" ID="litUserJournalistSearchesResult" Text="You do not have any saved searches." Visible="false"></asp:Literal>
+            <asp:Repeater runat="server" ID="rptUserJournalistSearches" DataSourceID="dsUserJournalistSearch">          
+                <ItemTemplate>
+                    <a href='<%# "/app/journalists/search.aspx?sci=" + Eval("UserJournalistSearchID") %>'>
+                        <div class="JournalistSearches">
+                            <div class="PublicationName"> <%# Convert.ToDateTime(Eval("DateTimeStamp")).ToString("dd MMM yyyy") %> </div>
+                            <div class="PublicationName"> <%# Eval("SearchCriteria") %> </div>
+                        </div>
+                     </a>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+        <div class="Block" runat="server" id="divJournalistGroups">
+            <h3>Journalist Groups</h3>
+            <div runat="server" id="divMessage" class="Message SuccessMessage" visible="false">
+                <asp:Literal runat="server" ID="txtSuccessMessage" Text="Campaign group added" Visible="false" />
+                <asp:Literal runat="server" ID="txtErrorMessage" Text ="An error occured. Campaign group added." Visible="false" />
+            </div>
+            <h4><asp:literal runat="server" ID="litCampaignGroupsCount" Text="0" /></h4>
+            <asp:TextBox runat="server" ID="txtCampaignGroupName" CssClass="SearchTextBoxes" Text="Group Name" onfocus='if (this.value == "Group Name"){this.value = "";}' onblur='if (this.value == ""){this.value = "Group Name"}'  />
+            <center>
+                <asp:Button runat="server" ID="btnAddGroup" Text="Add Group" ValidationGroup="Submit" CssClass="SignInButton" OnClick="btnAddGroup_Click" />
+            </center>
+        </div>
+    </div>
+    <div class="SearchItemsContainer" style="display:none">
         <table>
             <tr>
                 <td colspan="6">Search for any keyword, company, topic, phrase and more within journalists' tweets, linked stories, published articles and social media profiles.</td>
             </tr>
             <tr>
                 <td style="width:100px">Keyword</td>
-                <td><asp:TextBox runat="server" ID="txtkeyword" CssClass="SearchTextBoxes" Text="e.g. Editor" onfocus='if (this.value == "e.g. Editor"){this.value = "";}' onblur='if (this.value == ""){this.value = "e.g. Editor"}' /></td>
+                <td></td>
                 <td style="width:100px"></td>
                 <td style="width:100px">Journalist</td>
-                <td style="text-align:right"><asp:TextBox runat="server" ID="txtJournoName" CssClass="SearchTextBoxes" Text="e.g. Karima Brown" onfocus='if (this.value == "e.g. Karima Brown"){this.value = "";}' onblur='if (this.value == ""){this.value = "e.g. Karima Brown"}'  /></td>
+                <td style="text-align:right"></td>
             </tr>
             <tr>
             </tr>
             <tr>
                 <td>Location</td>
-                <td><asp:TextBox runat="server" ID="txtLocation" CssClass="SearchTextBoxes" Text="e.g. Johannesburg" onfocus='if (this.value == "e.g. Johannesburg"){this.value = "";}' onblur='if (this.value == ""){this.value = "e.g. Johannesburg"}' /></td>
+                <td></td>
                 <td style="width:100px"></td>
                 <td >Media Outlet</td>
-                <td style="text-align:right"><asp:DropDownList runat="server" ID="ddPublication" DataSourceID="dsPublications" DataTextField="Publication" DataValueField="PublicationID" CssClass="SearchDropDowns"/></td>
+                <td style="text-align:right"></td>
             </tr>
             <tr>
             </tr>
@@ -45,41 +113,10 @@
                 <td></td>
                 <td style="width:100px"></td>
                 <td></td>
-                <td><asp:Button runat="server" ID="btnSearch" Text="Search" OnClick="btnSearch_Click" CssClass="SearchButton" /></td>
+                <td></td>
             </tr>
         </table>
-    </div>
-    <div class="RightContainer">
-        <div>
-            <h3>Last 5 Searches</h3>
-            <asp:Literal runat="server" ID="litUserJournalistSearchesResult" Text="You do not have any saved searches." Visible="false"></asp:Literal>
-            <asp:Repeater runat="server" ID="rptUserJournalistSearches" DataSourceID="dsUserJournalistSearch">          
-                <ItemTemplate>
-                    <a href='<%# "/app/journalists/search.aspx?sci=" + Eval("UserJournalistSearchID") %>'>
-                        <div class="JournalistSearches">
-                            <div class="PublicationName"> <%# Convert.ToDateTime(Eval("DateTimeStamp")).ToString("dd MMM yyyy") %> </div>
-                            <div class="PublicationName"> <%# Eval("SearchCriteria") %> </div>
-                        </div>
-                     </a>
-                </ItemTemplate>
-            </asp:Repeater>
-        </div>
     </div>                                                         
-    <div class="ResultsContainer">
-        <h3><asp:Literal runat="server" ID="litSearchHeading" Text="Recently Added Jounalists" /></h3>
-        <asp:Literal runat="server" ID="litSearchResult" Text="No journalists found. Please refine your search criteria." Visible="false" />
-        <asp:repeater runat="server" id="rptJournalists" DataSourceID="dsJournalists">
-            <itemtemplate>
-                <div class="JobHistoryContainer">
-                    <div class="PublicationImage" style='<%# "background-image:url(" + Eval("ProfileImage") + ")" %>'></div>
-                    <div class="CommunicatorName"> <%# Eval ("FirstName") + " " + Eval("LastName") %> </div>
-                    <div class="PublicationName"> <%# Eval ("CurrentJobTitle") %> </div>
-                    <div class="PublicationName"> <%# Eval ("CurrentJobPublication")  %> </div>
-                    <a class="ViewProfile" href='<%# "profile.aspx?uid=" + Eval("UserID") %>'>view profile</a>
-                </div>
-            </itemtemplate>
-        </asp:repeater>
-    </div>
     <asp:SqlDataSource ID="dsBeats" runat="server" ConnectionString="<%$ ConnectionStrings:CS %>"
         SelectCommand="SELECT BeatID, ISNULL(BeatName,'') AS BeatName FROM Beats UNION SELECT 0,'----------'">
     </asp:SqlDataSource>

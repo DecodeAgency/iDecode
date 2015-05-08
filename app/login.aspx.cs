@@ -59,20 +59,20 @@ public partial class app_login : System.Web.UI.Page
             isLoggedIn = true;
         }
 
-        if (isLoggedIn == true && iTwitterUserID == 0 && isActive == true)
+        if (isLoggedIn == true && isActive == true)
         {
             iDecodeCookie["uid"] = iUserID.ToString();
             iDecodeCookie.Expires = DateTime.Now.AddDays(180);
             Response.Cookies.Add(iDecodeCookie);
             Session["iUserID"] = iUserID.ToString();
 
-            if (iUserTypeID == 1) {
-                Response.Redirect("~/app/journalists/dashboard.aspx", false);
-            }
-            else if (iUserTypeID == 2)
-            {
-                Response.Redirect("~/app/communicators/search.aspx", false);
-            }  
+            //if (iUserTypeID == 1) {
+            Response.Redirect("~/app/journalists/dashboard.aspx", false);
+            //}
+            //else if (iUserTypeID == 2)
+            //{
+            //    Response.Redirect("~/app/journalists/search.aspx", false);
+            //}  
         }
         }
         catch (Exception ex) 

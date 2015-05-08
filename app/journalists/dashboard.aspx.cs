@@ -33,8 +33,20 @@ public partial class app_admin_dashboard : System.Web.UI.Page
             int iUserID = Convert.ToInt16(Session["iUserID"].ToString());
             this.Page.Title = "iDecode | Dashboard";
             var oUser = new User(iUserID,"");
-            
+
+            if (oUser.UserTypeID == 1)
+            {
+                divJournalistsCounter.Visible = true;                
+            }
+            else if (oUser.UserTypeID == 2)
+            {
+                divCommunicatorsCounter.Visible = true;
+                divPressReleases.Visible = false;
+                divJournalistGroups.Visible = false;
+            }
+
             litJournalistCount.Text = Convert.ToString(oUser.Count(2));
+            litCommunicatorsCounter.Text = Convert.ToString(oUser.Count(3)); 
             litCampaignGroupsCount.Text = Convert.ToString(CountCampaignGroups(iUserID));
             litTotalPressReleases.Text = Convert.ToString(CountUserCampaigns(iUserID));
 
@@ -50,11 +62,11 @@ public partial class app_admin_dashboard : System.Web.UI.Page
                 LoadTweets(oUser.TwitterUsername.ToString());
             }
             else
-                    {
-                        dvTwitterHandle.Style.Add(HtmlTextWriterStyle.Display, "block;");
-                    }
-       
+            {
+                dvTwitterHandle.Style.Add(HtmlTextWriterStyle.Display, "block;");
+            } 
         }
+
         catch (Exception ex)
         {
             var oGeneralFunctions = new GeneralFunctions();
@@ -84,7 +96,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
         {
             var oGeneralFunctions = new GeneralFunctions();
             oGeneralFunctions.UserSessionTrail(Convert.ToInt32(Session["iUserID"].ToString()), HttpContext.Current.Session.SessionID.ToString(), Request.RawUrl.ToString());
-            Response.Redirect("communicators.aspx", false);
+            Response.Redirect("~/app/communicators/search.aspx", false);
             HttpContext.Current.ApplicationInstance.CompleteRequest();
         }
         catch (Exception ex)
@@ -168,15 +180,15 @@ public partial class app_admin_dashboard : System.Web.UI.Page
         string sList = "";
         int iCount = 0;
 
-        sList = "<h1>Kindly fill the following to complete your Profile </h1> <br/>";
+        sList = "";
         if (!(String.IsNullOrEmpty(oUser.FirstName)))
         {
             dPercentage += 6.25;
         }
         else
         {
-         
-            sList += "<a href='./profileedit.aspx'>First Name </a><br/>";
+
+            sList += "<span> First Name (6.25%) </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
             iCount++;
         }
         
@@ -186,8 +198,9 @@ public partial class app_admin_dashboard : System.Web.UI.Page
         }
         else
         {
-          
-            sList += "<a href='./profileedit.aspx'>Last Name </a><br/>";
+
+            sList += "<span> Last Name (6.25%) </span><a href='./profileedit.aspx'class='btnProgress'> edit </a><br/>";
+            
             iCount++;
         }
         if (!(oUser.TwitterUserID == null || oUser.TwitterUserID == 0))
@@ -196,8 +209,8 @@ public partial class app_admin_dashboard : System.Web.UI.Page
         }
         else
         {
-           
-            sList += "<a href='./profileedit.aspx'>Twitter ID </a><br/>";
+
+            sList += "<span> Twitter Handle (6.25%) </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
             iCount++;
         }
         if (!(String.IsNullOrEmpty(oUser.TwitterUsername)))
@@ -206,8 +219,8 @@ public partial class app_admin_dashboard : System.Web.UI.Page
         }
         else
         {
-           
-            sList += "<a href='./profileedit.aspx'>Twitter Handle </a><br/>";
+
+            sList += "<span> Twitter Username (6.25%) </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
             iCount++;
         }
         if (!(String.IsNullOrEmpty(oUser.FacebookUsername)))
@@ -217,7 +230,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
         else
         {
             iCount++;
-            sList += "<a href='./profileedit.aspx'>Facebook Username </a><br/>";
+            sList += "<span>Facebook Username  (6.25%) </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
         }
         if (!(String.IsNullOrEmpty(oUser.LinkedInUsername)))
         {
@@ -228,7 +241,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
             if (iCount < 5)
             {
             iCount++;
-            sList += "<a href='./profileedit.aspx'>LinkedIn Username </a><br/>";
+            sList += "<span> LinkedIn Username (6.25%) </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
             }
         }
         if(!(String.IsNullOrEmpty(oUser.TwitterProfileImageURL)))
@@ -240,7 +253,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
             if (iCount < 5)
             {
                 iCount++;
-                sList += "<a href='./profileedit.aspx'>Twitter Profile Image </a><br/>";
+                sList += "<span> Twitter Profile Image (6.25%) </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
             }
         }
         if (!(String.IsNullOrEmpty(oUser.CurrentCity)))
@@ -252,7 +265,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
             if (iCount < 5)
             {
                 iCount++;
-                sList += "<a href='./profileedit.aspx'>Current City</a><br/>";
+                sList += "<span> Current City (6.25%)  </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
             }
         }
         if (!(String.IsNullOrEmpty(oUser.ContactMobile)))
@@ -264,7 +277,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
             if (iCount < 5)
             {
                 iCount++;
-                sList += "<a href='./profileedit.aspx'>Contact Number </a><br/>";
+                sList += "<span> Contact Number (6.25%)  </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
             }
         }
         if (!(String.IsNullOrEmpty(oUser.ContactOffice)))
@@ -276,7 +289,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
             if (iCount < 5)
             {
                 iCount++;
-                sList += "<a href='./profileedit.aspx'>Office Number</a><br/>";
+                sList += "<span> Office Number (6.25%)  </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
             }
         }
         if (!(String.IsNullOrEmpty(oUser.FaxNumber)))
@@ -288,7 +301,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
             if (iCount < 5)
             {
                 iCount++;
-                sList += "<a href='./profileedit.aspx'>Fax Number </a><br/>";
+                sList += "<span> Fax Number (6.25%)  </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
             }
         }
         if (!(String.IsNullOrEmpty(oUser.EmailAddress)))
@@ -300,7 +313,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
             if (iCount < 5)
             {
                 iCount++;
-                sList += "<a href='./profileedit.aspx'>Email Address </a><br/>";
+                sList += "<span> Email Address (6.25%)  </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
             }
         }
         if (!(String.IsNullOrEmpty(oUser.WebsiteAddress)))
@@ -312,19 +325,19 @@ public partial class app_admin_dashboard : System.Web.UI.Page
             if (iCount < 5)
             {
                 iCount++;
-                sList += "<a href='./profileedit.aspx'>Website Address </a><br/>";
+                sList += "<span> Website Address (6.25%)  </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
             }
         }
         if (!(String.IsNullOrEmpty(oUser.ShortBiography)))
         {
-            dPercentage += 0;
+            dPercentage += 6.25;
         }
         else
         {
             if (iCount < 5)
             {
                 iCount++;
-                sList += "<a href='./profileedit.aspx'>Short Biography </a><br/>";
+                sList += "<span> Short Biography (6.25%)  </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
             }
         }
         if (!(String.IsNullOrEmpty(oUser.CurrentJobTitle)))
@@ -336,7 +349,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
             if (iCount < 5)
             {
                 iCount++;
-                sList += "<a href='./profileedit.aspx'>Current Job Title </a><br/>";
+                sList += "<span> Current Job Title (6.25%)  </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
             }
         }
         if (!(String.IsNullOrEmpty(oUser.CurrentJobPublication)))
@@ -348,13 +361,18 @@ public partial class app_admin_dashboard : System.Web.UI.Page
             if (iCount < 5)
             {
                 iCount++;
-                sList += "<a href='./profileedit.aspx'>Current Publication </a><br/>";
+                sList += "<span> Current Publication (6.25%)  </span><a href='./profileedit.aspx' class='btnProgress'> edit </a><br/>";
             }
         }
         string sPercentage = "";
+
         sPercentage = dPercentage + "%";
-        dvInnerComplete.Style[HtmlTextWriterStyle.Width] = sPercentage;
-        litPercentage.Text = "your profile is " + sPercentage + " complete";
+        dvInnerComplete.Style[HtmlTextWriterStyle.Width] = sPercentage;      
+        if (dPercentage > 93 )
+        {
+             dvInnerComplete.Style[HtmlTextWriterStyle.Width] = "96%";
+        }
+        litPercentage.Text = "Your profile is " + sPercentage + " complete";
         litInCompleteList.Text = sList;
     }
 
@@ -496,6 +514,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
 
         int iUpdatedProfileID = Convert.ToInt32(hidUpdatedProfileID.Value);
         var oUser = new User(iUpdatedProfileID, "");
+        var oLoggedInUser = new User(Convert.ToInt32(Session["iUserID"].ToString()), "");
         //TimeSpan ts = TimeSpan.Parse(Convert.ToDateTime(litDatePosted.Text).ToString("dd:MM:yyyy:h:m"));
 
         //litDatePosted.Text = Convert.ToDateTime(litDatePosted.Text).ToString("dd:MM:yyyy:hh:mm");// ToLongString(ts);
@@ -503,14 +522,21 @@ public partial class app_admin_dashboard : System.Web.UI.Page
 
         litDatePosted.Text = sDate + " ago";
 
-        if (oUser.UserTypeID == 1) 
+        
+        if (oLoggedInUser.UserTypeID == 2)
         {
-            litUpdateStatus.Text = "Communicator: <a href='profile.aspx?uid=" + oUser.UserID  + "'>" + oUser.FirstName + " " + oUser.LastName + "</a> profile was updated.";
+            if (oUser.UserTypeID == 3) 
+            {
+            
+                    litUpdateStatus.Text = "Communicator: <a href='profile.aspx?uid=" + oUser.UserID + "'>" + oUser.FirstName + " " + oUser.LastName + "</a> profile was updated.";            
+            }
         }
-        else if (oUser.UserTypeID == 2)
-        {
-            litUpdateStatus.Text = "Journalist: <a href='../communicators/profile.aspx?uid=" + oUser.UserID + "'>" + oUser.FirstName + " " + oUser.LastName + "</a> profile was updated.";
-        }       
+        else if (oLoggedInUser.UserTypeID == 3 || oLoggedInUser.UserTypeID == 1)
+        {  
+            if (oUser.UserTypeID == 2) { 
+                litUpdateStatus.Text = "Journalist: <a href='profile.aspx?uid=" + oUser.UserID + "'>" + oUser.FirstName + " " + oUser.LastName + "</a> profile was updated.";
+            }
+        }
     }
 
     protected void LoadTweets (string UserName)
@@ -596,5 +622,4 @@ public partial class app_admin_dashboard : System.Web.UI.Page
           
         }
     }
-
 }

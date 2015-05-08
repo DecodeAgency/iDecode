@@ -26,6 +26,9 @@ public partial class app_communicators_search : System.Web.UI.Page
                 SearchCommunicators(oUserJournalistSearch.Keywords, oUserJournalistSearch.Journalist, oUserJournalistSearch.Location,oUserJournalistSearch.Department);
             }
         }
+
+        var oUser = new User();
+        litJournalistCount.Text = Convert.ToString(oUser.Count(3));
     }
 
     public void SearchCommunicators(string keywords, string communicator, string location, string department) {
@@ -160,5 +163,32 @@ public partial class app_communicators_search : System.Web.UI.Page
         //{
         //    litSearchResult.Visible = false;
         //}
+    }
+
+    protected void rptJournalists_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        System.Web.UI.HtmlControls.HtmlGenericControl divProImage = e.Item.FindControl("divProImage") as System.Web.UI.HtmlControls.HtmlGenericControl;
+        HiddenField hidUser = e.Item.FindControl("hidUserID") as HiddenField;
+
+        var oUser = new User(Convert.ToInt32(hidUser.Value), "");
+        divProImage.Style.Add("background-image", "url('" + getImageURL(oUser.TwitterProfileImageURL, oUser.ImageFormat, Convert.ToInt32(hidUser.Value)) + "')");
+    }
+
+    public string getImageURL(string sTwitterProfileImageURL, string sImageFormat, int iUserID)
+    {
+        string output = "";
+        if (sTwitterProfileImageURL != "")
+        {
+            output = sTwitterProfileImageURL;
+        }
+        else if (sImageFormat != "")
+        {
+            output = "../images/profileimages/" + iUserID + "." + sImageFormat;
+        }
+        else
+        {
+            output = "../images/profileimages/0.png";
+        }
+        return output;
     }
 }

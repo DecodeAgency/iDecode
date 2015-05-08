@@ -17,8 +17,8 @@ public partial class app_journo_profileedit : System.Web.UI.Page
         {
 
             if (Session["iUserID"] == null) { Response.Redirect("~/app/admin/login.aspx", true); }
-            var oGeneralFunctions = new GeneralFunctions();
-            oGeneralFunctions.UserSessionTrail(Convert.ToInt32(Session["iUserID"].ToString()), HttpContext.Current.Session.SessionID.ToString(), Request.RawUrl.ToString());
+            //var oGeneralFunctions = new GeneralFunctions();
+            //oGeneralFunctions.UserSessionTrail(Convert.ToInt32(Session["iUserID"].ToString()), HttpContext.Current.Session.SessionID.ToString(), Request.RawUrl.ToString());
                         
             if (Request.Cookies["idecode"] != null)
             {
@@ -33,8 +33,8 @@ public partial class app_journo_profileedit : System.Web.UI.Page
             var oDecode = new za.co.idecode.test.idecode();
             XmlNode XmlResult = oDecode.LoadUser(iJournalistID, "");
             string sFirstName = "", sLastName = "", sCurrentCity = "", sContactMobile = "", sContactOffice = "", sFaxNumber = "", sEmailAddress = "", sWebsiteAddress = "", sFacebookUsername = "", sTwitterUsername = "", sLinkedInUsername = "", sImageFormat = "", sTwitterProfileImageURL = "", sShortBiography = "", sBiography = "", sCurrentJobTitle = "", sCurrentJobPublication = "";
-            string sPassword = "", sTwitterOauthToken = "", sTwitterOauthTokenSecret = "", sTwitterScreenName = "";
-            int iUserID = 0, iGenderID = 0, iAge = 0, iCountryID = 0, iUserTypeID = 0;
+            string sPassword = "", sTwitterOauthToken = "", sTwitterOauthTokenSecret = "", sTwitterScreenName = "", sEditorName = "", sEditorEmal = "";
+            int iUserID = 0, iGenderID = 0, iAge = 0, iCountryID = 0, iUserTypeID = 0, iBeatID = 0;
             ulong iTwitterUserID = 0;
             bool bActive = false;
             DateTime dLastUpdateddate = DateTime.Now, dDateTimeStamp = DateTime.Now;
@@ -73,6 +73,22 @@ public partial class app_journo_profileedit : System.Web.UI.Page
                 sBiography = Nodes["biography"].InnerText;
                 sCurrentJobTitle = Nodes["currentjobtitle"].InnerText;
                 sCurrentJobPublication = Nodes["currentjobpublication"].InnerText;
+                iBeatID = Convert.ToInt32(Nodes["beatid"].InnerText);
+                sEditorName = Nodes["editorname"].InnerText;
+                sEditorEmal = Nodes["editoremail"].InnerText;    
+            }
+
+                        
+            if (iUserTypeID == 2) {
+                divArticles.Visible = true;
+                divBeat.Visible = true;
+                litHeading.Text = "Manage Journalist: ";
+            }
+            else if (iUserTypeID == 3)
+            {
+                divArticles.Visible = false;
+                divBeat.Visible = false;
+                litHeading.Text = "Manage Communicator: ";
             }
 
             this.Page.Title = "iDecode | Manage Journalist Profile - " + sFirstName + " " + sLastName;
@@ -135,6 +151,7 @@ public partial class app_journo_profileedit : System.Web.UI.Page
                 txtLongBiography.Text = sBiography;
                 txtCurrentJobTitle.Text = sCurrentJobTitle;
                 txtCurrentJobPublication.Text = sCurrentJobPublication;
+                dBeats.SelectedValue = Convert.ToInt32(iBeatID).ToString();
 
                 //Social Links
                 txtTwitterURL.Text = sTwitterUsername;
@@ -178,7 +195,7 @@ public partial class app_journo_profileedit : System.Web.UI.Page
             var oDecode = new za.co.idecode.test.idecode();
             XmlNode XmlResult = oDecode.LoadUser(iJournalistID, "");
             string sFirstName = "", sLastName = "", sCurrentCity = "", sContactMobile = "", sContactOffice = "", sFaxNumber = "", sEmailAddress = "", sWebsiteAddress = "", sFacebookUsername = "", sTwitterUsername = "", sLinkedInUsername = "", sImageFormat = "", sTwitterProfileImageURL = "", sShortBiography = "", sBiography = "", sCurrentJobTitle = "", sCurrentJobPublication = "";
-            string sPassword = "", sTwitterOauthToken = "", sTwitterOauthTokenSecret = "", sTwitterScreenName = "";
+            string sPassword = "", sTwitterOauthToken = "", sTwitterOauthTokenSecret = "", sTwitterScreenName = "", sEditorname = "", sEditorEmail = "";
             int iUserID = 0, iGenderID = 0, iAge = 0, iCountryID = 0, iUserTypeID = 0, iBeatID = 0, iPackageID = 0;
             ulong iTwitterUserID = 0;
             bool bActive = false;
@@ -219,17 +236,18 @@ public partial class app_journo_profileedit : System.Web.UI.Page
                 sCurrentJobPublication = Nodes["currentjobpublication"].InnerText;
                 iBeatID = Convert.ToInt32(Nodes["beatid"].InnerText);
                 iPackageID = Convert.ToInt32(Nodes["packageid"].InnerText);
+                sEditorname = Nodes["editorname"].InnerText;
+                sEditorEmail = Nodes["editoremail"].InnerText;
             }
 
             if (upProImage.HasFile)
             {
                 sImageFormat = System.IO.Path.GetExtension(upProImage.PostedFile.FileName).Replace(".", "");
                 upProImage.PostedFile.SaveAs(Server.MapPath("/app/images/profileimages/") + iJournalistID + "." + sImageFormat);
-
             }
 
             oDecode = new za.co.idecode.test.idecode();
-            bool bSaveResult = oDecode.UpdateUser(iJournalistID, txtFirstName.Text, txtLastName.Text, iGenderID, Convert.ToInt32(txtAge.Text), txtCurrentCity.Text, iCountryID, txtMobileNumber.Text, txtOfficeNumber.Text, txtFaxNumber.Text, txtEmailAddress.Text, sPassword, txtWebsiteAddress.Text, iUserTypeID, txtFacebookURL.Text, txtTwitterURL.Text, txtLinkedInURL.Text, sImageFormat, sTwitterOauthToken, sTwitterOauthTokenSecret, sTwitterScreenName, iTwitterUserID, sTwitterProfileImageURL, txtOneLineBio.Text, txtLongBiography.Text, txtCurrentJobTitle.Text, txtCurrentJobPublication.Text, iBeatID, iPackageID);
+            bool bSaveResult = oDecode.UpdateUser(iJournalistID, txtFirstName.Text, txtLastName.Text, iGenderID, Convert.ToInt32(txtAge.Text), txtCurrentCity.Text, iCountryID, txtMobileNumber.Text, txtOfficeNumber.Text, txtFaxNumber.Text, txtEmailAddress.Text, sPassword, txtWebsiteAddress.Text, iUserTypeID, txtFacebookURL.Text, txtTwitterURL.Text, txtLinkedInURL.Text, sImageFormat, sTwitterOauthToken, sTwitterOauthTokenSecret, sTwitterScreenName, iTwitterUserID, sTwitterProfileImageURL, txtOneLineBio.Text, txtLongBiography.Text, txtCurrentJobTitle.Text, txtCurrentJobPublication.Text, Convert.ToInt32(dBeats.SelectedValue), iPackageID, sEditorname, sEditorEmail);
             Response.Redirect(Request.Url.AbsoluteUri,false);
         }
         catch (Exception ex)
@@ -243,8 +261,8 @@ public partial class app_journo_profileedit : System.Web.UI.Page
     {
         try
         {
-            var oGeneralFunctions = new GeneralFunctions();
-            oGeneralFunctions.UserSessionTrail(Convert.ToInt32(Session["iUserID"].ToString()), HttpContext.Current.Session.SessionID.ToString(), Request.RawUrl.ToString());
+            //var oGeneralFunctions = new GeneralFunctions();
+            //oGeneralFunctions.UserSessionTrail(Convert.ToInt32(Session["iUserID"].ToString()), HttpContext.Current.Session.SessionID.ToString(), Request.RawUrl.ToString());
             
             String url = txtArticleLink.Text;
             WebClient x = new WebClient();
@@ -288,8 +306,8 @@ public partial class app_journo_profileedit : System.Web.UI.Page
     {
         try
         {
-            var oGeneralFunctions = new GeneralFunctions();
-            oGeneralFunctions.UserSessionTrail(Convert.ToInt32(Session["iUserID"].ToString()), HttpContext.Current.Session.SessionID.ToString(), Request.RawUrl.ToString());
+            //var oGeneralFunctions = new GeneralFunctions();
+            //oGeneralFunctions.UserSessionTrail(Convert.ToInt32(Session["iUserID"].ToString()), HttpContext.Current.Session.SessionID.ToString(), Request.RawUrl.ToString());
             Response.Redirect("~/app/admin/journalists.aspx", true);
         }
         catch (Exception ex)

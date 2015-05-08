@@ -27,10 +27,8 @@ public partial class app_AppMasterPage : System.Web.UI.MasterPage
                 //appNav
 
                 aDashboard.HRef = "~/app/journalists/dashboard.aspx";
-                aSearch.HRef = "~/app/journalists/search.aspx";
-                aPressRelease.HRef = "~/app/journalists/pressreleases/userpressreleases.aspx";
-                aSettings.HRef = "~/app/communicators/profileedit.aspx";
                 aLogout.HRef = "~/app/login.aspx?logout=true";
+                aSettings.HRef = "~/app/journalists/profileedit.aspx";
 
                 //txtGeneralSearch.Visible = true;
                 aPricePlans.HRef = "~/register.aspx";
@@ -47,13 +45,18 @@ public partial class app_AppMasterPage : System.Web.UI.MasterPage
                 divSmaillProfileImage.Style.Add("background-image", "url('" + getImageURL(oUser.TwitterProfileImageURL, oUser.ImageFormat, oUser.UserID) + "')");
                 if (oUser.UserTypeID == 1)
                 {
-                    aPricePlans.HRef = "~/app/communicators/profileedit.aspx";
-                    txtGeneralSearch.Text = "Search for Journalists, Keywords and Topics";                    
+                    //aPricePlans.HRef = "~/app/communicators/profileedit.aspx";
+                    //txtGeneralSearch.Text = "Search for Journalists, Keywords and Topics";
+                    aPressRelease.HRef = "~/app/journalists/pressreleases/userpressreleases.aspx";
+                    aSearch.HRef = "~/app/journalists/search.aspx";
+                    
                 }
                 else if (oUser.UserTypeID == 2)
                 {
-                    aPricePlans.HRef = "~/app/journalists/profileedit.aspx";
-                    txtGeneralSearch.Text = "Search for Communicators, Keywords and Department";
+                    //aPricePlans.HRef = "~/app/journalists/profileedit.aspx";
+                    //txtGeneralSearch.Text = "Search for Communicators, Keywords and Department";
+                    aSearch.HRef = "~/app/communicators/search.aspx";
+                    aPressRelease.Visible = false;
                 }
             }
         }
