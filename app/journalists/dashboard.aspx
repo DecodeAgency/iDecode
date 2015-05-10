@@ -33,7 +33,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" Runat="Server">
     <div class="LeftBlockContainer">
         <div class="Block" runat="server" id="divJournalistsCounter" visible="false">
-            <h3>Journalists</h3>
+            <h3 style="background-color:#fbb152">Journalists</h3>
             <h4><asp:literal runat="server" ID="litJournalistCount" /></h4>
             <center>
                 <asp:Button runat="server" ID="btnJournalists" Text="Find Journalists" ValidationGroup="Submit" CssClass="SignInButton" OnClick="btnJournalists_Click" />
@@ -47,19 +47,20 @@
             </center>
         </div>
         <div class="Block">
-            <h3>Recent Updates</h3>
+            <h3 style="background-color:#cb334c">Recent Updates</h3>
             <asp:Repeater runat="server" ID="rptRecentUpdates" DataSourceID="dsRecentUpdates" OnDataBinding="rptRecentUpdates_DataBinding" OnItemDataBound="rptRecentUpdates_ItemDataBound">
                 <ItemTemplate>
-                    <div class='JobHistoryContainer'>
+                    <div class="<%# Container.ItemIndex % 2 == 0 ? "JobHistoryContainer" : "JobHistoryContainer JobHistoryContainerAlt" %>">
                         <div style='margin-top:10px'><asp:literal runat="server" ID="litUpdateStatus" /></div>
                         <div style='float:right'><asp:literal runat="server" ID="litDatePosted" Text='<%# Eval ("DateTimeStamp") %>' /></div>
                     </div>
+                    <div class="ListDivider"></div>
                     <asp:HiddenField runat="server" ID="hidUpdatedProfileID" Value='<%# Eval ("UpdatedProfileID") %>' />                   
                 </ItemTemplate>
             </asp:Repeater>  
         </div>
         <div class="Block" runat="server" id="divPressReleases">
-            <h3>Press Releases</h3>
+            <h3 style="background-color:#3668af">Press Releases</h3>
             <h4><asp:literal runat="server" ID="litTotalPressReleases" Text="0" /></h4>
             <center>
                 <asp:Button runat="server" ID="btnCreatePressRelease" Text="Create Press Release" ValidationGroup="Submit" CssClass="SignInButton" OnClick="btnCreatePressRelease_Click" />
@@ -75,31 +76,30 @@
             </div>      
         </div>
         <div class="Block">
-            <h3>Latest Tweets</h3>
+            <h3 style="background-color:#35abdd">Latest Tweets</h3>
              <div runat="server" id="divShowTweets"></div>
             <div runat="server" id="dvTwitterHandle" style="display:none;">
                 <div class="divShortBio">
                 <asp:TextBox runat="server" ID="txtTwitterHandle"></asp:TextBox>
                     </div>
-                <asp:Button runat="server" ID="btnLoadTweets" Text="Load Tweets" CssClass="SignInButton" OnClick="btnLoadTweets_Click" />
-         
+                <asp:Button runat="server" ID="btnLoadTweets" Text="Load Tweets" CssClass="SignInButton" OnClick="btnLoadTweets_Click" />         
             </div>
         </div>
     </div>
     <div class="RightBlockContainer">
         <div class="Block">
-           <h3>Profile Complete (%)</h3>
+           <h3 style="background-color:#1c4e95">Profile Complete (%)</h3>
             <div runat="server" class="dvOuterComplete" id="dvOuterComplete">
                 <div runat="server" class="dvInnerComplete" id="dvInnerComplete"></div>
             </div> 
             <div class="divShortBio" style="text-align:center;margin-top:20px;display: inline-block;float: left;">
             <asp:literal runat="server" ID="litPercentage">Your profile is 0% complete</asp:literal></div>
-            <div class="JobHistoryContainer" style="text-align:left;margin-top:20px;display: inline-block;">
+            <div class="JobHistoryContainer" runat="server" id="divCompleteList" style="text-align:left;margin-top:20px;display: inline-block;">
                 <asp:literal runat="server" ID="litInCompleteList"></asp:literal>
             </div>
         </div>
         <div class="Block" runat="server" id="divJournalistGroups">
-            <h3>Journalist Groups</h3>
+            <h3 style="background-color:#11a9ac">Journalist Groups</h3>
             <div runat="server" id="divMessage" class="Message SuccessMessage" visible="false">
                 <asp:Literal runat="server" ID="txtSuccessMessage" Text="Campaign group added" Visible="false" />
                 <asp:Literal runat="server" ID="txtErrorMessage" Text ="An error occured. Campaign group added." Visible="false" />
@@ -111,7 +111,16 @@
             </center>
         </div>
         <div class="Block" runat="server" id="divPublicJournalistGroups">
-            <h3>Public Media Groups</h3>
+            <h3 style="background-color:#e54d66">Public Media Groups</h3>
+            <asp:Repeater runat="server" ID="rptPublicMediaGroups" DataSourceID="dsPublicMediaGroups" OnItemDataBound="rptPublicMediaGroups_ItemDataBound" OnItemCommand="rptPublicMediaGroups_ItemCommand">
+                <ItemTemplate>
+                    <asp:HiddenField runat="server" ID="hidBeatID" Value='<%#Eval("BeatID") %>' />
+                    <div class="<%# Container.ItemIndex % 2 == 0 ? "JobHistoryContainer" : "JobHistoryContainer JobHistoryContainerAlt" %>">
+                        <asp:Literal runat="server" ID="litBeatName" />
+                        <asp:Button runat="server" ID="btnSendCampaign" Text="Send PR" CommandArgument='<%#Eval("BeatID") %>' CommandName="SendPR" />
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
     </div>
     <asp:SqlDataSource ID="dsRecentUpdates" runat="server" ConnectionString="<%$ ConnectionStrings:CS %>" SelectCommand="
@@ -119,6 +128,9 @@
 	        SELECT MIN(UserSessionTrailID) FROM UserSessionTrails WHERE Trail LIKE '%edit%' GROUP BY Trail, DateTimeStamp  
         )
         ORDER BY DateTimeStamp DESC">
+    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="dsPublicMediaGroups" runat="server" ConnectionString="<%$ ConnectionStrings:CS %>" SelectCommand="
+        SELECT BeatID, ISNULL(BeatName,'') AS BeatName FROM Beats WHERE IsPublic = 1 ORDER BY BeatName">
     </asp:SqlDataSource>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder4" Runat="Server">

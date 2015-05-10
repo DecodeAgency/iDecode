@@ -26,6 +26,9 @@
                         <label>Beat</label>
                         <asp:TextBox runat="server" ID="txtBeat" CssClass="SearchTextBoxes form-control" />
                         <br />
+                        <label>Public Group</label>
+                        <asp:CheckBox runat="server" ID="chkIsPublic" CssClass="form-control" />
+                        <br />
                         <asp:Button runat="server" ID="btnSaveBeat" Text="Save Changes" OnClick="btnSaveBeat_Click" CssClass="form-control btn-danger" />
                     </div>
                 </div>

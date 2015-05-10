@@ -32,6 +32,20 @@
                 </tr>
             </table>
         </div>
+        <div class="Block" runat="server" id="divAddtoGroup">
+            <h3>Add to Campaign Group</h3>
+            <div runat="server" id="divMessage" class="Message SuccessMessage" visible="false">
+                <asp:Literal runat="server" ID="txtSuccessMessage" Text="Journalist added to campaign group." Visible="false" />
+                <asp:Literal runat="server" ID="txtErrorMessage" Text ="An error occured. Journalist not added to group." Visible="false" />
+            </div>
+	        <center>
+                <asp:TextBox runat="server" ID="txtGroupName" Text="Enter group name" />
+                <asp:Button runat="server" ID="btnAddSubscriberToList" Text="Add Me" OnClick="btnAddSubscriberToList_Click" CssClass="Pinky" />
+    <%--            <ul>
+                    <input type="button" id="btnTryMe" value="Add Me" class="Pinky" />
+                </ul>--%>
+	        </center>					    
+        </div>
     </div>
     <div class="MiddleBlockContainer">
        <div class="Block">
@@ -65,12 +79,18 @@
                 <a href="#" runat="server" id="aProfileSocialButtonEmail"><div class="ProfileSocialButton ProfileContactButton" style="background-color:#72a69b; border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">Email</div></a>
             </div>
         </div>
-    </div> 
-    <div class="ProfileShareContainer" style="display:none">
-        <span style="font-size:16px;">SHARE THIS PROFILE</span><br />
-        <a runat="server" id="aTwitterShare" href="#"><img src="../../styling/images/64-twitter.png" width="35" /></a>&nbsp;&nbsp;
-        <a runat="server" id="aFacebookShare" href="#"><img src="../../styling/images/64-facebook.png" width="35" /></a>&nbsp;&nbsp;
-        <a runat="server" id="aLinkedInShare" href="#"><img src="../../styling/images/64-linkedin.png" width="35" /></a>&nbsp;&nbsp;
+        <div class="Block">
+            <h3>Share This Profile</h3>
+            <a runat="server" id="aFacebookShare" href="#"><div class="ShareThisBlock" style="background-color:#3469af"></div></a>
+            <a runat="server" id="aTwitterShare" href="#"><div class="ShareThisBlock" style="background-color:#4fc5f7"></div></a>
+            <a runat="server" id="aLinkedInShare" href="#"><div class="ShareThisBlock" style="background-color:#515a7b"></div></a>
+            <a runat="server" id="aGplusShare" href="#"><div class="ShareThisBlock" style="background-color:#e54d66"></div></a>
+
+            <a runat="server" id="a1" href="#"><div class="ShareThisBlock ShareThisBlockMini" style="background-color:#1c4e95">0</div></a>
+            <a runat="server" id="a2" href="#"><div class="ShareThisBlock ShareThisBlockMini" style="background-color:#35abdd">0</div></a>
+            <a runat="server" id="a3" href="#"><div class="ShareThisBlock ShareThisBlockMini" style="background-color:#363f60">0</div></a>
+            <a runat="server" id="a4" href="#"><div class="ShareThisBlock ShareThisBlockMini" style="background-color:#cc344d">0</div></a>
+        </div> 
     </div> 
     <div class="ResultsContainer" style="display:none">
         <h3 style="border-top-left-radius: 0px;border-top-right-radius: 0px;background-color:#35aadc; border-top-left-radius: 5px;border-top-right-radius: 5px;">Twitter Feed</h3>       
@@ -82,20 +102,6 @@
     <asp:XmlDataSource runat="server" id="dsUserArticles">
 
     </asp:XmlDataSource>
-    <div class="Block" runat="server" id="divAddtoGroup">
-        <h3>Add to Campaign Group</h3>
-        <div runat="server" id="divMessage" class="Message SuccessMessage" visible="false">
-            <asp:Literal runat="server" ID="txtSuccessMessage" Text="Journalist added to campaign group." Visible="false" />
-            <asp:Literal runat="server" ID="txtErrorMessage" Text ="An error occured. Journalist not added to group." Visible="false" />
-        </div>
-	    <center>
-            <asp:TextBox runat="server" ID="txtGroupName" Text="Enter group name" />
-            <asp:Button runat="server" ID="btnAddSubscriberToList" Text="Add Me" OnClick="btnAddSubscriberToList_Click" CssClass="Pinky" />
-<%--            <ul>
-                <input type="button" id="btnTryMe" value="Add Me" class="Pinky" />
-            </ul>--%>
-	    </center>					    
-    </div>
     <script>
         $("#btnTryM").click(function(){
             swal({

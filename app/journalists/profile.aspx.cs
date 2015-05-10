@@ -31,7 +31,7 @@ public partial class app_journo_profile : System.Web.UI.Page
     string sPostURL = "https://us8.api.mailchimp.com/2.0/";
     const string sListID = "a6e338b2b3"; //iDecode Press Releases List ID
     MailChimpManager mc = new MailChimpManager(sAPIKey);
-
+    int iUserID = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["iUserID"] == null) { Response.Redirect("~/app/login.aspx", true); }
@@ -43,14 +43,15 @@ public partial class app_journo_profile : System.Web.UI.Page
             //if (Convert.ToInt32(Request.QueryString["uid"].ToString()) != 0) {
             //    XmlResult = oDecode.LoadUser(Convert.ToInt32(Request.QueryString["uid"].ToString()), "");
             //}else if (Convert.ToInt16(Session["iUserID"].ToString()) != 0){
-            XmlResult = oDecode.LoadUser(Convert.ToInt32(Request.QueryString["uid"].ToString()), "");
+            iUserID = Convert.ToInt32(Page.RouteData.Values["userid"]);
+            XmlResult = oDecode.LoadUser(iUserID, "");
             //}else{
             //    Response.Redirect("",true);
             //}
         
             string sFirstName = "", sLastName = "", sCurrentCity = "", sContactMobile = "", sContactOffice = "", sFaxNumber = "", sEmailAddress = "", sWebsiteAddress = "", sFacebookUsername = "", sTwitterUsername = "", sLinkedInUsername = "", sImageFormat = "", sTwitterProfileImageURL = "", sShortBiography = "", sBiography = "", sCurrentJobTitle = "", sCurrentJobPublication = "";
             string sPassword = "", sTwitterOauthToken = "", sTwitterOauthTokenSecret = "", sTwitterScreenName = "";
-            int iUserID = 0, iGenderID = 0, iAge = 0, iCountryID = 0, iUserTypeID = 0;
+            int iGenderID = 0, iAge = 0, iCountryID = 0, iUserTypeID = 0;
             ulong iTwitterUserID = 0;
             bool bActive = false;
             DateTime dLastUpdateddate = DateTime.Now, dDateTimeStamp = DateTime.Now;
@@ -76,7 +77,7 @@ public partial class app_journo_profile : System.Web.UI.Page
                 dLastUpdateddate = Convert.ToDateTime(Nodes["lastupdateddate"].InnerText);
                 iUserTypeID = Convert.ToInt32(Nodes["usertypeid"].InnerText);
                 sFacebookUsername = Nodes["facebookusername"].InnerText;
-                sTwitterUsername = Nodes["twitterusername"].InnerText;
+                sTwitterUsername = Nodes["twitterusername"].InnerText.Replace("@","");
                 sLinkedInUsername = Nodes["linkedinusername"].InnerText;
                 sImageFormat = Nodes["imageformat"].InnerText;
                 sTwitterOauthToken = Nodes["twitteroauthtoken"].InnerText;
@@ -99,7 +100,7 @@ public partial class app_journo_profile : System.Web.UI.Page
                 divAddtoGroup.Visible = false;
             }
 
-            if (sTwitterUsername != "")
+            if (sTwitterUsername != "" && sTwitterUsername != "#")
             {
                 string sBearer = "AAAAAAAAAAAAAAAAAAAAAEhjewAAAAAA6%2B3HZJ5tpzcHEXobNTo%2F7%2BYT7Oc%3D06JMFvVxeHslrlLo5azQ5tmOBfiAo0eyCgHebQSfmgl3dtQY4a";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.twitter.com/1.1/statuses/user_timeline.json?count=5&exclude_replies=true&screen_name=" + sTwitterUsername);
@@ -204,8 +205,8 @@ public partial class app_journo_profile : System.Web.UI.Page
             if (sTwitterUsername == "") {
                 aProfileSocialButtonTwitter.HRef = "#";
             }
-            aTwitterShare.HRef = "https://twitter.com/intent/tweet?related=Decode Media&text=" + sFirstName + " " + sLastName;
-            aFacebookShare.HRef = "https://www.facebook.com/sharer/sharer.php?u=http://test.idecode.co.za/";
+            aTwitterShare.HRef = "https://twitter.com/intent/tweet?related=iDecode Media List&text=" + sFirstName + " " + sLastName + "'s profile on iDecode Media List. " + Request.Url + " via @Decode_Agency";
+            aFacebookShare.HRef = "https://www.facebook.com/sharer/sharer.php?u=" + Request.Url;
             aLinkedInShare.HRef = "http://www.linkedin.com/shareArticle?mini=true&url=http%3A//muckrack.com/CassandraVinograd&title=Cassandra%20Vinograd%27s%20Muck%20Rack%20portfolio&summary=Cassandra%20Vinograd%27s%20Muck%20Rack%20profile&source=";
 
             aProfileSocialButtonFacebook.HRef = "https://facebook.com/" + sFacebookUsername;
@@ -214,9 +215,9 @@ public partial class app_journo_profile : System.Web.UI.Page
             aProfileSocialButtonWebsite.HRef = "http://" + sWebsiteAddress;
             aProfileSocialButtonEmail.HRef = "mailto:" + sEmailAddress;
 
-            XmlResult = oDecode.LoadUserJobs(Convert.ToInt32(Request.QueryString["uid"].ToString()));
+            XmlResult = oDecode.LoadUserJobs(iUserID);
             XmlDocument doc = new XmlDocument();
-            string s = Convert.ToString(oDecode.LoadUserJobs(Convert.ToInt32(Request.QueryString["uid"].ToString())).InnerXml);
+            string s = Convert.ToString(oDecode.LoadUserJobs(iUserID).InnerXml);
             doc.LoadXml(s);
 
             XmlDataSource xDataSource = new XmlDataSource();
@@ -230,7 +231,7 @@ public partial class app_journo_profile : System.Web.UI.Page
             //Get UserArticles
             //XmlResult = oDecode.LoadUserArticles(Convert.ToInt16(Session["iUserID"].ToString()));
             doc = new XmlDocument();
-            s = Convert.ToString(oDecode.LoadUserArticles(Convert.ToInt32(Request.QueryString["uid"].ToString())).InnerXml);
+            s = Convert.ToString(oDecode.LoadUserArticles(iUserID).InnerXml);
             doc.LoadXml(s);
 
             xDataSource = new XmlDataSource();
@@ -346,11 +347,11 @@ public partial class app_journo_profile : System.Web.UI.Page
         }
         else if (sImageFormat != "")
         {
-            output = "../images/profileimages/" + Convert.ToInt32(Request.QueryString["uid"].ToString()) + "." + sImageFormat;
+            output = "http://www.decode.co.za/app/images/profileimages/" + iUserID + "." + sImageFormat;
         }
         else
         {
-            output = "../images/profileimages/0.png";
+            output = "http://www.decode.co.za/app/images/profileimages/0.png";
         }
         return output;
     }
@@ -362,7 +363,7 @@ public partial class app_journo_profile : System.Web.UI.Page
             var oGeneralFunctions = new GeneralFunctions();
             oGeneralFunctions.UserSessionTrail(Convert.ToInt32(Session["iUserID"].ToString()), HttpContext.Current.Session.SessionID.ToString(), Request.RawUrl.ToString());
 
-            var oUser = new User(Convert.ToInt32(Request.QueryString["uid"].ToString()), "");
+            var oUser = new User(iUserID, "");
 
             List<InterestGrouping> results = mc.GetListInterestGroupings(sListID);
             ListResult lists = mc.GetLists();

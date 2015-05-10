@@ -5,12 +5,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class app_admin_beats : System.Web.UI.Page
+public partial class app_forgotpassword : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["iUserID"] == null) { Response.Redirect("~/app/admin/login.aspx", true); }
-        this.Page.Title = "iDecode | Beats";
-    }
 
+    }
+    protected void btnSendMyPassword_Click(object sender, EventArgs e)
+    {
+
+    }
 }

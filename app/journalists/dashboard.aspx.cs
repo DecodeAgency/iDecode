@@ -29,7 +29,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
     {
         try
         {            
-            if (Session["iUserID"] == null) { Response.Redirect("~/app/login.aspx", true); }
+            if (Session["iUserID"] == null) { Response.Redirect("~/app/login", true); }
             int iUserID = Convert.ToInt16(Session["iUserID"].ToString());
             this.Page.Title = "iDecode | Dashboard";
             var oUser = new User(iUserID,"");
@@ -80,7 +80,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
         {
             var oGeneralFunctions = new GeneralFunctions();
             oGeneralFunctions.UserSessionTrail(Convert.ToInt32(Session["iUserID"].ToString()), HttpContext.Current.Session.SessionID.ToString(), Request.RawUrl.ToString());
-            Response.Redirect("search.aspx",false);
+            Response.Redirect("search",false);
             HttpContext.Current.ApplicationInstance.CompleteRequest(); 
         }
         catch (Exception ex)
@@ -96,7 +96,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
         {
             var oGeneralFunctions = new GeneralFunctions();
             oGeneralFunctions.UserSessionTrail(Convert.ToInt32(Session["iUserID"].ToString()), HttpContext.Current.Session.SessionID.ToString(), Request.RawUrl.ToString());
-            Response.Redirect("~/app/communicators/search.aspx", false);
+            Response.Redirect("~/app/communicators/search", false);
             HttpContext.Current.ApplicationInstance.CompleteRequest();
         }
         catch (Exception ex)
@@ -371,6 +371,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
         if (dPercentage > 93 )
         {
              dvInnerComplete.Style[HtmlTextWriterStyle.Width] = "96%";
+             divCompleteList.Visible = false;
         }
         litPercentage.Text = "Your profile is " + sPercentage + " complete";
         litInCompleteList.Text = sList;
@@ -523,19 +524,12 @@ public partial class app_admin_dashboard : System.Web.UI.Page
         litDatePosted.Text = sDate + " ago";
 
         
-        if (oLoggedInUser.UserTypeID == 2)
+
+        if (oUser.UserTypeID == 3) 
         {
-            if (oUser.UserTypeID == 3) 
-            {
-            
-                    litUpdateStatus.Text = "Communicator: <a href='profile.aspx?uid=" + oUser.UserID + "'>" + oUser.FirstName + " " + oUser.LastName + "</a> profile was updated.";            
-            }
-        }
-        else if (oLoggedInUser.UserTypeID == 3 || oLoggedInUser.UserTypeID == 1)
-        {  
-            if (oUser.UserTypeID == 2) { 
-                litUpdateStatus.Text = "Journalist: <a href='profile.aspx?uid=" + oUser.UserID + "'>" + oUser.FirstName + " " + oUser.LastName + "</a> profile was updated.";
-            }
+            litUpdateStatus.Text = "Communicator: <a href='/app/journalist/" + oUser.UserID + "/" + oUser.FirstName + " " + oUser.LastName + "'>" + oUser.FirstName + " " + oUser.LastName + "</a> profile was updated.";            
+        }else if (oUser.UserTypeID == 2) {
+            litUpdateStatus.Text = "Journalist: <a href='/app/journalist/" + oUser.UserID + "/" + oUser.FirstName + " " + oUser.LastName + "'>" + oUser.FirstName + " " + oUser.LastName + "</a> profile was updated.";
         }
     }
 
@@ -590,7 +584,7 @@ public partial class app_admin_dashboard : System.Web.UI.Page
                 {
                     //sTweet = p.Value.ToString();
                     string sDate = ToLongString(DateTime.Now - DateTime.ParseExact((string)o["created_at"], "ddd MMM dd HH:mm:ss zzz yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeLocal));
-                    divShowTweets.InnerHtml += "<div class='JobHistoryContainer'><div style='margin-top:10px'>" + ParseTweet((string)o["text"]) + "</div><div style='float:right'>" + sDate.ToString() + " ago</div></div>";
+                    divShowTweets.InnerHtml += "<div class='JobHistoryContainer'><div style='margin-top:10px'>" + ParseTweet((string)o["text"]) + "</div><div style='float:right'>" + sDate.ToString() + " ago</div></div><div class='ListDivider'></div>";
                 }
             }
         }
@@ -620,6 +614,68 @@ public partial class app_admin_dashboard : System.Web.UI.Page
         catch (Exception ex)
         {
           
+        }
+    }
+    protected void rptPublicMediaGroups_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        HiddenField hidBeatID = e.Item.FindControl("hidBeatID") as HiddenField;
+        Literal litBeatName = e.Item.FindControl("litBeatName") as Literal;
+
+        int iBeatID = Convert.ToInt32(hidBeatID.Value);
+
+        var oBeat = new Beat(iBeatID);
+        litBeatName.Text = oBeat.BeatName + "(" + CountUserPerBeat(iBeatID) + ")";
+    }
+
+    public int CountUserPerBeat(int BeatID)
+    {
+        string sSQL;
+        int iCount = 0;
+        System.Data.SqlClient.SqlCommand cm;
+        System.Data.SqlClient.SqlDataReader dr;
+        string sConStr = System.Configuration.ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
+
+        try
+        {
+
+            sSQL = "SELECT COUNT(UserID) As Count FROM Users WHERE BeatID = " + BeatID;
+
+            cm = new SqlCommand(sSQL, new SqlConnection(sConStr));
+            cm.Connection.Open();
+            dr = cm.ExecuteReader();
+
+            if (dr.Read())
+            {
+                iCount = Convert.ToInt32(dr["Count"].ToString());
+            }
+            else
+            {
+                iCount = 0;
+            }
+
+            dr.Close();
+            cm.Connection.Close();
+            cm.Dispose();
+        }
+        catch (InvalidCastException e)
+        {
+            throw (e);
+        }
+        dr = null;
+        cm.Connection = null;
+        cm = null;
+        return iCount;
+    }
+
+    protected void btnSendCampaign_Click(object sender, EventArgs e)
+    {
+        
+    }
+    protected void rptPublicMediaGroups_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "SendPR") {
+            int iBeatID = Convert.ToInt32(e.CommandArgument);
+            var oBeat = new Beat(iBeatID);
         }
     }
 }

@@ -28,9 +28,14 @@ public class Beat
         set { bIsPublic = value; }
     }
 
-	public Beat()
-	{
+    public Beat()
+    {
 
+    }
+
+	public Beat(int ID)
+	{
+        Load(ID);
 	}
 
     public void Load(int ID)
@@ -44,7 +49,7 @@ public class Beat
         {
             iBeatID = ID;
 
-            sSQL = "SELECT BeatID, INSNULL(BeatName,'') AS BeatName, ISNULL(IsPublic,'false') AS IsPublic FROM Beats ";
+            sSQL = "SELECT BeatID, ISNULL(BeatName,'') AS BeatName, ISNULL(IsPublic,'false') AS IsPublic FROM Beats ";
             sSQL += "WHERE BeatID = " + ID.ToString();
 
             cm = new SqlCommand(sSQL, new SqlConnection(sConStr));

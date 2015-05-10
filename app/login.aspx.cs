@@ -67,7 +67,7 @@ public partial class app_login : System.Web.UI.Page
             Session["iUserID"] = iUserID.ToString();
 
             //if (iUserTypeID == 1) {
-            Response.Redirect("~/app/journalists/dashboard.aspx", false);
+            Response.Redirect("~/app/journalists/dashboard", false);
             //}
             //else if (iUserTypeID == 2)
             //{

@@ -1,7 +1,22 @@
-﻿
+﻿@font-face{
+    font-family:'MyriadProLight';
+    src:url('../fonts/myriadpro-light-webfont.eot');
+    src:url('../fonts/myriadpro-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/myriadpro-light-webfont.woff') format('woff'),url('../fonts/myriadpro-light-webfont.ttf') format('truetype'),url('../fonts/myriadpro-light-webfont.svg#MyriadProLight') format('svg');
+    font-weight:normal;
+    font-style:normal;
+}
+
+@font-face{
+    font-family:'MyriadProBold';
+    src:url('../fonts/myriadpro-bold-webfont.eot');
+    src:url('../fonts/myriadpro-bold-webfont.eot?#iefix') format('embedded-opentype'),url('../fonts/myriadpro-bold-webfont.woff') format('woff'),url('../fonts/myriadpro-bold-webfont.ttf') format('truetype'),url('../fonts/myriadpro-bold-webfont.svg#MyriadProBold') format('svg');
+    font-weight:normal;
+    font-style:normal;
+}
+
 * {
-    font-family: 'Lato', sans-serif !Important;
-    font-size:12px !Important;
+    font-family: 'MyriadProLight', sans-serif !Important;
+    font-size:14px !Important;
     letter-spacing: 1px;
     line-height: 15px;
 }
@@ -56,7 +71,6 @@ body {
     background-color:#343434;
 }
     .divTopBlackBar .Width960 .divContent {
-        font-size: 17px;
         color: #fff;
         float: right;
         margin-top: 9px;
@@ -77,7 +91,6 @@ body {
         display: inline-block;
         margin: 10px;
         text-transform: uppercase;
-        font-size: 18px;
         text-align:right
     }
 
@@ -466,13 +479,13 @@ input#btnSubscribe {
 }
 
 .JobHistoryContainer {
-    border-bottom: 1px solid #1f253d;
-    padding-bottom: 10px;
-    margin-top: 10px;
-    min-height: 50px;
-    overflow: hidden;
-    line-height: 20px;
-            
+  padding-bottom: 10px;
+  min-height: 50px;
+  overflow: hidden;
+  line-height: 20px;
+  margin-left: -10px;
+  padding: 10px;
+  width: 283px;          
 }
 
 .PublicationImage {
@@ -806,7 +819,10 @@ ul#ui-id-1 {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom: none !Important;
-    font-size: 16px !important;
+    font-size: 18px !important;
+    font-weight:normal;
+    margin-left: -10px !Important;
+    width: 303px;
 }
 h4 {
     font-size: 55px !Important;
@@ -835,7 +851,6 @@ h4 {
 }
 
 .divShortBio {
-    font-size: 13px !Important;
     text-align: center;
     width: 280px;
     margin: 0px auto;
@@ -867,6 +882,7 @@ h4 {
     height: 47px;
     background-color: #50597b;
     border-radius: 5px;
+    margin-top: 15px;
 }
 .dvInnerComplete
 {
@@ -904,7 +920,6 @@ h4 {
     .AppNavigationMenuContainer ul li a {
       color: #fff !Important;
       padding: 10px;
-      font-size: 13px !Important;
       margin:5px 20px
     }
 
@@ -956,7 +971,6 @@ h4 {
   margin-top: 22px;
   margin-right: 10px;
   color: #fff;
-  font-size: 13px !Important;
 }
 .SpamBlock {
     background-image: url("../images/mail9-512.png");
@@ -998,3 +1012,29 @@ h4 {
         color: #FFF;
         margin: 10px 0px;
     }
+
+.ListDivider {
+    height:1px;
+    width:304px;
+    background-color:#1f253d;
+    margin-left:-10px;
+}
+
+.JobHistoryContainerAlt {
+    background-color:#515a7b
+}
+
+.ShareThisBlock {
+  width: 70px;
+  height: 75px;
+  float: left;
+}
+
+.ShareThisBlockMini {
+  text-align: center;
+  height: 11px;
+  padding: 10px;
+  width: 50px;
+  font-weight: bold;
+  color: #fff;
+}

@@ -38,7 +38,8 @@
                 <asp:repeater runat="server" id="rptJournalists" DataSourceID="dsJournalists" OnItemDataBound="rptJournalists_ItemDataBound">
                     <itemtemplate>
                         <div class="JobHistoryContainer">
-                            <a href='<%# "profile.aspx?uid=" + Eval("UserID") %>'>
+                            <%--<a  href='<%# "profile.aspx?uid=" + Eval("UserID") %>'>--%>
+                            <a  href='<%# "/app/journalist/" + Eval("UserID") + "/" + Eval("FirstName") + " " + Eval("LastName")  %>'>
                                 <asp:HiddenField runat="server" ID="hidUserID" Value='<%# Eval ("UserID") %>' /> 
                                 <div runat="server" id="divProImage" class="PublicationImage" style='<%# "background-image:url(" + Eval("ProfileImage") + ")" %>'></div>
                                 <div class="CommunicatorName"> <%# Eval ("FirstName") + " " + Eval("LastName") %> </div>
@@ -56,7 +57,7 @@
             <asp:Literal runat="server" ID="litUserJournalistSearchesResult" Text="You do not have any saved searches." Visible="false"></asp:Literal>
             <asp:Repeater runat="server" ID="rptUserJournalistSearches" DataSourceID="dsUserJournalistSearch">          
                 <ItemTemplate>
-                    <a href='<%# "/app/journalists/search.aspx?sci=" + Eval("UserJournalistSearchID") %>'>
+                    <a href='<%# "/search.aspx?sci=" + Eval("UserJournalistSearchID") %>'>
                         <div class="JournalistSearches">
                             <div class="PublicationName"> <%# Convert.ToDateTime(Eval("DateTimeStamp")).ToString("dd MMM yyyy") %> </div>
                             <div class="PublicationName"> <%# Eval("SearchCriteria") %> </div>

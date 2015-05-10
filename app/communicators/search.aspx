@@ -38,7 +38,8 @@
             <asp:repeater runat="server" id="rptJournalists" DataSourceID="dsJournalists" OnItemDataBound="rptJournalists_ItemDataBound">
                 <itemtemplate>
                     <div class="JobHistoryContainer">
-                        <a href='<%# "../journalists/profile.aspx?uid=" + Eval("UserID") %>'>
+                        <%--<a href='<%# "../journalists/profile.aspx?uid=" + Eval("UserID") %>'>--%>
+                        <a  href='<%# "/app/communicator/" + Eval("UserID") + "/" + Eval("FirstName") + " " + Eval("LastName")  %>'>
                             <asp:HiddenField runat="server" ID="hidUserID" Value='<%# Eval ("UserID") %>' /> 
                             <div runat="server" id="divProImage" class="PublicationImage" style='<%# "background-image:url(" + Eval("ProfileImage") + ")" %>'></div>
                             <div class="CommunicatorName"> <%# Eval ("FirstName") + " " + Eval("LastName") %> </div>
